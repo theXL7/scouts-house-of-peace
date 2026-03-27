@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withBasePath } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -10,7 +11,7 @@ export default function Hero() {
         <div className="max-w-[700px] text-center lg:text-left">
           <div className="flex flex-col items-center gap-5 lg:items-start">
             <Image
-              src="/scouts-house-of-peace-logo.png"
+              src={withBasePath("/scouts-house-of-peace-logo.png")}
               alt="Scouts of the House of Peace logo"
               width={140}
               height={140}

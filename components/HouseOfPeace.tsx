@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withBasePath } from "@/lib/site";
 
 export default function HouseOfPeace() {
   return (
@@ -32,7 +33,7 @@ export default function HouseOfPeace() {
 
         <div className="relative aspect-[5/4] overflow-hidden rounded-[24px] border border-[#123B6D]/12 shadow-[0_24px_55px_rgba(18,59,109,0.06)]">
           <Image
-            src="/scouts-house-of-peace-logo.png"
+            src={withBasePath("/scouts-house-of-peace-logo.png")}
             alt="Scouts of the House of Peace visual"
             fill
             className="object-cover"
