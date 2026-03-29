@@ -15,9 +15,9 @@ export default function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#123B6D]/10 bg-[#FAF6EE]/90 backdrop-blur">
+    <header className="sticky top-0 z-50 bg-[#FAF6EE]/90 backdrop-blur">
       <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <div className="flex h-16 items-center justify-between gap-4">
+        <div className="flex h-16 items-center justify-between gap-4 border-b border-[#123B6D]/10">
           <div className="flex items-center gap-4">
             <button
               type="button"
@@ -92,6 +92,31 @@ export default function SiteHeader() {
             </nav>
           </div>
         ) : null}
+      </div>
+
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-[-1px] h-8 overflow-hidden"
+        aria-hidden="true"
+      >
+        <svg
+          viewBox="0 0 1440 90"
+          className="absolute inset-x-0 bottom-0 h-auto w-full text-[#FBF4E8]/88"
+        >
+          <path
+            d="M0 30c113 18 232 20 368 9 135-11 260-28 392-25 133 3 243 28 362 34 118 6 224-6 318-28v70H0Z"
+            fill="currentColor"
+          />
+        </svg>
+
+        <svg
+          viewBox="0 0 1440 88"
+          className="absolute inset-x-0 bottom-0 h-auto w-full text-[#FFF9EF]/64 blur-[0.65px]"
+        >
+          <path
+            d="M0 42c106 15 217 16 341 4 141-13 269-33 403-30 129 3 242 24 361 28 114 4 225-8 335-29v73H0Z"
+            fill="currentColor"
+          />
+        </svg>
       </div>
     </header>
   );
