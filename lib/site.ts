@@ -1,6 +1,12 @@
-export const siteBasePath = "/scouts-house-of-peace";
+export const BASE_PATH = "/scouts-house-of-peace";
+const isProd = process.env.NODE_ENV === "production";
 
-// Public assets need the repo path on GitHub Pages, so we build the full URL once here.
 export function withBasePath(path: string) {
-  return `${siteBasePath}${path}`;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+
+  if (!isProd) {
+    return normalizedPath;
+  }
+
+  return `${BASE_PATH}${normalizedPath}`;
 }

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export:docs": "next build && node -e \"const fs=require('fs'); if (fs.existsSync('docs')) fs.rmSync('docs',{recursive:true,force:true}); fs.renameSync('out','docs'); fs.closeSync(fs.openSync('docs/.nojekyll','w'));\"",
     "start": "next start",
     "lint": "eslint"
   },
