@@ -26,6 +26,16 @@ body {
   line-height: 1.72;
 }
 
+html {
+  scroll-padding-top: 7rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 h1,
 h2,
 h3,

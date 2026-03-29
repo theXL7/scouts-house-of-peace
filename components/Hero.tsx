@@ -17,17 +17,17 @@ export default function Hero() {
   const pigeons = {
     upperLeft: {
       left: "4%",
-      top: "7%",
+      top: "74%",
       sizeMobile: "4rem",
       sizeDesktop: "6rem",
       opacity: 0.42,
     },
     upperRight: {
       right: "6%",
-      top: "11%",
-      sizeMobile: "4rem",
-      sizeDesktop: "6rem",
-      opacity: 0.4,
+      top: "8.5%",
+      sizeMobile: "8rem",
+      sizeDesktop: "20rem",
+      opacity: 0.58,
     },
     lowerSmall: {
       right: "10%",
@@ -43,7 +43,9 @@ export default function Hero() {
   const heroArtVars = {
     "--hero-scenic-width-lg": scenicComposite.widthDesktop,
     "--hero-scenic-height-lg": scenicComposite.heightDesktop,
+    "--hero-pigeon-upper-left-size-sm": pigeons.upperLeft.sizeMobile,
     "--hero-pigeon-upper-left-size-lg": pigeons.upperLeft.sizeDesktop,
+    "--hero-pigeon-upper-right-size-sm": pigeons.upperRight.sizeMobile,
     "--hero-pigeon-upper-right-size-lg": pigeons.upperRight.sizeDesktop,
     "--hero-pigeon-lower-size-lg": pigeons.lowerSmall.sizeDesktop,
   } as CSSProperties;
@@ -190,7 +192,7 @@ export default function Hero() {
 
       <div className="pointer-events-none absolute inset-0 z-[16]" aria-hidden="true">
         <div
-          className="absolute lg:w-[var(--hero-pigeon-upper-left-size-lg)] lg:h-[var(--hero-pigeon-upper-left-size-lg)]"
+          className="absolute h-[var(--hero-pigeon-upper-left-size-sm)] w-[var(--hero-pigeon-upper-left-size-sm)] lg:h-[var(--hero-pigeon-upper-left-size-lg)] lg:w-[var(--hero-pigeon-upper-left-size-lg)]"
           style={{
             left: pigeons.upperLeft.left,
             top: pigeons.upperLeft.top,
@@ -207,7 +209,7 @@ export default function Hero() {
         </div>
 
         <div
-          className="absolute lg:w-[var(--hero-pigeon-upper-right-size-lg)] lg:h-[var(--hero-pigeon-upper-right-size-lg)]"
+          className="absolute h-[var(--hero-pigeon-upper-right-size-sm)] w-[var(--hero-pigeon-upper-right-size-sm)] lg:h-[var(--hero-pigeon-upper-right-size-lg)] lg:w-[var(--hero-pigeon-upper-right-size-lg)]"
           style={{
             right: pigeons.upperRight.right,
             top: pigeons.upperRight.top,
@@ -219,7 +221,10 @@ export default function Hero() {
             fill
             sizes="96px"
             className="object-contain blur-[0.4px]"
-            style={{ opacity: pigeons.upperRight.opacity }}
+            style={{
+              opacity: pigeons.upperRight.opacity,
+              transform: "scaleX(-1)",
+            }}
           />
         </div>
 
@@ -244,27 +249,29 @@ export default function Hero() {
       <div className="relative z-20 mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:py-32">
         <div className="max-w-[700px] text-center lg:text-left">
           <div className="flex flex-col items-center gap-5 lg:items-start">
-            <div className="relative">
-              <div className="pointer-events-none absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,249,240,0.62)_0%,rgba(255,243,225,0.28)_44%,rgba(255,243,225,0)_74%)] blur-2xl sm:h-40 sm:w-40 lg:h-44 lg:w-44" />
+            <div className="relative translate-x-19">
+              <div className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,249,240,0.62)_0%,rgba(255,243,225,0.28)_44%,rgba(255,243,225,0)_74%)] blur-2xl sm:h-44 sm:w-44 lg:h-48 lg:w-48" />
               <Image
                 src={withBasePath("/scouts-house-of-peace-logo.png")}
                 alt="Scouts of the House of Peace logo"
                 width={140}
                 height={140}
-                className="relative h-[128px] w-[128px] object-contain sm:h-[140px] sm:w-[140px] lg:h-[152px] lg:w-[152px]"
+                className="relative h-[144px] w-[144px] object-contain sm:h-[156px] sm:w-[156px] lg:h-[172px] lg:w-[172px]"
                 priority
               />
             </div>
-            <p className="eyebrow-text text-xs font-semibold text-[#E9DFCF]/88 sm:text-sm">
+            <p className="eyebrow-text text-xs font-semibold text-[#C6A56B] sm:text-sm">
               Scouts of the House of Peace
             </p>
           </div>
 
-          <h1 className="mt-8 max-w-[11ch] text-4xl leading-[1.02] !text-[#F7F1E7] sm:text-5xl lg:text-[3.95rem]">
-            Building a Culture of Peace Through Scouting
+          <h1 className="mt-8 max-w-[16ch] text-4xl leading-[1.02] !text-[#F7F1E7] sm:text-5xl lg:text-[3.95rem]">
+            <span className="block">Building a</span>
+            <span className="block">Culture of Peace</span>
+            <span className="block">Through Scouting</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-[1.95] text-white/84 sm:text-[1.08rem] lg:mx-0">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-[1.95] text-[#C6A56B] sm:text-[1.08rem] lg:mx-0">
             Empowering young people and communities through service, education,
             and global connection.
           </p>
@@ -272,13 +279,13 @@ export default function Hero() {
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
             <a
               href="#join-us"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#F4E5D0]/22 bg-[#123B6D] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(10,24,43,0.22),0_0_0_1px_rgba(255,244,226,0.08)] transition-colors hover:bg-[#0E2F59]"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#D4AF37] bg-[#264D3B] px-6 py-3 text-sm font-semibold text-[#F7F3EC] shadow-[0_10px_28px_rgba(24,51,39,0.24),0_0_0_1px_rgba(212,175,55,0.24)] transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-px hover:text-[#F1D58E]"
             >
               Join the Movement
             </a>
             <a
               href="#house-of-peace"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/34 bg-[#F7F3EC]/92 px-6 py-3 text-sm font-semibold text-[#123B6D] shadow-[0_10px_24px_rgba(17,28,41,0.12),0_0_0_1px_rgba(255,246,231,0.2)] transition-colors hover:bg-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#D4AF37] bg-[#F7F3EC] px-6 py-3 text-sm font-semibold text-[#264D3B] shadow-[0_10px_24px_rgba(17,28,41,0.12),0_0_0_1px_rgba(212,175,55,0.24)] transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-px hover:text-[#B86A4A]"
             >
               Discover Our Mission
             </a>
