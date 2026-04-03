@@ -68,15 +68,16 @@ label {
 
 @keyframes trust-marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .trust-marquee {
+  width: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -86,8 +87,20 @@ label {
   width: max-content;
   align-items: center;
   flex-wrap: nowrap;
-  animation: trust-marquee 32s linear infinite;
   will-change: transform;
+  animation: trust-marquee 46s linear infinite;
+}
+
+.trust-marquee-track--slow {
+  animation-duration: 46s;
+}
+
+.trust-marquee-track--slower {
+  animation-duration: 58s;
+}
+
+.trust-marquee-track--reverse {
+  animation-direction: reverse;
 }
 
 .trust-marquee:hover .trust-marquee-track {
@@ -95,8 +108,16 @@ label {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .trust-marquee-track {
+  .trust-marquee-track,
+  .trust-marquee-track--slow,
+  .trust-marquee-track--slower,
+  .trust-marquee-track--reverse {
     animation: none;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .trust-sequence-copy {
+    display: none;
   }
 }
 

@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import HouseOfPeace from "@/components/HouseOfPeace";
 import Impact from "@/components/Impact";
 import JoinUs from "@/components/JoinUs";
+import ScarfDivider from "@/components/ScarfDivider";
 import TrustStrip from "@/components/TrustStrip";
 import Values from "@/components/Values";
 
@@ -18,6 +19,7 @@ export default function HomePage() {
         <Hero />
         <TrustStrip />
         <HouseOfPeace />
+        <ScarfDivider />
         <Values />
         <Activities />
         <GlobalMovement />
