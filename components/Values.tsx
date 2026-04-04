@@ -1,88 +1,5 @@
-type ValueIconType =
-  | "coexistence"
-  | "community-impact"
-  | "peace-education"
-  | "personal-growth";
-
-function ValueIcon({ type }: { type: ValueIconType }) {
-  const iconClassName = "h-6 w-6 text-[#123B6D]/84";
-
-  switch (type) {
-    case "coexistence":
-      return (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={iconClassName}
-          aria-hidden="true"
-        >
-          <circle cx="8" cy="9" r="2.5" />
-          <circle cx="16" cy="9" r="2.5" />
-          <path d="M4.5 17c.8-2.1 2.4-3.2 3.5-3.2S10.7 14.9 11.5 17" />
-          <path d="M12.5 17c.8-2.1 2.4-3.2 3.5-3.2s2.7 1.1 3.5 3.2" />
-        </svg>
-      );
-
-    case "community-impact":
-      return (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={iconClassName}
-          aria-hidden="true"
-        >
-          <path d="M8 12.5l2 2 6-6" />
-          <path d="M12 3.5 4.8 6.8v4.8c0 4.3 2.7 7.3 7.2 8.9 4.5-1.6 7.2-4.6 7.2-8.9V6.8L12 3.5Z" />
-        </svg>
-      );
-
-    case "peace-education":
-      return (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={iconClassName}
-          aria-hidden="true"
-        >
-          <path d="M5 6.5h8.5a3 3 0 0 1 3 3V19H8a3 3 0 0 0-3 3V6.5Z" />
-          <path d="M19 6.5h-2.5" />
-          <path d="M8 10h5" />
-          <path d="M8 13h5" />
-        </svg>
-      );
-
-    case "personal-growth":
-      return (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={iconClassName}
-          aria-hidden="true"
-        >
-          <path d="M12 19V8.5" />
-          <path d="M8.5 12 12 8.5 15.5 12" />
-          <path d="M5 19h14" />
-          <path d="M7 5.5c1.1-.8 2.6-1.3 5-1.3s3.9.5 5 1.3" />
-        </svg>
-      );
-  }
-}
+import Image from "next/image";
+import { withBasePath } from "@/lib/site";
 
 export default function Values() {
   const values = [
@@ -90,16 +7,16 @@ export default function Values() {
       title: "Coexistence",
       description:
         "We bring people together across differences with respect, dialogue, and shared responsibility.",
-      icon: "coexistence" as const,
+      iconSrc: "/values/coexistence.png",
       tone: "bg-[#FBF7EF]/92",
       iconTone: "bg-white/82 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
       offset: "xl:translate-y-0",
     },
     {
-      title: "Community Impact",
+      title: "Service",
       description:
         "We serve our communities through action that strengthens care, solidarity, and belonging.",
-      icon: "community-impact" as const,
+      iconSrc: "/values/community-impact.png",
       tone: "bg-[#F6EFE3]/94",
       iconTone:
         "bg-[#FFF9F0]/86 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
@@ -109,7 +26,7 @@ export default function Values() {
       title: "Peace Education",
       description:
         "We teach peace as a practice through learning, leadership, and lived experience.",
-      icon: "peace-education" as const,
+      iconSrc: "/values/peace-education.png",
       tone: "bg-[#FCF8F1]/92",
       iconTone: "bg-white/84 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
       offset: "xl:translate-y-2",
@@ -118,7 +35,7 @@ export default function Values() {
       title: "Personal Growth",
       description:
         "We help young people grow in character, confidence, purpose, and service.",
-      icon: "personal-growth" as const,
+      iconSrc: "/values/personal-growth.png",
       tone: "bg-[#F7F1E7]/94",
       iconTone:
         "bg-[#FFF7EC]/86 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
@@ -127,13 +44,27 @@ export default function Values() {
   ];
 
   return (
-    <section id="values" className="bg-[#EFE5D7] px-6 py-20 sm:px-8 sm:py-24">
-      <div className="mx-auto max-w-6xl">
+    <section
+      id="values"
+      className="relative overflow-hidden bg-[#EFE5D7] px-6 py-20 sm:px-8 sm:py-24"
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <Image
+          src={withBasePath("/values/camping-background.png")}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-top opacity-75"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(239,229,215,0.5),rgba(239,229,215,0.08)_36%,rgba(239,229,215,0.58))]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow-text text-[0.72rem] font-medium text-[#123B6D]/64">
             OUR VALUES
           </p>
-          <h2 className="mt-4 text-3xl leading-[1.16] sm:text-[2.45rem]">
+          <h2 className="mt-4 text-3xl leading-[1.16] !text-[#010048] sm:text-[2.45rem]">
             Values that guide how we learn, serve, and grow together.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-center text-[0.98rem] leading-8 text-[#2A2A2A]/58">
@@ -142,48 +73,58 @@ export default function Values() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {values.map((value) => (
-            <button
-              key={value.title}
-              type="button"
-              aria-label={`Explore ${value.title}`}
-              className={`${value.tone} ${value.offset} group relative w-full cursor-pointer rounded-[18px] p-7 text-left shadow-[0_12px_24px_rgba(18,59,109,0.035)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_22px_36px_rgba(18,59,109,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#123B6D]/20 sm:p-8`}
-            >
-              {/* These can be swapped to real Links later without changing the card structure much. */}
-              <div
-                className={`flex h-14 w-14 items-center justify-center rounded-[16px] ${value.iconTone}`}
+        <div className="relative mt-12">
+          <div className="relative z-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {values.map((value) => (
+              <button
+                key={value.title}
+                type="button"
+                aria-label={`Explore ${value.title}`}
+                className={`${value.tone} ${value.offset} group relative w-full cursor-pointer rounded-[18px] p-7 text-left shadow-[0_12px_24px_rgba(18,59,109,0.035)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.01] hover:bg-[#6D7755] hover:shadow-[0_22px_36px_rgba(18,59,109,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#123B6D]/20 sm:p-8`}
               >
-                <ValueIcon type={value.icon} />
-              </div>
+                {/* These can be swapped to real Links later without changing the card structure much. */}
+                <div
+                  className={`mx-auto flex h-16 w-16 items-center justify-center rounded-[16px] ${value.iconTone} transition-colors duration-300 group-hover:bg-white/18`}
+                >
+                  <div className="relative h-11 w-11">
+                    <Image
+                      src={withBasePath(value.iconSrc)}
+                      alt=""
+                      fill
+                      sizes="44px"
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
 
-              <h3 className="mt-4 font-serif text-[1.8rem] leading-[1.14] text-[#2A2A2A]">
-                {value.title}
-              </h3>
+                <h3 className="mt-4 min-h-[2.2rem] whitespace-nowrap text-center font-serif text-[1.55rem] leading-[1.1] !text-[#010048] transition-colors duration-300 group-hover:!text-[#C9F2FF] sm:text-[1.7rem] xl:text-[1.45rem]">
+                  {value.title}
+                </h3>
 
-              <p className="mt-4 text-base leading-8 text-[#2A2A2A]/56">
-                {value.description}
-              </p>
+                <p className="mt-4 text-base leading-8 text-[#2A2A2A]/56 transition-colors duration-300 group-hover:text-[#C9F2FF]">
+                  {value.description}
+                </p>
 
-              <div className="mt-6 flex justify-end">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/64 text-[#123B6D]/54 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.7"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-4 w-4"
-                    aria-hidden="true"
-                  >
-                    <path d="M7 17 17 7" />
-                    <path d="M9 7h8v8" />
-                  </svg>
-                </span>
-              </div>
-            </button>
-          ))}
+                <div className="mt-6 flex justify-end">
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/64 text-[#123B6D]/54 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:bg-white/18 group-hover:text-[#C9F2FF]">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4"
+                      aria-hidden="true"
+                    >
+                      <path d="M7 17 17 7" />
+                      <path d="M9 7h8v8" />
+                    </svg>
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>

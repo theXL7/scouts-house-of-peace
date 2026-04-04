@@ -36,7 +36,7 @@ const houseOfPeaceConfig = {
     branchTwoClasses:
       "absolute bottom-[-2.5%] right-[-7%] hidden h-[46%] w-[46%] opacity-88 sm:block lg:bottom-[-3.5%] lg:right-[-7.5%] lg:h-[50%] lg:w-[50%]",
     pigeonThreeClasses:
-      "absolute bottom-[-10%] right-[18%] z-50 hidden h-[12%] w-[12%] opacity-85 md:block lg:bottom-[-11%] lg:right-[20%] lg:h-[11.5%] lg:w-[11.5%]",
+      "absolute bottom-[-11%] right-[16%] z-[100] hidden h-[14.5%] w-[14.5%] opacity-95 md:block lg:bottom-[-12%] lg:right-[18%] lg:h-[14%] lg:w-[14%]",
   },
 } as const;
 
@@ -47,7 +47,7 @@ const houseOfPeaceTags = [
 ] as const;
 
 const featuredIntroClasses =
-  "mx-auto max-w-[30.25rem] text-[1.08rem] font-medium italic leading-[1.75] tracking-[0.006em] text-[#364136] sm:text-[1.17rem] lg:mx-0 lg:max-w-[31rem]";
+  "mx-auto max-w-[30.25rem] text-[1.08rem] font-medium leading-[1.75] tracking-[0.006em] text-[#364136] sm:text-[1.17rem] lg:mx-0 lg:max-w-[31rem]";
 
 const supportingParagraphClasses =
   "mx-auto max-w-[31rem] text-[1rem] leading-[1.78] text-[#453D36] sm:text-[1.04rem] lg:mx-0";
@@ -192,7 +192,7 @@ export default function HouseOfPeace() {
               alt=""
               fill
               unoptimized
-              className="object-contain blur-[0.5px]"
+              className="object-contain drop-shadow-[0_10px_18px_rgba(18,59,109,0.14)]"
               sizes="44px"
             />
           </div>
