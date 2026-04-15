@@ -1,4 +1,6 @@
 import Image from "next/image";
+
+import type { Messages } from "@/messages/en";
 import { withBasePath } from "@/lib/site";
 
 type TrustItem =
@@ -16,122 +18,167 @@ type TrustItem =
       frameClassName?: string;
     };
 
-function logo(
-  label: string,
-  src: string,
-  width: number,
-  height: number,
-  className?: string,
-  frameClassName?: string
-): TrustItem {
-  return { type: "logo", label, src, width, height, className, frameClassName };
+type LogoLabelKey = keyof Messages["trustStrip"]["logos"];
+
+type LogoConfig = {
+  key: LogoLabelKey;
+  src: string;
+  width: number;
+  height: number;
+  className?: string;
+  frameClassName?: string;
+};
+
+const officialLogoConfigs: LogoConfig[] = [
+  {
+    key: "ministryEducation",
+    src: "/logos/partners/ministry-of-education-ar.png",
+    width: 944,
+    height: 775,
+    className: "h-10 sm:h-11",
+  },
+  {
+    key: "regionalAcademyOriental",
+    src: "/logos/partners/regional-academy-oriental.png",
+    width: 512,
+    height: 181,
+    className: "h-8 sm:h-9",
+  },
+  {
+    key: "communeTaourirt",
+    src: "/logos/partners/commune-of-taourirt.png",
+    width: 709,
+    height: 352,
+  },
+  {
+    key: "ministryYouthSports",
+    src: "/logos/partners/ministry-of-youth-and-sports.png",
+    width: 2000,
+    height: 2000,
+    className: "h-[3.6rem] sm:h-[4.1rem]",
+  },
+  { key: "anef", src: "/logos/partners/anef.png", width: 2000, height: 2000 },
+  {
+    key: "anouarSalam",
+    src: "/logos/partners/anouar-salam.png",
+    width: 2000,
+    height: 2000,
+  },
+  {
+    key: "fncv",
+    src: "/logos/partners/fncv.png",
+    width: 3000,
+    height: 2963,
+    className: "h-[3.6rem] sm:h-[4.1rem]",
+  },
+  {
+    key: "partnerOrganization",
+    src: "/logos/partners/partner-organization.png",
+    width: 1849,
+    height: 1428,
+  },
+  {
+    key: "moroccanRedCrescent",
+    src: "/logos/partners/moroccan-red-crescent.png",
+    width: 2822,
+    height: 2777,
+  },
+  {
+    key: "anaMawhoob",
+    src: "/logos/partners/ana-mawhoob.png",
+    width: 2000,
+    height: 2000,
+  },
+  {
+    key: "arabicCalligraphy",
+    src: "/logos/partners/arabic-calligraphy.png",
+    width: 2000,
+    height: 2000,
+  },
+];
+
+const networkLogoConfigs: LogoConfig[] = [
+  {
+    key: "moroccanScoutingLeague",
+    src: "/logos/partners/ligue-du-scoutisme-marocain.png",
+    width: 2000,
+    height: 2000,
+    className: "h-[4.2rem] scale-[1.18] sm:h-[4.8rem]",
+    frameClassName:
+      "h-[4.6rem] min-w-[12rem] px-6 sm:h-[5.1rem] sm:min-w-[13.5rem] sm:px-7",
+  },
+  {
+    key: "nationalFederationMoroccanScouting",
+    src: "/logos/partners/federation-nationale-du-scoutisme-marocain.png",
+    width: 2000,
+    height: 2000,
+    className: "h-[3.6rem] sm:h-[4.1rem]",
+  },
+  {
+    key: "worldOrganizationScoutMovement",
+    src: "/logos/partners/wosm-logo-2024.svg",
+    width: 335,
+    height: 129,
+    className: "h-9 sm:h-10",
+  },
+  {
+    key: "scoutsMusulmansFrance",
+    src: "/logos/partners/logo-smf.png",
+    width: 250,
+    height: 250,
+  },
+  { key: "onsg", src: "/logos/partners/onsg-logo.png", width: 2000, height: 2000 },
+  {
+    key: "shm",
+    src: "/logos/partners/shm.png",
+    width: 2000,
+    height: 2000,
+    className: "h-[3.6rem] sm:h-[4.1rem]",
+  },
+  {
+    key: "aisaOng",
+    src: "/logos/partners/aids-ong.png",
+    width: 3000,
+    height: 2963,
+  },
+  {
+    key: "may16LivingTogetherPeace",
+    src: "/logos/partners/logo-16-may-blue.png",
+    width: 251,
+    height: 293,
+    className: "h-9 sm:h-10",
+  },
+  {
+    key: "huisVanVrede",
+    src: "/logos/partners/huis-van-vrede-logo.png",
+    width: 3000,
+    height: 2963,
+  },
+  {
+    key: "scoutsMusulmansEspagne",
+    src: "/logos/partners/sme-logo.png",
+    width: 3000,
+    height: 2963,
+  },
+  {
+    key: "may16",
+    src: "/logos/partners/16-mai.png",
+    width: 3000,
+    height: 2963,
+  },
+];
+
+function logo(config: LogoConfig, labels: Messages["trustStrip"]["logos"]): TrustItem {
+  return {
+    type: "logo",
+    label: labels[config.key],
+    src: config.src,
+    width: config.width,
+    height: config.height,
+    className: config.className,
+    frameClassName: config.frameClassName,
+  };
 }
-
-const officialRow: TrustItem[] = [
-  { type: "text", label: "Supported by public, civic, and educational institutions" },
-  logo(
-    "Ministry of Education",
-    "/logos/partners/ministry-of-education-ar.png",
-    944,
-    775,
-    "h-10 sm:h-11"
-  ),
-  logo(
-    "Regional Academy of Oriental",
-    "/logos/partners/regional-academy-oriental.png",
-    512,
-    181,
-    "h-8 sm:h-9"
-  ),
-  logo(
-    "Commune of Taourirt",
-    "/logos/partners/commune-of-taourirt.png",
-    709,
-    352
-  ),
-  logo(
-    "Ministry of Youth and Sports",
-    "/logos/partners/ministry-of-youth-and-sports.png",
-    2000,
-    2000,
-    "h-[3.6rem] sm:h-[4.1rem]"
-  ),
-  logo("ANEF", "/logos/partners/anef.png", 2000, 2000),
-  logo("Anouar Salam", "/logos/partners/anouar-salam.png", 2000, 2000),
-  logo(
-    "FNCV",
-    "/logos/partners/fncv.png",
-    3000,
-    2963,
-    "h-[3.6rem] sm:h-[4.1rem]"
-  ),
-  logo(
-    "Partner Organization",
-    "/logos/partners/partner-organization.png",
-    1849,
-    1428
-  ),
-  logo(
-    "Moroccan Red Crescent",
-    "/logos/partners/moroccan-red-crescent.png",
-    2822,
-    2777
-  ),
-  logo("Ana Mawhoob", "/logos/partners/ana-mawhoob.png", 2000, 2000),
-  logo(
-    "Arabic Calligraphy",
-    "/logos/partners/arabic-calligraphy.png",
-    2000,
-    2000
-  ),
-  { type: "text", label: "Working across youth, culture, and local community life" },
-];
-
-const networkRow: TrustItem[] = [
-  { type: "text", label: "Connected to scouting, peace, and civil-society networks" },
-  logo(
-    "Moroccan Scouting League",
-    "/logos/partners/ligue-du-scoutisme-marocain.png",
-    2000,
-    2000,
-    "h-[4.2rem] scale-[1.18] sm:h-[4.8rem]",
-    "h-[4.6rem] min-w-[12rem] px-6 sm:h-[5.1rem] sm:min-w-[13.5rem] sm:px-7"
-  ),
-  logo(
-    "National Federation of Moroccan Scouting",
-    "/logos/partners/federation-nationale-du-scoutisme-marocain.png",
-    2000,
-    2000,
-    "h-[3.6rem] sm:h-[4.1rem]"
-  ),
-  logo(
-    "World Organization of the Scout Movement",
-    "/logos/partners/wosm-logo-2024.svg",
-    335,
-    129,
-    "h-9 sm:h-10"
-  ),
-  logo("Scouts Musulmans de France", "/logos/partners/logo-smf.png", 250, 250),
-  logo("ONSG", "/logos/partners/onsg-logo.png", 2000, 2000),
-  logo("SHM", "/logos/partners/shm.png", 2000, 2000, "h-[3.6rem] sm:h-[4.1rem]"),
-  logo("AISA ONG", "/logos/partners/aids-ong.png", 3000, 2963),
-  logo(
-    "16 May / Living Together in Peace",
-    "/logos/partners/logo-16-may-blue.png",
-    251,
-    293,
-    "h-9 sm:h-10"
-  ),
-  logo(
-    "Huis Van Vrede",
-    "/logos/partners/huis-van-vrede-logo.png",
-    3000,
-    2963
-  ),
-  logo("Scouts Musulmans d'Espagne", "/logos/partners/sme-logo.png", 3000, 2963),
-  logo("16 Mai", "/logos/partners/16-mai.png", 3000, 2963),
-  { type: "text", label: "Rooted in service, dialogue, and belonging" },
-];
 
 function TrustSequence({
   items,
@@ -217,11 +264,24 @@ function MarqueeRow({
   );
 }
 
-export default function TrustStrip() {
+export default function TrustStrip({ copy }: { copy: Messages["trustStrip"] }) {
+  const officialRow: TrustItem[] = [
+    { type: "text", label: copy.officialTextStart },
+    ...officialLogoConfigs.map((item) => logo(item, copy.logos)),
+    { type: "text", label: copy.officialTextEnd },
+  ];
+
+  const networkRow: TrustItem[] = [
+    { type: "text", label: copy.networkTextStart },
+    ...networkLogoConfigs.map((item) => logo(item, copy.logos)),
+    { type: "text", label: copy.networkTextEnd },
+  ];
+
   return (
     <section
       id="trust-strip"
-      aria-label="Recognition and trust"
+      aria-label={copy.ariaLabel}
+      dir="ltr"
       className="overflow-hidden border-y border-[#264D3B]/10 bg-[#E9E3D9]"
     >
       <div className="relative py-3">

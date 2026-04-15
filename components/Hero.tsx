@@ -1,8 +1,85 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+import type { Locale } from "@/messages";
+import { getJoinUsPath } from "@/messages";
+import type { Messages } from "@/messages/en";
+import { arabicDisplayOverrides } from "@/lib/arabicDisplay";
 import { withBasePath } from "@/lib/site";
 
-export default function Hero() {
+export default function Hero({
+  copy,
+  locale,
+  isRtl = false,
+}: {
+  copy: Messages["hero"];
+  locale: Locale;
+  isRtl?: boolean;
+}) {
+  const desktopTextAlignment = isRtl ? "lg:text-right" : "lg:text-left";
+  const desktopItemsAlignment = isRtl ? "lg:items-end" : "lg:items-start";
+  const desktopButtonAlignment = "lg:justify-start";
+  const displayEyebrow = isRtl
+    ? arabicDisplayOverrides.hero.eyebrow
+    : copy.eyebrow;
+  const displayTitleLines = isRtl
+    ? arabicDisplayOverrides.hero.titleLines
+    : copy.titleLines;
+  // Adjust these values to manually place the Arabic logo/title block
+  // without affecting the rest of the hero composition.
+  const arabicIdentityPosition = {
+    stackRightOffset: "-0.5rem",
+    logoTranslateX: "1.2rem",
+    logoTranslateY: "2rem",
+    titleTranslateX: "3rem",
+    titleTranslateY: "2rem",
+  } as const;
+  const textBlockClassName = isRtl
+    ? "max-w-[700px] text-center lg:ml-auto lg:mr-[-0.5rem] lg:text-right"
+    : "max-w-[700px] text-center lg:text-left";
+  const identityClusterClass = isRtl
+    ? "flex flex-col items-center gap-5 lg:ml-auto lg:w-fit lg:items-end"
+    : `flex flex-col items-center gap-5 ${desktopItemsAlignment}`;
+  const identityClusterStyle = isRtl
+    ? ({ marginRight: arabicIdentityPosition.stackRightOffset } as CSSProperties)
+    : undefined;
+  const heroHeadingClass = isRtl
+    ? "max-w-[21ch] leading-[1.28] sm:text-[3.5rem] lg:text-[4.45rem]"
+    : "max-w-[16ch] leading-[1.02] sm:text-5xl lg:text-[3.95rem]";
+  const heroBodyClass = isRtl
+    ? "mx-auto mt-6 max-w-[38rem] text-[1.06rem] leading-[2.16] text-[#C6A56B] lg:mx-0"
+    : "mx-auto mt-6 max-w-2xl text-base leading-[1.95] text-[#C6A56B] sm:text-[1.08rem] lg:mx-0";
+  const logoWrapperClass = isRtl ? "relative" : "relative translate-x-19";
+  const logoStyle = isRtl
+    ? ({
+        transform: `translate(${arabicIdentityPosition.logoTranslateX}, ${arabicIdentityPosition.logoTranslateY})`,
+      } as CSSProperties)
+    : undefined;
+  const titleStyle = isRtl
+    ? ({
+        transform: `translate(${arabicIdentityPosition.titleTranslateX}, ${arabicIdentityPosition.titleTranslateY})`,
+      } as CSSProperties)
+    : undefined;
+  const heroBackgroundTransform = isRtl
+    ? "scale(1.02)"
+    : "scaleX(-1) scale(1.02)";
+  const atmosphericShadeClass = isRtl
+    ? "pointer-events-none absolute inset-0 bg-[linear-gradient(270deg,rgba(12,28,48,0.84)_0%,rgba(15,32,55,0.72)_24%,rgba(18,41,68,0.38)_50%,rgba(18,41,68,0.14)_72%,rgba(18,41,68,0.05)_100%)]"
+    : "pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(12,28,48,0.84)_0%,rgba(15,32,55,0.72)_24%,rgba(18,41,68,0.38)_50%,rgba(18,41,68,0.14)_72%,rgba(18,41,68,0.05)_100%)]";
+  const whiteHighlightClass = isRtl
+    ? "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_6%,rgba(255,249,239,0.84),transparent_24%),radial-gradient(circle_at_82%_11%,rgba(255,244,228,0.46),transparent_27%),radial-gradient(circle_at_96%_18%,rgba(255,252,247,0.3),transparent_23%)]"
+    : "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_6%,rgba(255,249,239,0.84),transparent_24%),radial-gradient(circle_at_18%_11%,rgba(255,244,228,0.46),transparent_27%),radial-gradient(circle_at_4%_18%,rgba(255,252,247,0.3),transparent_23%)]";
+  const warmAtmosphereClass = isRtl
+    ? "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_18%,rgba(255,239,206,0.34),transparent_17%),radial-gradient(circle_at_44%_24%,rgba(255,222,164,0.16),transparent_22%),radial-gradient(circle_at_82%_22%,rgba(255,255,255,0.1),transparent_16%),radial-gradient(circle_at_39%_74%,rgba(255,231,188,0.12),transparent_19%)]"
+    : "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(255,239,206,0.34),transparent_17%),radial-gradient(circle_at_56%_24%,rgba(255,222,164,0.16),transparent_22%),radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.1),transparent_16%),radial-gradient(circle_at_61%_74%,rgba(255,231,188,0.12),transparent_19%)]";
+  const sparkleFieldClass = isRtl
+    ? "pointer-events-none absolute inset-0 opacity-[0.15] mix-blend-screen [background-image:radial-gradient(circle_at_34%_20%,rgba(255,245,225,0.92)_0,rgba(255,245,225,0)_2.4px),radial-gradient(circle_at_26%_30%,rgba(255,233,198,0.82)_0,rgba(255,233,198,0)_2.1px),radial-gradient(circle_at_52%_66%,rgba(255,246,232,0.76)_0,rgba(255,246,232,0)_1.9px),radial-gradient(circle_at_16%_58%,rgba(255,240,211,0.74)_0,rgba(255,240,211,0)_2px)] [background-size:240px_240px,290px_290px,320px_320px,300px_300px]"
+    : "pointer-events-none absolute inset-0 opacity-[0.15] mix-blend-screen [background-image:radial-gradient(circle_at_66%_20%,rgba(255,245,225,0.92)_0,rgba(255,245,225,0)_2.4px),radial-gradient(circle_at_74%_30%,rgba(255,233,198,0.82)_0,rgba(255,233,198,0)_2.1px),radial-gradient(circle_at_48%_66%,rgba(255,246,232,0.76)_0,rgba(255,246,232,0)_1.9px),radial-gradient(circle_at_84%_58%,rgba(255,240,211,0.74)_0,rgba(255,240,211,0)_2px)] [background-size:240px_240px,290px_290px,320px_320px,300px_300px]";
+  const treeBandWrapperClass = isRtl
+    ? "absolute bottom-[-10%] right-[-6%] h-[118%] w-[112%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.08)_14%,rgba(0,0,0,0.44)_32%,rgba(0,0,0,0.82)_52%,black_100%)] sm:bottom-[-12%] sm:right-[-4%] sm:h-[122%] sm:w-[108%] lg:bottom-[-14%] lg:right-[-2%] lg:h-[128%] lg:w-[104%]"
+    : "absolute bottom-[-10%] left-[-6%] h-[118%] w-[112%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.08)_14%,rgba(0,0,0,0.44)_32%,rgba(0,0,0,0.82)_52%,black_100%)] sm:bottom-[-12%] sm:left-[-4%] sm:h-[122%] sm:w-[108%] lg:bottom-[-14%] lg:left-[-2%] lg:h-[128%] lg:w-[104%]";
+
   // Quick tuning values for the final hero art.
   const scenicComposite = {
     left: "0%",
@@ -13,6 +90,12 @@ export default function Hero() {
     heightDesktop: "148%",
     opacity: 1,
   };
+  const scenicImageClass = isRtl
+    ? "object-contain object-right-bottom"
+    : "object-contain object-left-bottom";
+  const scenicImageStyle = isRtl
+    ? { opacity: scenicComposite.opacity, transform: "scaleX(-1)" }
+    : { opacity: scenicComposite.opacity };
 
   const pigeons = {
     upperLeft: {
@@ -60,20 +143,20 @@ export default function Hero() {
       <div className="absolute inset-0">
         <Image
           src={withBasePath("/hero/hero-bg.png")}
-          alt="Scouts gathered outdoors in warm golden light."
+          alt={copy.backgroundAlt}
           fill
           priority
           sizes="100vw"
           className="object-cover object-center blur-[0.25px] saturate-[0.98] contrast-[0.96] brightness-[0.99]"
-          style={{ transform: "scaleX(-1) scale(1.02)" }}
+          style={{ transform: heroBackgroundTransform }}
         />
       </div>
 
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(254,248,239,0.28)_0%,rgba(247,224,180,0.24)_36%,rgba(189,140,76,0.18)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(12,28,48,0.84)_0%,rgba(15,32,55,0.72)_24%,rgba(18,41,68,0.38)_50%,rgba(18,41,68,0.14)_72%,rgba(18,41,68,0.05)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_6%,rgba(255,249,239,0.84),transparent_24%),radial-gradient(circle_at_18%_11%,rgba(255,244,228,0.46),transparent_27%),radial-gradient(circle_at_4%_18%,rgba(255,252,247,0.3),transparent_23%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_18%,rgba(255,239,206,0.34),transparent_17%),radial-gradient(circle_at_56%_24%,rgba(255,222,164,0.16),transparent_22%),radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.1),transparent_16%),radial-gradient(circle_at_61%_74%,rgba(255,231,188,0.12),transparent_19%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.15] mix-blend-screen [background-image:radial-gradient(circle_at_66%_20%,rgba(255,245,225,0.92)_0,rgba(255,245,225,0)_2.4px),radial-gradient(circle_at_74%_30%,rgba(255,233,198,0.82)_0,rgba(255,233,198,0)_2.1px),radial-gradient(circle_at_48%_66%,rgba(255,246,232,0.76)_0,rgba(255,246,232,0)_1.9px),radial-gradient(circle_at_84%_58%,rgba(255,240,211,0.74)_0,rgba(255,240,211,0)_2px)] [background-size:240px_240px,290px_290px,320px_320px,300px_300px]" />
+      <div className={atmosphericShadeClass} />
+      <div className={whiteHighlightClass} />
+      <div className={warmAtmosphereClass} />
+      <div className={sparkleFieldClass} />
 
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[8] h-[8.75rem] sm:h-[10rem]"
@@ -114,13 +197,14 @@ export default function Hero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[10] h-[27%] overflow-hidden sm:h-[29%] lg:h-[31%]"
         aria-hidden="true"
       >
-        <div className="absolute bottom-[-10%] left-[-6%] h-[118%] w-[112%] [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.08)_14%,rgba(0,0,0,0.44)_32%,rgba(0,0,0,0.82)_52%,black_100%)] sm:bottom-[-12%] sm:left-[-4%] sm:h-[122%] sm:w-[108%] lg:bottom-[-14%] lg:left-[-2%] lg:h-[128%] lg:w-[104%]">
+        <div className={treeBandWrapperClass}>
           <Image
             src={withBasePath("/hero/trees-2.png")}
             alt=""
             fill
             sizes="100vw"
             className="object-cover object-[center_bottom] opacity-[0.72] blur-[0.38px] saturate-[0.9] contrast-[0.98] brightness-[1.02]"
+            style={isRtl ? { transform: "scaleX(-1)" } : undefined}
           />
         </div>
 
@@ -135,7 +219,8 @@ export default function Hero() {
         <div
           className="absolute w-[108%] h-[130%] sm:w-[104%] sm:h-[136%] lg:w-[var(--hero-scenic-width-lg)] lg:h-[var(--hero-scenic-height-lg)]"
           style={{
-            left: scenicComposite.left,
+            left: isRtl ? undefined : scenicComposite.left,
+            right: isRtl ? "-10%" : undefined,
             bottom: scenicComposite.bottom,
           }}
         >
@@ -144,8 +229,8 @@ export default function Hero() {
             alt=""
             fill
             sizes="(min-width: 1024px) 92vw, 108vw"
-            className="object-contain object-left-bottom"
-            style={{ opacity: scenicComposite.opacity }}
+            className={scenicImageClass}
+            style={scenicImageStyle}
           />
         </div>
       </div>
@@ -194,7 +279,8 @@ export default function Hero() {
         <div
           className="absolute h-[var(--hero-pigeon-upper-left-size-sm)] w-[var(--hero-pigeon-upper-left-size-sm)] lg:h-[var(--hero-pigeon-upper-left-size-lg)] lg:w-[var(--hero-pigeon-upper-left-size-lg)]"
           style={{
-            left: pigeons.upperLeft.left,
+            left: isRtl ? undefined : pigeons.upperLeft.left,
+            right: isRtl ? pigeons.upperLeft.left : undefined,
             top: pigeons.upperLeft.top,
           }}
         >
@@ -204,14 +290,18 @@ export default function Hero() {
             fill
             sizes="96px"
             className="object-contain blur-[0.45px]"
-            style={{ opacity: pigeons.upperLeft.opacity }}
+            style={{
+              opacity: pigeons.upperLeft.opacity,
+              transform: isRtl ? "scaleX(-1)" : undefined,
+            }}
           />
         </div>
 
         <div
           className="absolute h-[var(--hero-pigeon-upper-right-size-sm)] w-[var(--hero-pigeon-upper-right-size-sm)] lg:h-[var(--hero-pigeon-upper-right-size-lg)] lg:w-[var(--hero-pigeon-upper-right-size-lg)]"
           style={{
-            right: pigeons.upperRight.right,
+            right: isRtl ? undefined : pigeons.upperRight.right,
+            left: isRtl ? pigeons.upperRight.right : undefined,
             top: pigeons.upperRight.top,
           }}
         >
@@ -223,7 +313,7 @@ export default function Hero() {
             className="object-contain blur-[0.4px]"
             style={{
               opacity: pigeons.upperRight.opacity,
-              transform: "scaleX(-1)",
+              transform: isRtl ? undefined : "scaleX(-1)",
             }}
           />
         </div>
@@ -231,7 +321,8 @@ export default function Hero() {
         <div
           className="absolute lg:w-[var(--hero-pigeon-lower-size-lg)] lg:h-[var(--hero-pigeon-lower-size-lg)]"
           style={{
-            right: pigeons.lowerSmall.right,
+            right: isRtl ? undefined : pigeons.lowerSmall.right,
+            left: isRtl ? pigeons.lowerSmall.right : undefined,
             bottom: pigeons.lowerSmall.bottom,
           }}
         >
@@ -247,47 +338,75 @@ export default function Hero() {
       </div>
 
       <div className="relative z-20 mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28 lg:py-32">
-        <div className="max-w-[700px] text-center lg:text-left">
-          <div className="flex flex-col items-center gap-5 lg:items-start">
-            <div className="relative translate-x-19">
+        <div className={`${textBlockClassName} ${desktopTextAlignment}`}>
+          <div className={identityClusterClass} style={identityClusterStyle}>
+            <div className={logoWrapperClass} style={logoStyle}>
               <div className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,249,240,0.62)_0%,rgba(255,243,225,0.28)_44%,rgba(255,243,225,0)_74%)] blur-2xl sm:h-44 sm:w-44 lg:h-48 lg:w-48" />
               <Image
                 src={withBasePath("/scouts-house-of-peace-logo.png")}
-                alt="Scouts of the House of Peace logo"
+                alt={copy.logoAlt}
                 width={140}
                 height={140}
                 className="relative h-[144px] w-[144px] object-contain sm:h-[156px] sm:w-[156px] lg:h-[172px] lg:w-[172px]"
                 priority
               />
             </div>
-            <p className="eyebrow-text text-xs font-semibold text-[#C6A56B] sm:text-sm">
-              Scouts of the House of Peace
+            <p
+              className={`eyebrow-text text-xs font-semibold text-[#C6A56B] sm:text-sm ${
+                isRtl
+                  ? "ar-display-label text-[1rem] font-bold leading-none tracking-[0.01em] text-[#7A5941] drop-shadow-[0_1px_12px_rgba(255,248,239,0.45)] sm:text-[1.12rem]"
+                  : ""
+              } ${
+                isRtl ? "lg:text-right" : ""
+              }`}
+              style={titleStyle}
+            >
+              {displayEyebrow}
             </p>
           </div>
 
-          <h1 className="mt-8 max-w-[16ch] text-4xl leading-[1.02] !text-[#F7F1E7] sm:text-5xl lg:text-[3.95rem]">
-            <span className="block">Building a</span>
-            <span className="block">Culture of Peace</span>
-            <span className="block">Through Scouting</span>
+          <h1
+            className={`mt-8 text-4xl !text-[#F7F1E7] ${heroHeadingClass} ${
+              isRtl ? "ar-display-heading ar-display-hero" : ""
+            }`}
+          >
+            {displayTitleLines.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-[1.95] text-[#C6A56B] sm:text-[1.08rem] lg:mx-0">
-            Empowering young people and communities through service, education,
-            and global connection.
+          <p className={heroBodyClass}>
+            {copy.description}
           </p>
 
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
-            <a
-              href="#join-us"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#D4AF37] bg-[#264D3B] px-6 py-3 text-sm font-semibold text-[#F7F3EC] shadow-[0_10px_28px_rgba(24,51,39,0.24),0_0_0_1px_rgba(212,175,55,0.24)] transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-px hover:text-[#F1D58E]"
-            >
-              Join the Movement
-            </a>
+          <div
+            className={`mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center ${desktopButtonAlignment}`}
+          >
+            <div className="relative">
+              <div className="pointer-events-none absolute inset-x-5 inset-y-2 rounded-full bg-[#D4AF37]/24 blur-2xl" />
+              <Link
+                href={getJoinUsPath(locale)}
+                className="relative inline-flex min-h-[3.25rem] items-center justify-center gap-3 rounded-full border border-[#D4AF37] bg-[#264D3B] px-6 py-3 text-sm font-semibold text-[#F7F3EC] shadow-[0_10px_28px_rgba(24,51,39,0.24),0_0_0_1px_rgba(212,175,55,0.24)] transition-[color,background-color,border-color,transform,box-shadow] duration-200 hover:-translate-y-px hover:text-[#F1D58E] sm:px-7"
+              >
+                {"primaryBadge" in copy ? (
+                  <span
+                    className={`rounded-full border border-white/18 bg-white/12 px-2.5 py-1 text-[0.62rem] font-semibold text-[#F4DFC0] ${
+                      isRtl ? "tracking-[0.04em]" : "uppercase tracking-[0.14em]"
+                    }`}
+                  >
+                    {copy.primaryBadge}
+                  </span>
+                ) : null}
+                <span>{copy.primaryCta}</span>
+              </Link>
+            </div>
             <a
               href="#house-of-peace"
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#D4AF37] bg-[#F7F3EC] px-6 py-3 text-sm font-semibold text-[#264D3B] shadow-[0_10px_24px_rgba(17,28,41,0.12),0_0_0_1px_rgba(212,175,55,0.24)] transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-px hover:text-[#B86A4A]"
             >
-              Discover Our Mission
+              {copy.secondaryCta}
             </a>
           </div>
         </div>

@@ -66,6 +66,79 @@ label {
   text-transform: uppercase;
 }
 
+.locale-root[lang="ar"],
+.locale-root[lang="ar"] p,
+.locale-root[lang="ar"] li,
+.locale-root[lang="ar"] a,
+.locale-root[lang="ar"] button,
+.locale-root[lang="ar"] input,
+.locale-root[lang="ar"] textarea,
+.locale-root[lang="ar"] select,
+.locale-root[lang="ar"] label {
+  font-family: var(--font-ar-body), "Tajawal", "Noto Sans Arabic", "Dubai",
+    "Segoe UI", Tahoma, Arial, sans-serif;
+  font-feature-settings: "liga" 1, "calt" 1, "rlig" 1;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+.locale-root[lang="ar"] h1,
+.locale-root[lang="ar"] h2,
+.locale-root[lang="ar"] h3,
+.locale-root[lang="ar"] h4,
+.locale-root[lang="ar"] h5,
+.locale-root[lang="ar"] h6 {
+  font-family: var(--font-ar-display), "Amiri", "Noto Naskh Arabic",
+    "Scheherazade New", "Arabic Typesetting", serif;
+  letter-spacing: 0;
+  font-weight: 400;
+  line-height: 1.26;
+}
+
+.locale-root[lang="ar"] p,
+.locale-root[lang="ar"] li,
+.locale-root[lang="ar"] label,
+.locale-root[lang="ar"] input,
+.locale-root[lang="ar"] textarea,
+.locale-root[lang="ar"] select,
+.locale-root[lang="ar"] button,
+.locale-root[lang="ar"] a {
+  letter-spacing: 0;
+}
+
+.locale-root[lang="ar"] input::placeholder,
+.locale-root[lang="ar"] textarea::placeholder {
+  letter-spacing: 0;
+}
+
+.locale-root[lang="ar"] .eyebrow-text {
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+.locale-root[lang="ar"] .ar-display-heading {
+  font-family: var(--font-ar-display), "Amiri", "Noto Naskh Arabic",
+    "Scheherazade New", "Arabic Typesetting", serif;
+  font-weight: 400;
+  letter-spacing: 0;
+  word-spacing: 0.045em;
+  font-feature-settings: "liga" 1, "calt" 1, "rlig" 1, "kern" 1;
+  text-wrap: balance;
+}
+
+.locale-root[lang="ar"] .ar-display-hero {
+  line-height: 1.3;
+  word-spacing: 0.06em;
+}
+
+.locale-root[lang="ar"] .ar-display-label {
+  font-family: var(--font-ar-display), "Amiri", "Noto Naskh Arabic",
+    "Scheherazade New", "Arabic Typesetting", serif;
+  letter-spacing: 0 !important;
+  word-spacing: 0.08em;
+  font-weight: 400;
+}
+
 @keyframes trust-marquee {
   from {
     transform: translate3d(0, 0, 0);

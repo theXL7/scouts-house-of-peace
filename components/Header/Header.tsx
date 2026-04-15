@@ -4,19 +4,20 @@ import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+
+import {
+  getJoinUsPath,
+  getLocalizedPathname,
+  type Locale,
+} from "@/messages";
+import type { Messages } from "@/messages/en";
 import { withBasePath } from "@/lib/site";
 
-const navigationItems = [
-  { label: "About", href: "#house-of-peace" },
-  { label: "Programs", href: "#activities" },
-  { label: "Impact", href: "#impact" },
-  { label: "Contact", href: "#contact" },
-];
-
-const languages = ["EN", "FR", "AR"] as const;
-type Language = (typeof languages)[number];
+const languages: Locale[] = ["en", "fr", "ar"];
 const mobileMenuId = "floating-site-menu";
 const scrollRange = 240;
+type NavigationItem = Messages["navigation"][number];
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
@@ -39,19 +40,24 @@ function getNavbarStyles(progress: number): CSSProperties {
 
 function LanguageToggle({
   activeLanguage,
+  languageLabels,
+  ariaLabel,
   compact = false,
   onSelect,
 }: {
-  activeLanguage: Language;
+  activeLanguage: Locale;
+  languageLabels: Messages["languageLabels"];
+  ariaLabel: string;
   compact?: boolean;
-  onSelect: (language: Language) => void;
+  onSelect: (language: Locale) => void;
 }) {
   return (
     <div
+      dir="ltr"
       className={`inline-flex items-center rounded-full border border-white/45 bg-white/34 p-1 shadow-[0_10px_22px_rgba(38,77,59,0.08)] ${
         compact ? "gap-0.5" : "gap-1"
       }`}
-      aria-label="Language switcher"
+      aria-label={ariaLabel}
       role="group"
     >
       {languages.map((language) => {
@@ -73,7 +79,7 @@ function LanguageToggle({
                 : "text-[#264D3B]/62 hover:text-[#264D3B]"
             }`}
           >
-            {language}
+            {languageLabels[language]}
           </button>
         );
       })}
@@ -81,10 +87,32 @@ function LanguageToggle({
   );
 }
 
-export default function Header() {
-  const [activeLanguage, setActiveLanguage] = useState<Language>("EN");
+export default function Header({
+  locale,
+  navigation,
+  languageLabels,
+  copy,
+  brandHref,
+  joinHref,
+}: {
+  locale: Locale;
+  navigation: readonly NavigationItem[];
+  languageLabels: Messages["languageLabels"];
+  copy: Messages["header"];
+  brandHref?: string;
+  joinHref?: string;
+}) {
+  const isRtl = locale === "ar";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const router = useRouter();
+  const pathname = usePathname();
+  const brandLink = brandHref ?? "/";
+  const joinLink = joinHref ?? getJoinUsPath(locale);
+  const headerDirection = isRtl ? "rtl" : "ltr";
+  const brandAlignment = isRtl ? "pl-2 text-right" : "pr-2";
+  const controlsSide = isRtl ? "mr-auto" : "ml-auto";
+  const navigationDirection = isRtl ? "rtl" : "ltr";
 
   useEffect(() => {
     let animationFrame = 0;
@@ -139,11 +167,25 @@ export default function Header() {
 
   const navbarStyles = getNavbarStyles(scrollProgress);
 
+  function handleLanguageSelect(nextLocale: Locale) {
+    setIsMenuOpen(false);
+
+    if (nextLocale === locale) {
+      return;
+    }
+
+    const hash = window.location.hash;
+    router.push(`${getLocalizedPathname(pathname, nextLocale)}${hash}`);
+  }
+
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
+    <header
+      className="pointer-events-none fixed inset-x-0 top-0 z-50"
+      dir={headerDirection}
+    >
       <div className="mx-auto flex w-full max-w-[1200px] justify-center px-2 sm:px-4 lg:px-6">
         <nav
-          aria-label="Primary navigation"
+          aria-label={copy.ariaLabel}
           style={navbarStyles}
           className="pointer-events-auto relative w-full overflow-hidden rounded-[1.75rem] border [background-color:var(--nav-background)] [border-color:var(--nav-border)] [box-shadow:var(--nav-shadow)] [backdrop-filter:saturate(135%)_blur(var(--nav-blur))] [transform:translateY(var(--nav-offset))_scale(var(--nav-scale))] transition-[transform,box-shadow,background-color,border-color] duration-500 ease-out"
         >
@@ -154,13 +196,13 @@ export default function Header() {
 
           <div className="relative flex items-center gap-3 px-4 py-3 sm:px-5 lg:px-6">
             <Link
-              href="#hero"
-              className="group flex min-w-0 items-center gap-3 rounded-full pr-2 text-[#264D3B]"
+              href={brandLink}
+              className={`group flex min-w-0 items-center gap-3 rounded-full text-[#264D3B] ${brandAlignment}`}
             >
               <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/45 bg-white/45 shadow-[0_8px_20px_rgba(38,77,59,0.08)]">
                 <Image
                   src={withBasePath("/scouts-house-of-peace-logo.png")}
-                  alt="Scouts Maison de La Paix logo"
+                  alt={copy.brandLogoAlt}
                   fill
                   sizes="40px"
                   className="object-contain p-1.5"
@@ -169,13 +211,18 @@ export default function Header() {
 
               <span className="min-w-0">
                 <span className="block truncate font-serif text-[1.02rem] font-normal leading-none tracking-[-0.035em] text-[#264D3B] sm:text-[1.12rem]">
-                  Maison de La Paix
+                  {copy.brandName}
                 </span>
               </span>
             </Link>
 
-            <ul className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 text-[0.94rem] font-medium text-[#264D3B]/72 lg:flex">
-              {navigationItems.map((item) => (
+            <ul
+              dir={navigationDirection}
+              className={`absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 font-medium text-[#264D3B]/72 lg:flex ${
+                isRtl ? "text-[0.98rem]" : "text-[0.94rem]"
+              }`}
+            >
+              {navigation.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -187,19 +234,30 @@ export default function Header() {
               ))}
             </ul>
 
-            <div className="ml-auto flex items-center gap-2 sm:gap-2.5">
-              <div className="hidden sm:block">
+            <div className={`${controlsSide} flex items-center gap-2 sm:gap-2.5`}>
+              <div className={`hidden sm:block ${isRtl ? "sm:order-2" : ""}`}>
                 <LanguageToggle
-                  activeLanguage={activeLanguage}
-                  onSelect={setActiveLanguage}
+                  activeLanguage={locale}
+                  languageLabels={languageLabels}
+                  ariaLabel={copy.languageSwitcherLabel}
+                  onSelect={handleLanguageSelect}
                 />
               </div>
+
+              <Link
+                href={joinLink}
+                className={`hidden min-h-10 items-center justify-center rounded-full border border-[#CDB58E] bg-[#264D3B] px-4 py-2 text-sm font-semibold text-[#F7F3EC] shadow-[0_10px_22px_rgba(38,77,59,0.18)] transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-px hover:bg-[#315B47] sm:inline-flex ${
+                  isRtl ? "sm:order-1" : ""
+                }`}
+              >
+                {copy.joinLabel}
+              </Link>
 
               <button
                 type="button"
                 aria-controls={mobileMenuId}
                 aria-expanded={isMenuOpen}
-                aria-label="Toggle navigation menu"
+                aria-label={copy.toggleNavigationLabel}
                 onClick={() => setIsMenuOpen((open) => !open)}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/45 bg-white/42 text-[#264D3B] shadow-[0_8px_18px_rgba(38,77,59,0.08)] transition-colors hover:bg-white/58 lg:hidden"
               >
@@ -231,8 +289,12 @@ export default function Header() {
           >
             <div className="overflow-hidden">
               <div className="border-t border-[#D9CCB8]/70 px-4 pb-4 pt-2 sm:px-5">
-                <ul className="flex flex-col gap-2.5 text-sm text-[#264D3B]/78">
-                  {navigationItems.map((item) => (
+                <ul
+                  className={`flex flex-col gap-2.5 text-sm text-[#264D3B]/78 ${
+                    isRtl ? "text-right" : ""
+                  }`}
+                >
+                  {navigation.map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}
@@ -243,13 +305,29 @@ export default function Header() {
                       </Link>
                     </li>
                   ))}
+
+                  <li>
+                    <Link
+                      href={joinLink}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block rounded-2xl border border-[#264D3B]/10 bg-[#264D3B] px-4 py-3 text-center font-semibold text-[#F7F3EC] shadow-[0_10px_24px_rgba(38,77,59,0.15)] transition-colors hover:bg-[#315B47]"
+                    >
+                      {copy.joinLabel}
+                    </Link>
+                  </li>
                 </ul>
 
-                <div className="pt-3 sm:hidden">
+                <div
+                  className={`pt-3 sm:hidden ${
+                    isRtl ? "flex justify-start" : ""
+                  }`}
+                >
                   <LanguageToggle
-                    activeLanguage={activeLanguage}
+                    activeLanguage={locale}
+                    languageLabels={languageLabels}
+                    ariaLabel={copy.languageSwitcherLabel}
                     compact
-                    onSelect={setActiveLanguage}
+                    onSelect={handleLanguageSelect}
                   />
                 </div>
               </div>
