@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import type { Locale } from "@/messages";
+import type { Messages } from "@/messages/en";
+
 type ImpactStat = {
   value: number;
   suffix: string;
@@ -9,41 +12,40 @@ type ImpactStat = {
   tone: string;
 };
 
-const stats: ImpactStat[] = [
+const statCards = [
   {
-    value: 16,
-    suffix: "+",
-    label: "years of peace-centered scouting and community presence",
     tone: "bg-[#F8F2E8]/92",
   },
   {
-    value: 1000,
-    suffix: "+",
-    label: "young people and community members reached together",
     tone: "bg-[#FBF6EE]/94",
   },
   {
-    value: 100,
-    suffix: "+",
-    label: "shared camps, activities, and moments of service",
     tone: "bg-[#F5EEE2]/94",
   },
   {
-    value: 7,
-    suffix: "+",
-    label: "countries connected through dialogue and exchange",
     tone: "bg-[#F7F1E6]/92",
   },
 ];
 
-function formatStatValue(value: number) {
-  return value.toLocaleString("en-US");
+function formatStatValue(value: number, locale: Locale) {
+  return new Intl.NumberFormat(locale).format(value);
 }
 
-export default function Impact() {
+export default function Impact({
+  copy,
+  locale,
+}: {
+  copy: Messages["impact"];
+  locale: Locale;
+}) {
+  const isRtl = locale === "ar";
+  const stats: ImpactStat[] = statCards.map((card, index) => ({
+    ...card,
+    ...copy.stats[index],
+  }));
   const sectionRef = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [counts, setCounts] = useState(() => stats.map(() => 0));
+  const [counts, setCounts] = useState(() => statCards.map(() => 0));
 
   useEffect(() => {
     const sectionElement = sectionRef.current;
@@ -79,7 +81,7 @@ export default function Impact() {
 
     if (prefersReducedMotion) {
       const reducedMotionFrame = requestAnimationFrame(() => {
-        setCounts(stats.map((stat) => stat.value));
+        setCounts(copy.stats.map((stat) => stat.value));
       });
 
       return () => cancelAnimationFrame(reducedMotionFrame);
@@ -98,7 +100,7 @@ export default function Impact() {
       const easedProgress = 1 - Math.pow(1 - progress, 3);
 
       setCounts(
-        stats.map((stat) => Math.round(stat.value * easedProgress))
+        copy.stats.map((stat) => Math.round(stat.value * easedProgress))
       );
 
       if (progress < 1) {
@@ -109,7 +111,7 @@ export default function Impact() {
     frameId = requestAnimationFrame(animateCounts);
 
     return () => cancelAnimationFrame(frameId);
-  }, [isVisible]);
+  }, [copy.stats, isVisible]);
 
   return (
     <section
@@ -120,15 +122,23 @@ export default function Impact() {
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow-text text-xs font-semibold text-[#123B6D]/70">
-            OUR IMPACT
+            {copy.eyebrow}
           </p>
-          <h2 className="mt-4 text-3xl leading-[1.16] sm:text-[2.45rem]">
-            A growing story shaped by service, learning, and community.
+          <h2
+            className={`mt-4 ${
+              isRtl
+                ? "ar-display-heading text-[2.18rem] leading-[1.24] sm:text-[2.58rem]"
+                : "text-3xl leading-[1.16] sm:text-[2.45rem]"
+            }`}
+          >
+            {copy.title}
           </h2>
-          <p className="mt-6 text-base leading-[1.92] text-[#2A2A2A]/64 sm:text-[1.04rem]">
-            These numbers reflect years of shared effort, steady presence, and
-            relationships that continue to shape everyday life through peace,
-            learning, and service.
+          <p
+            className={`mt-6 text-base text-[#2A2A2A]/64 sm:text-[1.04rem] ${
+              isRtl ? "leading-[2.04]" : "leading-[1.92]"
+            }`}
+          >
+            {copy.description}
           </p>
         </div>
 
@@ -144,8 +154,12 @@ export default function Impact() {
               style={{ transitionDelay: `${index * 110}ms` }}
             >
               <p className="tabular-nums text-[2.7rem] font-semibold leading-none tracking-[-0.03em] text-[#123B6D] sm:text-[3.2rem]">
-                {formatStatValue(counts[index])}
-                <span className="ml-1 text-[1.95rem] text-[#123B6D]/76 sm:text-[2.3rem]">
+                {formatStatValue(counts[index], locale)}
+                <span
+                  className={`text-[1.95rem] text-[#123B6D]/76 sm:text-[2.3rem] ${
+                    isRtl ? "mr-1" : "ml-1"
+                  }`}
+                >
                   {stat.suffix}
                 </span>
               </p>
@@ -158,15 +172,14 @@ export default function Impact() {
 
         <div className="mt-10 text-center">
           <p className="text-sm leading-7 text-[#2A2A2A]/58 sm:text-[0.98rem]">
-            Each figure points back to people, places, and shared commitments
-            still growing with us.
+            {copy.footnote}
           </p>
           <a
             href="#activities"
             className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#123B6D] transition-colors hover:text-[#0E2F59]"
           >
-            See the experiences behind the impact
-            <span aria-hidden="true">&rarr;</span>
+            {copy.cta}
+            <span aria-hidden="true">{isRtl ? "\u2190" : "\u2192"}</span>
           </a>
         </div>
       </div>

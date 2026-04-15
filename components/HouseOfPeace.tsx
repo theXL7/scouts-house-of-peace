@@ -1,8 +1,10 @@
 import Image from "next/image";
+
+import type { Messages } from "@/messages/en";
 import { withBasePath } from "@/lib/site";
 
-// Keep the section assets and right-side media tuning together
-// so the component body is easier to scan and adjust.
+// Keep the section art-direction close to the component so the outer
+// environment and the inner mirrored composition stay easy to reason about.
 const houseOfPeaceConfig = {
   assets: {
     panel: withBasePath("/house-of-peace/color-container-palette.svg"),
@@ -16,35 +18,34 @@ const houseOfPeaceConfig = {
     branchTwo: withBasePath("/house-of-peace/olive-branch-2.svg"),
   },
   media: {
-    canvasClasses: "relative aspect-[11/9]",
-    outerContainerClasses: "absolute inset-0 z-20",
-    insetClasses:
-      "top-[2.8%] right-[0.8%] bottom-[4.2%] left-[6%] sm:top-[2.5%] sm:right-[0.6%] sm:bottom-[4%] sm:left-[5.2%] lg:top-[2.2%] lg:right-[0.4%] lg:bottom-[3.8%] lg:left-[4.6%]",
-    roundedClasses: "rounded-[18px] sm:rounded-[24px]",
-    bottomFoliageLayerClasses:
-      "pointer-events-none absolute inset-0 z-[6]",
+    innerCompositionClasses:
+      "relative z-20 grid gap-14 px-6 py-10 sm:px-10 sm:py-14 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:items-center lg:gap-16 lg:px-16 lg:py-[5.4rem] xl:px-[4.75rem]",
+    textColumnBaseClasses:
+      "relative mx-auto max-w-[33rem] -translate-y-3 pt-1 text-center sm:-translate-y-4 sm:pt-2 lg:mx-0 lg:-translate-y-5 lg:pt-4",
+    mediaColumnClasses: "relative min-w-0",
+    mediaShellClasses: "relative mx-auto w-full max-w-[56rem] lg:max-w-none",
+    mediaCanvasClasses: "relative aspect-[11/9]",
+    panelClusterClasses:
+      "absolute left-[28%] right-[-15%] top-[-2%] bottom-[4%]",
+    shadowClasses:
+      "absolute inset-[4%] z-0 translate-y-[4%] rounded-[28px] bg-[#2A2A2A]/26 blur-[30px]",
+    bottomFoliageLayerClasses: "pointer-events-none absolute inset-0 z-[6]",
     bottomFoliageLeftClasses:
       "absolute bottom-[-6%] left-[-16%] hidden h-[88%] w-[88%] opacity-85 sm:block lg:bottom-[-7%] lg:left-[-20%] lg:h-[108%] lg:w-[108%]",
     bottomFoliageRightClasses:
       "absolute bottom-[-6%] right-[-6%] hidden h-[88%] w-[88%] opacity-85 sm:block lg:bottom-[-7%] lg:right-[-8%] lg:h-[108%] lg:w-[108%]",
-    frameWrapperClasses: "absolute z-20 overflow-hidden",
-    placeholderClasses: "absolute inset-0 ring-1 ring-inset ring-[#264D3B]/12",
     frameLayerClasses: "pointer-events-none absolute inset-0 z-10",
     branchesLayerClasses: "pointer-events-none absolute inset-0 z-30",
     branchOneClasses:
       "absolute bottom-[-4%] right-[1%] hidden h-[46%] w-[46%] opacity-88 sm:block lg:bottom-[-5%] lg:right-[1.5%] lg:h-[50%] lg:w-[50%]",
     branchTwoClasses:
       "absolute bottom-[-2.5%] right-[-7%] hidden h-[46%] w-[46%] opacity-88 sm:block lg:bottom-[-3.5%] lg:right-[-7.5%] lg:h-[50%] lg:w-[50%]",
+    outerSceneryClasses:
+      "pointer-events-none absolute bottom-[-22%] left-[-66%] z-10 hidden h-[74%] w-[108%] opacity-85 md:block lg:bottom-[-24%] lg:left-[-72%] lg:h-[80%] lg:w-[114%] lg:opacity-90",
     pigeonThreeClasses:
       "absolute bottom-[-11%] right-[16%] z-[100] hidden h-[14.5%] w-[14.5%] opacity-95 md:block lg:bottom-[-12%] lg:right-[18%] lg:h-[14%] lg:w-[14%]",
   },
 } as const;
-
-const houseOfPeaceTags = [
-  "Coexistence",
-  "Belonging",
-  "Growth",
-] as const;
 
 const featuredIntroClasses =
   "mx-auto max-w-[30.25rem] text-[1.08rem] font-medium leading-[1.75] tracking-[0.006em] text-[#364136] sm:text-[1.17rem] lg:mx-0 lg:max-w-[31rem]";
@@ -52,11 +53,23 @@ const featuredIntroClasses =
 const supportingParagraphClasses =
   "mx-auto max-w-[31rem] text-[1rem] leading-[1.78] text-[#453D36] sm:text-[1.04rem] lg:mx-0";
 
-function HouseOfPeaceEyebrow() {
+const arabicHouseOfPeaceEyebrow = "دار الســــــــــــــــلام";
+
+function HouseOfPeaceEyebrow({
+  label,
+  isRtl,
+}: {
+  label: string;
+  isRtl: boolean;
+}) {
   return (
     <div className="inline-flex flex-col items-center lg:items-start">
-      <p className="eyebrow-text text-[0.78rem] font-medium uppercase leading-none tracking-[0.34em] text-[#4A5E4A] sm:text-[0.82rem]">
-        THE HOUSE OF PEACE
+      <p
+        className={`eyebrow-text text-[0.78rem] font-medium uppercase leading-none tracking-[0.34em] text-[#4A5E4A] sm:text-[0.82rem] ${
+          isRtl ? "ar-display-label text-[0.94rem] sm:text-[1rem]" : ""
+        }`}
+      >
+        {label}
       </p>
       <div
         aria-hidden="true"
@@ -66,11 +79,15 @@ function HouseOfPeaceEyebrow() {
   );
 }
 
-function EditorialDivider({ className = "" }: { className?: string }) {
+function EditorialDivider({
+  className = "",
+}: {
+  className?: string;
+}) {
   return (
     <div
       aria-hidden="true"
-      className={`mx-auto w-[80%] max-w-[22.5rem] sm:w-[82%] sm:max-w-[24rem] lg:mx-0 lg:w-[84%] lg:max-w-none ${className}`}
+      className={`mx-auto w-[80%] max-w-[22.5rem] sm:w-[82%] sm:max-w-[24rem] lg:[margin-inline-end:auto] lg:[margin-inline-start:0] lg:w-[84%] lg:max-w-none ${className}`}
     >
       <div className="h-[0.5px] rounded-full bg-gradient-to-r from-transparent via-[#D6C1A0]/55 to-transparent" />
     </div>
@@ -81,16 +98,47 @@ function HeadlineDivider() {
   return (
     <div
       aria-hidden="true"
-      className="mx-auto mb-5 mt-6 w-[82%] max-w-[23rem] sm:mb-6 sm:mt-7 sm:w-[84%] sm:max-w-[24.5rem] lg:mx-0 lg:w-[85%] lg:max-w-none"
+      className="mx-auto mb-5 mt-6 w-[82%] max-w-[23rem] sm:mb-6 sm:mt-7 sm:w-[84%] sm:max-w-[24.5rem] lg:[margin-inline-end:auto] lg:[margin-inline-start:0] lg:w-[85%] lg:max-w-none"
     >
       <div className="h-px rounded-full bg-gradient-to-r from-transparent via-[#D3B88A]/68 to-transparent" />
     </div>
   );
 }
 
-export default function HouseOfPeace() {
+export default function HouseOfPeace({
+  copy,
+  isRtl = false,
+}: {
+  copy: Messages["houseOfPeace"];
+  isRtl?: boolean;
+}) {
   const { assets, media } = houseOfPeaceConfig;
-  const sharedFrameWrapperClasses = `${media.frameWrapperClasses} ${media.insetClasses} ${media.roundedClasses}`;
+  const displayEyebrow = isRtl ? arabicHouseOfPeaceEyebrow : copy.eyebrow;
+  const displayTitleLines = copy.titleLines;
+  const innerCompositionClassName = `relative z-20 grid gap-14 px-6 py-10 sm:px-10 sm:py-14 lg:items-center lg:gap-16 lg:px-16 lg:py-[5.4rem] xl:px-[4.75rem] ${
+    isRtl
+      ? "lg:[direction:ltr] lg:grid-cols-[minmax(0,1.22fr)_minmax(0,0.78fr)]"
+      : "lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]"
+  }`;
+  const textColumnClassName = `${media.textColumnBaseClasses} ${
+    isRtl
+      ? "lg:order-2 lg:pl-6 lg:text-right lg:[direction:rtl]"
+      : "lg:order-1 lg:pr-6 lg:text-left"
+  }`;
+  const mediaColumnClassName = `${media.mediaColumnClasses} ${
+    isRtl ? "lg:order-1" : "lg:order-2"
+  }`;
+  const panelClusterClassName = isRtl
+    ? "absolute left-[-15%] right-[28%] top-[-2%] bottom-[4%]"
+    : media.panelClusterClasses;
+  const tagsClassName =
+    "-mt-2 flex flex-wrap items-center justify-center gap-4 sm:-mt-3 sm:gap-5 lg:flex-nowrap lg:justify-start";
+  const introClassName = isRtl
+    ? `${featuredIntroClasses} leading-[2.02] lg:max-w-[34rem]`
+    : featuredIntroClasses;
+  const bodyClassName = isRtl
+    ? `${supportingParagraphClasses} leading-[2] lg:max-w-[34rem]`
+    : supportingParagraphClasses;
 
   return (
     <section
@@ -98,8 +146,8 @@ export default function HouseOfPeace() {
       className="overflow-hidden bg-[linear-gradient(180deg,#FAF6EE_0%,#F0E5D7_100%)] px-6 py-[6rem] sm:px-8 sm:py-[7rem]"
     >
       <div className="relative mx-auto max-w-7xl">
-        {/* The wash needs to sit outside the palette stack, otherwise the
-            largely opaque panel art hides it almost completely. */}
+        {/* The wash stays outside the inner composition so every locale shares
+            the same outer atmosphere. */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-[-12%] top-[26%] bottom-[-40%] z-0 hidden opacity-95 mix-blend-multiply sm:block lg:inset-x-[-14%] lg:top-[28%] lg:bottom-[-44%]"
@@ -115,7 +163,7 @@ export default function HouseOfPeace() {
         </div>
 
         <div className="relative isolate z-10">
-          {/* Main cream panel */}
+          {/* Main cream panel remains identical across locales. */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-[-1.5%] inset-y-[-1.5%] z-[1] opacity-[0.98] sm:inset-x-[-2%] sm:inset-y-[-2%] lg:inset-x-[-2.5%] lg:inset-y-[-2.5%]"
@@ -130,36 +178,8 @@ export default function HouseOfPeace() {
             />
           </div>
 
-          {/* Front olive branches frame the panel from both sides. */}
-          <div className={media.branchesLayerClasses}>
-            <div aria-hidden="true" className={media.branchOneClasses}>
-              <Image
-                src={assets.branchTwo}
-                alt=""
-                fill
-                unoptimized
-                className="object-contain object-bottom scale-x-[-1]"
-                sizes="(min-width: 1024px) 18vw, 0vw"
-              />
-            </div>
-
-            <div aria-hidden="true" className={media.branchTwoClasses}>
-              <Image
-                src={assets.branchOne}
-                alt=""
-                fill
-                unoptimized
-                className="object-contain object-bottom"
-                sizes="(min-width: 1024px) 18vw, 0vw"
-              />
-            </div>
-          </div>
-
-          {/* Bottom-left scenery with castle */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute bottom-[-22%] left-[-58%] z-10 hidden h-[74%] w-[108%] opacity-85 md:block lg:bottom-[-24%] lg:left-[-62%] lg:h-[80%] lg:w-[114%] lg:opacity-90"
-          >
+          {/* Outer scenery stays fixed; only the inner composition mirrors. */}
+          <div aria-hidden="true" className={media.outerSceneryClasses}>
             <Image
               src={assets.scenery}
               alt=""
@@ -170,7 +190,6 @@ export default function HouseOfPeace() {
             />
           </div>
 
-          {/* Bottom-right Taourirt mountain */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute bottom-[-30%] right-[-18%] z-10 hidden h-[40%] w-[52%] opacity-100 md:block lg:bottom-[-34%] lg:right-[-20%] lg:h-[46%] lg:w-[54%] lg:opacity-100"
@@ -185,7 +204,6 @@ export default function HouseOfPeace() {
             />
           </div>
 
-          {/* Pigeon 3 sits just above the mountain and above the scarf layer. */}
           <div aria-hidden="true" className={media.pigeonThreeClasses}>
             <Image
               src={assets.pigeonThree}
@@ -197,35 +215,42 @@ export default function HouseOfPeace() {
             />
           </div>
 
-          <div className="relative z-20 grid gap-14 px-6 py-10 sm:px-10 sm:py-14 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-16 lg:px-16 lg:py-[5.4rem] xl:px-[4.75rem]">
-            <div className="relative mx-auto max-w-[33rem] -translate-y-3 pt-1 text-center sm:-translate-y-4 sm:pt-2 lg:mx-0 lg:-translate-y-5 lg:pr-6 lg:pt-4 lg:text-left">
-              <HouseOfPeaceEyebrow />
+          {/* The inner grid is the only part that mirrors for Arabic. */}
+          <div className={innerCompositionClassName}>
+            <div className={textColumnClassName}>
+              <HouseOfPeaceEyebrow label={displayEyebrow} isRtl={isRtl} />
 
-              <h2 className="mt-4 text-[1.95rem] leading-[1.08] tracking-[-0.02em] text-[#090088] sm:mt-5 sm:text-[2.05rem] lg:text-[2.22rem]">
-                <span className="block sm:whitespace-nowrap color-[#090088]">Where young people learn,</span>
-                <span className="mt-1.5 block sm:whitespace-nowrap color-[#090088]">serve, and grow together.</span>
+              <h2
+                className={`mt-4 text-[#090088] sm:mt-5 ${
+                  isRtl
+                    ? "ar-display-heading text-[2.08rem] leading-[1.26] tracking-normal sm:text-[2.22rem] lg:text-[2.46rem]"
+                    : "text-[1.95rem] leading-[1.08] tracking-[-0.02em] sm:text-[2.05rem] lg:text-[2.22rem]"
+                }`}
+              >
+                {displayTitleLines.map((line, index) => (
+                  <span
+                    key={line}
+                    className={`block color-[#090088] ${
+                      isRtl ? "" : "sm:whitespace-nowrap"
+                    } ${index === 1 ? "mt-1.5" : ""}`}
+                  >
+                    {line}
+                  </span>
+                ))}
               </h2>
 
               <HeadlineDivider />
 
-              <p className={featuredIntroClasses}>
-                Maison de La Paix is a <span className="italic">place of belonging</span>, where
-                scouting, education, and service help turn peace into
-                something lived each day.
-              </p>
+              <p className={introClassName}>{copy.intro}</p>
 
               <EditorialDivider className="my-3 sm:my-4 md:my-5" />
 
-              <p className={supportingParagraphClasses}>
-                Rooted in community and open to the wider world, it nurtures
-                responsibility, mutual respect, and the ability to live well across
-                differences.
-              </p>
+              <p className={bodyClassName}>{copy.body}</p>
 
               <EditorialDivider className="mb-3 mt-4 sm:mb-4 sm:mt-5 md:mb-5 md:mt-6" />
 
-              <ul className="-mt-2 flex flex-wrap items-center justify-center gap-4 sm:-mt-3 sm:gap-5 lg:flex-nowrap lg:justify-start">
-                {houseOfPeaceTags.map((tag) => (
+              <ul className={tagsClassName}>
+                {copy.tags.map((tag) => (
                   <li key={tag}>
                     <span className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-[#D6C1A0]/75 bg-[#FBF6EB]/92 px-5 py-3 text-[0.94rem] font-medium tracking-[0.01em] text-[#4A5E4A] shadow-[0_8px_20px_rgba(92,78,57,0.06)] sm:px-6">
                       {tag}
@@ -235,16 +260,15 @@ export default function HouseOfPeace() {
               </ul>
             </div>
 
-            <div className="relative">
-              <div className="relative mx-auto w-full max-w-[56rem]">
-                <div className="relative aspect-[11/9]">
-                  <div className="absolute left-[28%] right-[-15%] top-[-2%] bottom-[4%]">
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-[4%] z-0 translate-y-[4%] rounded-[28px] bg-[#2A2A2A]/26 blur-[30px]"
-                    />
-                    {/* Bottom foliage is split into left and right controls
-                        so we can fine-tune each side independently. */}
+            <div className={mediaColumnClassName}>
+              <div className={media.mediaShellClasses}>
+                <div className={media.mediaCanvasClasses}>
+                  <div className={panelClusterClassName}>
+                    <div aria-hidden="true" className={media.shadowClasses} />
+
+                    {/* Keep the placeholder, foliage, and branch art in one
+                        shared cluster so Arabic mirrors the English media
+                        composition instead of overriding each ornament. */}
                     <div className={media.bottomFoliageLayerClasses}>
                       <div
                         aria-hidden="true"
@@ -274,7 +298,8 @@ export default function HouseOfPeace() {
                         />
                       </div>
                     </div>
-                    <div className="pointer-events-none absolute inset-0 z-10">
+
+                    <div className={media.frameLayerClasses}>
                       <Image
                         src={assets.frame}
                         alt=""
@@ -283,6 +308,30 @@ export default function HouseOfPeace() {
                         className="object-fill"
                         sizes="(min-width: 1024px) 36vw, 100vw"
                       />
+                    </div>
+
+                    <div className={media.branchesLayerClasses}>
+                      <div aria-hidden="true" className={media.branchOneClasses}>
+                        <Image
+                          src={assets.branchTwo}
+                          alt=""
+                          fill
+                          unoptimized
+                          className="object-contain object-bottom scale-x-[-1]"
+                          sizes="(min-width: 1024px) 18vw, 0vw"
+                        />
+                      </div>
+
+                      <div aria-hidden="true" className={media.branchTwoClasses}>
+                        <Image
+                          src={assets.branchOne}
+                          alt=""
+                          fill
+                          unoptimized
+                          className="object-contain object-bottom"
+                          sizes="(min-width: 1024px) 18vw, 0vw"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

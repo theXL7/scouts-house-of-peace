@@ -1,52 +1,55 @@
 import Image from "next/image";
+
+import type { Messages } from "@/messages/en";
 import { withBasePath } from "@/lib/site";
 
-export default function Values() {
-  const values = [
-    {
-      title: "Coexistence",
-      description:
-        "We bring people together across differences with respect, dialogue, and shared responsibility.",
-      iconSrc: "/values/coexistence.png",
-      tone: "bg-[#FBF7EF]/92",
-      iconTone: "bg-white/82 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
-      offset: "xl:translate-y-0",
-    },
-    {
-      title: "Service",
-      description:
-        "We serve our communities through action that strengthens care, solidarity, and belonging.",
-      iconSrc: "/values/community-impact.png",
-      tone: "bg-[#F6EFE3]/94",
-      iconTone:
-        "bg-[#FFF9F0]/86 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
-      offset: "xl:translate-y-6",
-    },
-    {
-      title: "Peace Education",
-      description:
-        "We teach peace as a practice through learning, leadership, and lived experience.",
-      iconSrc: "/values/peace-education.png",
-      tone: "bg-[#FCF8F1]/92",
-      iconTone: "bg-white/84 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
-      offset: "xl:translate-y-2",
-    },
-    {
-      title: "Personal Growth",
-      description:
-        "We help young people grow in character, confidence, purpose, and service.",
-      iconSrc: "/values/personal-growth.png",
-      tone: "bg-[#F7F1E7]/94",
-      iconTone:
-        "bg-[#FFF7EC]/86 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
-      offset: "xl:-translate-y-5",
-    },
-  ];
+const valueCards = [
+  {
+    iconSrc: "/values/coexistence.png",
+    tone: "bg-[#FBF7EF]/92",
+    iconTone: "bg-white/82 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
+    offset: "xl:translate-y-0",
+  },
+  {
+    iconSrc: "/values/community-impact.png",
+    tone: "bg-[#F6EFE3]/94",
+    iconTone:
+      "bg-[#FFF9F0]/86 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
+    offset: "xl:translate-y-6",
+  },
+  {
+    iconSrc: "/values/peace-education.png",
+    tone: "bg-[#FCF8F1]/92",
+    iconTone: "bg-white/84 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
+    offset: "xl:translate-y-2",
+  },
+  {
+    iconSrc: "/values/personal-growth.png",
+    tone: "bg-[#F7F1E7]/94",
+    iconTone:
+      "bg-[#FFF7EC]/86 shadow-[inset_0_0_0_1px_rgba(18,59,109,0.05)]",
+    offset: "xl:-translate-y-5",
+  },
+] as const;
+
+export default function Values({
+  copy,
+  actionLabel,
+  isRtl = false,
+}: {
+  copy: Messages["values"];
+  actionLabel: string;
+  isRtl?: boolean;
+}) {
+  const values = valueCards.map((card, index) => ({
+    ...card,
+    ...copy.cards[index],
+  }));
 
   return (
     <section
       id="values"
-      className="relative overflow-hidden bg-[#EFE5D7] px-6 py-20 sm:px-8 sm:py-24"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#EFE5D7_0%,#ECE2D2_56%,#DCE7EE_100%)] px-6 py-20 sm:px-8 sm:py-24"
     >
       <div className="pointer-events-none absolute inset-0">
         <Image
@@ -54,22 +57,28 @@ export default function Values() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-top opacity-75"
+          className="object-cover object-top opacity-75 [mask-image:linear-gradient(to_bottom,black_0%,black_62%,rgba(0,0,0,0.4)_82%,transparent_100%)]"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(239,229,215,0.5),rgba(239,229,215,0.08)_36%,rgba(239,229,215,0.58))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(239,229,215,0.5)_0%,rgba(239,229,215,0.12)_36%,rgba(235,228,217,0.12)_62%,rgba(220,231,238,0.7)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,rgba(220,231,238,0)_0%,rgba(220,231,238,0.82)_100%)]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow-text text-[0.72rem] font-medium text-[#123B6D]/64">
-            OUR VALUES
+            {copy.eyebrow}
           </p>
-          <h2 className="mt-4 text-3xl leading-[1.16] !text-[#010048] sm:text-[2.45rem]">
-            Values that guide how we learn, serve, and grow together.
+          <h2
+            className={`mt-4 !text-[#010048] ${
+              isRtl
+                ? "ar-display-heading text-[2.14rem] leading-[1.24] sm:text-[2.62rem]"
+                : "text-3xl leading-[1.16] sm:text-[2.45rem]"
+            }`}
+          >
+            {copy.title}
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-center text-[0.98rem] leading-8 text-[#2A2A2A]/58">
-            They are the quiet principles that help this community learn,
-            serve, and grow in peace together.
+            {copy.description}
           </p>
         </div>
 
@@ -79,8 +88,10 @@ export default function Values() {
               <button
                 key={value.title}
                 type="button"
-                aria-label={`Explore ${value.title}`}
-                className={`${value.tone} ${value.offset} group relative w-full cursor-pointer rounded-[18px] p-7 text-left shadow-[0_12px_24px_rgba(18,59,109,0.035)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.01] hover:bg-[#6D7755] hover:shadow-[0_22px_36px_rgba(18,59,109,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#123B6D]/20 sm:p-8`}
+                aria-label={`${actionLabel} ${value.title}`}
+                className={`${value.tone} ${value.offset} group relative w-full cursor-pointer rounded-[18px] p-7 shadow-[0_12px_24px_rgba(18,59,109,0.035)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.01] hover:bg-[#6D7755] hover:shadow-[0_22px_36px_rgba(18,59,109,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#123B6D]/20 sm:p-8 ${
+                  isRtl ? "text-right" : "text-left"
+                }`}
               >
                 {/* These can be swapped to real Links later without changing the card structure much. */}
                 <div
@@ -97,11 +108,21 @@ export default function Values() {
                   </div>
                 </div>
 
-                <h3 className="mt-4 min-h-[2.2rem] whitespace-nowrap text-center font-serif text-[1.55rem] leading-[1.1] !text-[#010048] transition-colors duration-300 group-hover:!text-[#C9F2FF] sm:text-[1.7rem] xl:text-[1.45rem]">
+                <h3
+                  className={`mt-4 min-h-[2.2rem] text-center font-serif !text-[#010048] transition-colors duration-300 group-hover:!text-[#C9F2FF] sm:text-[1.7rem] xl:text-[1.45rem] ${
+                    isRtl
+                      ? "text-[1.48rem] leading-[1.32] whitespace-normal"
+                      : "text-[1.55rem] leading-[1.1] whitespace-nowrap"
+                  }`}
+                >
                   {value.title}
                 </h3>
 
-                <p className="mt-4 text-base leading-8 text-[#2A2A2A]/56 transition-colors duration-300 group-hover:text-[#C9F2FF]">
+                <p
+                  className={`mt-4 text-base text-[#2A2A2A]/56 transition-colors duration-300 group-hover:text-[#C9F2FF] ${
+                    isRtl ? "leading-[2.05]" : "leading-8"
+                  }`}
+                >
                   {value.description}
                 </p>
 

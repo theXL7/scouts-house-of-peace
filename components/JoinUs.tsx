@@ -1,5 +1,20 @@
-export default function JoinUs() {
-  const audienceTags = ["Scouts", "Families", "Volunteers", "Partners"];
+import Link from "next/link";
+
+import type { Locale } from "@/messages";
+import { getJoinUsPath } from "@/messages";
+import type { Messages } from "@/messages/en";
+
+export default function JoinUs({
+  copy,
+  locale,
+  isRtl = false,
+}: {
+  copy: Messages["joinUs"];
+  locale: Locale;
+  isRtl?: boolean;
+}) {
+  const desktopTextAlignment = isRtl ? "lg:text-right" : "lg:text-left";
+  const desktopTagAlignment = "lg:justify-start";
 
   return (
     <section
@@ -11,24 +26,36 @@ export default function JoinUs() {
           <div className="absolute -left-20 top-2 h-44 w-44 rounded-full bg-white/7 blur-3xl" />
           <div className="absolute right-0 top-0 h-36 w-36 rounded-full bg-[#E9DFCF]/10 blur-3xl" />
 
-          <div className="relative text-center lg:text-left">
+          <div className={`relative text-center ${desktopTextAlignment}`}>
             <p className="eyebrow-text text-xs font-semibold text-white/70">
-              JOIN US
+              {copy.eyebrow}
             </p>
-            <h2 className="mt-4 text-3xl leading-[1.18] !text-[#F7F3EC] sm:text-[2.45rem]">
-              There is a place for you in this work of peace.
+            <h2
+              className={`mt-4 !text-[#F7F3EC] ${
+                isRtl
+                  ? "ar-display-heading text-[2.16rem] leading-[1.24] sm:text-[2.62rem]"
+                  : "text-3xl leading-[1.18] sm:text-[2.45rem]"
+              }`}
+            >
+              {copy.title}
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-[2] text-white/74 sm:text-[1.04rem]">
-              Whether you are a young person ready to grow, a family looking
-              for belonging, or a partner who shares this vision, you are
-              welcome to help shape a more peaceful community with us.
+            <p
+              className={`mt-6 max-w-2xl text-base text-white/74 sm:text-[1.04rem] ${
+                isRtl ? "leading-[2.08]" : "leading-[2]"
+              }`}
+            >
+              {copy.description}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5 lg:justify-start">
-              {audienceTags.map((tag) => (
+            <div
+              className={`mt-8 flex flex-wrap items-center justify-center gap-2.5 ${desktopTagAlignment}`}
+            >
+              {copy.audienceTags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-white/66 backdrop-blur-sm"
+                  className={`rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 text-[0.72rem] font-medium text-white/66 backdrop-blur-sm ${
+                    isRtl ? "tracking-[0.04em]" : "uppercase tracking-[0.18em]"
+                  }`}
                 >
                   {tag}
                 </span>
@@ -39,32 +66,42 @@ export default function JoinUs() {
 
         <div className="mt-10 lg:mt-0">
           <div className="rounded-[18px] border border-white/9 bg-[linear-gradient(180deg,rgba(255,255,255,0.065)_0%,rgba(255,255,255,0.04)_100%)] p-6 shadow-[0_12px_28px_rgba(9,27,54,0.05)] backdrop-blur-sm sm:p-7">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/58">
-              Ways to take part
+            <p
+              className={`text-sm font-medium text-white/58 ${
+                isRtl ? "tracking-[0.04em] text-right" : "uppercase tracking-[0.2em]"
+              }`}
+            >
+              {copy.waysTitle}
             </p>
-            <p className="mt-3 text-sm leading-7 text-white/70">
-              Start with the path that feels closest to you, and we can grow
-              from there together.
+            <p
+              className={`mt-3 text-sm text-white/70 ${
+                isRtl ? "leading-[2] text-right" : "leading-7"
+              }`}
+            >
+              {copy.waysDescription}
             </p>
 
             <div className="mt-7 flex flex-col gap-3">
-              <a
-                href="#contact"
+              <Link
+                href={getJoinUsPath(locale)}
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#F2EBDD] px-6 py-3 text-sm font-semibold text-[#123B6D] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#F7F3EC]"
               >
-                Join as a Scout
-              </a>
-              <a
-                href="#contact"
+                {copy.scoutCta}
+              </Link>
+              <Link
+                href={`${getJoinUsPath(locale)}#request-information`}
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/14 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-white/92 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06]"
               >
-                Partner With Us
-              </a>
+                {copy.partnerCta}
+              </Link>
             </div>
 
-            <p className="mt-6 text-sm leading-7 text-white/58">
-              We welcome young people, families, volunteers, and institutions
-              who want to contribute with care and purpose.
+            <p
+              className={`mt-6 text-sm text-white/58 ${
+                isRtl ? "leading-[1.95] text-right" : "leading-7"
+              }`}
+            >
+              {copy.footnote}
             </p>
           </div>
         </div>
