@@ -756,7 +756,7 @@ function CultureScenePanel({
           </CultureSceneLayer>
         </div>
 
-        <div className="relative z-[80] mt-6 grid gap-4 sm:grid-cols-2 md:hidden">
+        <div className="relative z-[80] -mt-52 grid gap-4 sm:-mt-60 sm:grid-cols-2 md:hidden">
           {cards.map((card) => (
             <CultureCard
               key={card.id}
