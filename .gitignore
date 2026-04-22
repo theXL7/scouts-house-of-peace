@@ -33,6 +33,10 @@ yarn-error.log*
 /tmp-*.png
 /.codex
 
+# local/generated media experiments that are too large for GitHub
+/public/media/scouts-placeholder.mp4
+/public/media/house-of-peace-alpha.webm
+
 # env files (can opt-in for committing if needed)
 .env*
 

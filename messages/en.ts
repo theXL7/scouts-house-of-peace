@@ -23,7 +23,7 @@ const en = {
     ariaLabel: "Primary navigation",
     languageSwitcherLabel: "Language switcher",
     toggleNavigationLabel: "Toggle navigation menu",
-    brandName: "Maison de La Paix",
+    brandName: "Scouts Maison de La Paix",
     brandLogoAlt: "Scouts Maison de La Paix logo",
     joinLabel: "Join Us",
   },
@@ -253,28 +253,58 @@ const en = {
     metaDescription:
       "Registration information for the 2026-2027 season at Scouts Maison de La Paix, including fees, required documents, contact details, and the pre-registration request form.",
     hero: {
+      eyebrow: "2026-2027 registration",
       title: "Registrations for the 2026-2027 season are now open",
       paragraphs: [
-        "We welcome new and returning scouts to join a community rooted in peace, responsibility, service, and shared growth.",
-        "Registration, paperwork, and payment are completed directly with the association.",
+        "We warmly welcome new scouts, returning scouts, and families who want to discover the association before taking the next step.",
+        "Registration is completed directly with the association so the file, questions, fees, and receipt can all be handled clearly and personally.",
       ],
       primaryCta: "Learn How to Join",
       secondaryCta: "Request Information",
-      overviewEyebrow: "2026-2027 season",
-      overviewTitle: "Registration at a glance",
-      overviewDescription:
-        "Public registration information is now focused on the official seasonal process, with clear fees and direct contact channels.",
-      overviewItems: [
-        "Annual registration is 60 MAD per scout.",
-        "New scouts who need the official uniform pay 260 MAD in total.",
-        "Documents are reviewed in person and payments are received in cash.",
+      reassuranceItems: [
+        "New scouts are welcome",
+        "Parents can ask questions first",
+        "Registration is completed with the association",
+      ],
+      mediaEyebrow: "2026-2027 season",
+      mediaTitle: "A simple first step into scouting life",
+      mediaDescription:
+        "The page is here to help families understand the path before completing the official file with the association.",
+    },
+    overview: {
+      title: "Registration at a glance",
+      description:
+        "The essentials are simple: prepare the file, complete registration in person, and receive a receipt after payment.",
+      items: [
+        {
+          value: "60 MAD",
+          label: "Annual registration",
+          description: "The seasonal registration fee for each scout.",
+        },
+        {
+          value: "260 MAD",
+          label: "New scout with uniform",
+          description:
+            "Total for a new scout who needs the official shirt and scarf set.",
+        },
+        {
+          value: "In person",
+          label: "Direct registration",
+          description:
+            "The final file is completed directly with the association.",
+        },
+        {
+          value: "Receipt",
+          label: "Provided after payment",
+          description: "A receipt is provided once the fees are paid.",
+        },
       ],
     },
     fees: {
       title: "Registration Fees",
       introduction: [
-        "The annual registration fee is 60 MAD per scout.",
-        "For new scouts who need the official uniform, the shirt and scarf set costs 200 MAD.",
+        "The registration amounts are intentionally clear so families can understand the total quickly.",
+        "A returning scout who already has the official uniform only renews the annual registration.",
       ],
       cardEyebrow: "Registration",
       items: [
@@ -311,55 +341,68 @@ const en = {
     },
     process: {
       title: "How Registration Works",
-      paragraphs: [
-        "Registration is completed in person with the association.",
-        "Documents are reviewed directly, payment is made in cash, and a receipt is provided by the bureau.",
-      ],
+      description:
+        "The process is simple and completed directly with the association.",
       steps: [
         {
-          title: "In-person registration",
+          title: "Visit or contact us",
           description:
-            "Registration is finalized directly with the association rather than through an online payment flow.",
+            "You may contact the association first, ask questions, or come discover the group before preparing the full file.",
         },
         {
-          title: "Document review",
+          title: "Prepare the file",
           description:
-            "The bureau reviews the paperwork directly and can answer questions during the process.",
+            "Bring the required photos, identity copy if applicable, and the authorization form for minors.",
         },
         {
-          title: "Cash payment",
+          title: "Complete registration with the association",
           description:
-            "Payment is made in cash when the registration file is completed with the association.",
+            "The bureau reviews the file directly, answers questions, and confirms the registration details with you.",
         },
         {
-          title: "Receipt from the bureau",
+          title: "Pay and receive your receipt",
           description:
-            "A receipt is provided by the bureau after payment is received.",
+            "Fees are paid directly to the association, and a receipt is provided.",
         },
       ],
+      note:
+        "Missing items can often be completed later depending on the case, so registration should not feel like a barrier to joining.",
     },
     documents: {
       title: "Required Documents",
       introduction:
-        "Bring the registration file with the exact items below so the bureau can review it directly.",
+        "To complete the file smoothly, please prepare the following items when needed.",
       items: [
         "Completed registration form",
         "Two standard identity photos",
         "Recto verso photocopy of the National Identity Card for anyone who has one",
         "Required uniform size, if applicable",
-        "For minors: parent or legal guardian authorization form, completed, signed, and legalized through the local administrative authority",
       ],
       minorsTitle: "For minors",
       minorsHeading: "Authorization is part of the file",
       minorsNote:
         "The parent or legal guardian authorization form must be completed, signed, and legalized through the local administrative authority before registration is finalized.",
     },
-    scouts: {
-      title: "New and Returning Scouts",
-      paragraphs: [
-        "New scouts are always welcome.",
-        "New scouts are introduced to the values and responsibilities of scouting and officially welcomed through the Scout Promise Ceremony.",
-        "Returning scouts are also welcome to renew their registration for the new season.",
+    audiences: {
+      title: "Who is this registration for?",
+      description:
+        "Whether this is your first visit or a seasonal renewal, the registration path is meant to feel clear and welcoming.",
+      items: [
+        {
+          title: "New scouts",
+          description:
+            "No previous scouting experience is needed. You are welcome to visit, ask questions, and discover the association before completing registration.",
+        },
+        {
+          title: "Returning scouts",
+          description:
+            "Returning scouts renew their registration for the new season and confirm whether they already have the official uniform.",
+        },
+        {
+          title: "Parents and guardians",
+          description:
+            "Parents and guardians are welcome to ask questions before registration and complete the required authorization when the future scout is a minor.",
+        },
       ],
     },
     faq: {
@@ -368,33 +411,69 @@ const en = {
         {
           question: "Is registration completed online?",
           answer:
-            "No. The request form is only for questions or pre-registration interest. Registration is finalized in person with the association.",
+            "You can send questions, request information, or express interest through the website, but final registration is completed directly with the association because the file includes physical documents and photos.",
         },
         {
-          question: "What does a new scout pay?",
+          question: "Can a new scout join without previous scouting experience?",
           answer:
-            "A new scout who needs the official uniform pays 260 MAD in total: 60 MAD for annual registration and 200 MAD for the shirt and scarf set.",
+            "Yes, absolutely. New scouts are always welcome even without previous scouting experience.",
+        },
+        {
+          question: "Can parents or guardians ask questions before registration?",
+          answer:
+            "Yes, of course. They have every right to do so, and we welcome their questions before registration.",
         },
         {
           question: "What do returning scouts pay?",
           answer:
-            "Returning scouts who already have their uniform renew their registration at 60 MAD for the season.",
+            "If the returning scout already has the official uniform, they renew their registration for 60 MAD for the season.",
+        },
+        {
+          question: "What does a new scout need before coming?",
+          answer:
+            "Nothing special. They only need curiosity, a willingness to discover the association, and readiness to begin a new experience.",
         },
         {
           question: "What do minors need for registration?",
           answer:
-            "For minors, the parent or legal guardian authorization form must be completed, signed, and legalized through the local administrative authority.",
+            "For minors, we need two standard identity photos and the authorization form completed by the father, mother, or legal guardian, with the signature legalized through the local authority.",
+        },
+        {
+          question: "Will I receive a receipt after payment?",
+          answer:
+            "Yes, of course. A receipt is provided after payment, and you may always ask for it if it is not handed to you.",
+        },
+        {
+          question: "Can I submit the file first and complete some documents later?",
+          answer:
+            "Yes, this is possible depending on the case. We use practical flexibility so registration does not become a barrier to joining.",
+        },
+        {
+          question: "Can the size be chosen later?",
+          answer:
+            "Yes, the size can be confirmed later if it is not known at the beginning.",
+        },
+        {
+          question: "Is the official uniform necessary?",
+          answer:
+            "Yes, the official uniform is very important to scouting identity and is especially necessary for official activities, camps, and events where the association represents itself. Sometimes the scarf alone is essential even before the full uniform is complete.",
+        },
+        {
+          question: "Is it better to contact the association before coming?",
+          answer:
+            "Yes, you may contact us before coming, and we welcome that.",
         },
       ],
     },
     form: {
       title: "Request Information",
       introduction:
-        "This pre-registration interest form is for future scouts, returning scouts, and families who would like to ask questions or share their interest before visiting the association.",
+        "This form is for first questions and initial interest. It is not the final registration form.",
       note:
-        "It is not the final registration form. Sending it prepares an email request to the association, and registration is completed in person with the association.",
+        "Families and future scouts may use it to ask about the process, the file, first visits, or uniform details.",
       submitLabel: "Send Request",
-      successMessage: "Thank you. We will contact you with the next steps.",
+      successMessage:
+        "Thank you for your interest. We will contact you to explain the next steps.",
       recipientEmail: "scoutmaisondelapaix@gmail.com",
       emailSubject: "Pre-registration request - Scouts Maison de La Paix",
       fields: {
@@ -417,11 +496,20 @@ const en = {
       sizeOptions: ["S", "M", "L", "XL", "Not sure yet"],
       messagePlaceholder:
         "Share any question about registration, required documents, meeting times, or uniform sizing.",
+      messageHelper:
+        "You may ask about the registration process, the required file, first visits, or uniform details.",
+      reassuranceItems: [
+        "A first question is enough to begin.",
+        "The final registration is completed with the association.",
+        "Families are welcome to ask before visiting.",
+      ],
     },
     contact: {
       title: "Contact the Association",
       introduction:
         "For questions about registration, required documents, or meeting times, please contact the association directly.",
+      closing:
+        "We will be glad to guide you gently through the next step.",
       methods: [
         {
           label: "Phone",

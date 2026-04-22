@@ -53,8 +53,6 @@ const cultureSceneAssets = {
   scoutSaluteEmblem: withBasePath(
     "/scouting-culture-v2/Scout%20in%20salute%20with%20emblem.png",
   ),
-  symbolsAndSongs: withBasePath("/scouting-culture-v2/symbols-and-songs.png"),
-  patrolCampfire: withBasePath("/scouting-culture-v2/patrol-campfire.png"),
   scoutsOnPath: withBasePath("/scouting-culture-v2/scouts-on-path.png"),
 } as const;
 
@@ -98,16 +96,16 @@ const cultureClusterCards: CultureCardData[] = [
     anchor: { left: "31%", top: "36%", width: "43.5%" },
     zIndex: 5,
     className: "min-h-[14.5rem] overflow-visible pb-5",
-    titleClassName: "ml-auto max-w-[12.5rem] text-right",
+    titleClassName: "max-w-[12.5rem]",
     artwork: {
-      src: cultureSceneAssets.patrolCampfire,
+      src: cultureSceneAssets.scoutsOnPath,
       alt: "",
       wrapperClassName:
-        "pointer-events-none absolute bottom-[-1%] left-[5%] hidden h-[100%] w-[52%] md:block",
+        "pointer-events-none absolute bottom-[2%] right-[-2%] hidden h-[92%] w-[46%] md:block",
       imageClassName:
-        "object-contain object-[34%_100%] drop-shadow-[0_18px_28px_rgba(87,67,47,0.16)]",
+        "origin-bottom-right scale-[1.75] object-contain object-right-bottom drop-shadow-[0_18px_28px_rgba(87,67,47,0.16)]",
       glowClassName:
-        "absolute bottom-[4%] left-[10%] hidden h-[28%] w-[35%] rounded-full bg-[radial-gradient(circle,rgba(245,237,226,0.68)_0%,rgba(245,237,226,0.22)_52%,transparent_84%)] blur-[20px] md:block",
+        "absolute bottom-[7%] right-[3%] hidden h-[24%] w-[30%] rounded-full bg-[radial-gradient(circle,rgba(245,237,226,0.68)_0%,rgba(245,237,226,0.22)_52%,transparent_84%)] blur-[20px] md:block",
     },
   },
   {
@@ -133,16 +131,6 @@ const cultureClusterCards: CultureCardData[] = [
 ] as const;
 
 const narrativeInsertSlots: NarrativeInsertData[] = [
-  {
-    label: "Symbols and songs insert",
-    src: cultureSceneAssets.symbolsAndSongs,
-    alt: "",
-    anchor: { left: "8%", bottom: "10%", width: "19%", height: "19%" },
-    layer: "behind_cards",
-    zIndex: 1,
-    imageClassName:
-      "object-contain opacity-[0.94] drop-shadow-[0_20px_30px_rgba(87,67,47,0.12)] [mask-image:radial-gradient(ellipse_at_center,black_0%,black_56%,transparent_82%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_0%,black_56%,transparent_82%)]",
-  },
   {
     label: "Path group insert",
     src: cultureSceneAssets.scoutsOnPath,
@@ -173,6 +161,18 @@ const sceneSlots = {
     top: "-8%",
     width: "114%",
     height: "104%",
+  },
+  lowerLeftCloudsBase: {
+    left: "-31%",
+    bottom: "-14%",
+    width: "72%",
+    height: "44%",
+  },
+  lowerLeftCloudsTopFade: {
+    left: "-8%",
+    top: "0%",
+    width: "44%",
+    height: "22%",
   },
   groundingFog: {
     left: "-10%",
@@ -614,6 +614,25 @@ function CultureScenePanel({
             <div
               aria-hidden
               className="absolute bottom-[10%] left-[18%] h-[14%] w-[32%] rounded-full bg-[radial-gradient(circle,rgba(232,220,202,0.28)_0%,transparent_74%)] blur-[26px]"
+            />
+          </CultureSceneLayer>
+
+          <CultureSceneLayer className="z-[41]">
+            <CultureSceneAsset
+              src={cultureSceneAssets.cloudsBase}
+              alt=""
+              style={sceneSlots.lowerLeftCloudsBase}
+              className="[transform:scaleX(-1)] [mask-image:radial-gradient(circle_at_24%_72%,black_0%,black_56%,rgba(0,0,0,0.76)_76%,transparent_100%),linear-gradient(90deg,black_0%,black_88%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_at_24%_72%,black_0%,black_56%,rgba(0,0,0,0.76)_76%,transparent_100%),linear-gradient(90deg,black_0%,black_88%,transparent_100%)]"
+              sizes="(min-width: 768px) 32vw, 0vw"
+              imageClassName="object-cover object-left-bottom opacity-[0.62] mix-blend-multiply"
+            />
+          </CultureSceneLayer>
+
+          <CultureSceneLayer className="z-[42]">
+            <div
+              aria-hidden
+              style={sceneSlots.lowerLeftCloudsTopFade}
+              className="absolute bg-[linear-gradient(180deg,rgba(252,248,241,0.96)_0%,rgba(252,248,241,0.74)_26%,rgba(252,248,241,0.34)_62%,transparent_100%)] [mask-image:linear-gradient(90deg,black_0%,black_84%,transparent_100%)] [-webkit-mask-image:linear-gradient(90deg,black_0%,black_84%,transparent_100%)] blur-[14px]"
             />
           </CultureSceneLayer>
 
