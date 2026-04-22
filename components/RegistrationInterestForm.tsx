@@ -45,7 +45,7 @@ export default function RegistrationInterestForm({
   }
 
   const containerAlignment = isRtl ? "text-right" : "text-left";
-  const fieldClasses = `w-full rounded-[1.15rem] border border-[#E4D8C8] bg-[#FFFCF8] px-4 py-3 text-sm text-[#2A2A2A] shadow-[0_6px_16px_rgba(60,52,42,0.04)] outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-[#7B756B]/55 focus:border-[#C9B08A] focus:shadow-[0_0_0_3px_rgba(201,176,138,0.16)] ${
+  const fieldClasses = `w-full rounded-[0.95rem] border border-[#E1D6C7] bg-[#FBF8F2] px-4 py-3 text-sm text-[#403D37] outline-none transition-[background-color,border-color,box-shadow] duration-200 placeholder:text-[#7B756B]/48 focus:border-[#C4B08E] focus:bg-[#FFFDFC] focus:shadow-[0_0_0_3px_rgba(201,176,138,0.14)] ${
     isRtl ? "text-right leading-7" : ""
   }`;
   const ltrFieldClasses = `${fieldClasses} text-left`;
@@ -53,23 +53,26 @@ export default function RegistrationInterestForm({
 
   return (
     <div
-      className={`rounded-[2rem] border border-[#DED2C1] bg-[#FFFDFC] p-6 shadow-[0_22px_44px_rgba(60,52,42,0.06)] sm:p-8 ${containerAlignment}`}
+      className={`join-reveal rounded-[1.35rem] border border-[#DED2C1]/90 bg-[#FFFDFC]/88 p-6 shadow-[0_20px_42px_rgba(60,52,42,0.055)] backdrop-blur-sm sm:p-8 ${containerAlignment}`}
+      style={{ animationDelay: "120ms" }}
     >
-      <p
-        className={`text-sm text-[#4B4A45]/72 ${
-          isRtl ? "leading-[2]" : "leading-7"
-        }`}
-      >
-        {copy.note}
-      </p>
+      <div className="rounded-[1rem] border border-[#E7DCCB]/85 bg-[#F8F2E9]/78 px-4 py-4">
+        <p
+          className={`text-sm font-semibold text-[#415B4C] ${
+            isRtl ? "leading-[2]" : "leading-7"
+          }`}
+        >
+          {copy.note}
+        </p>
+      </div>
 
       <form
         dir={isRtl ? "rtl" : "ltr"}
-        className="mt-6 grid gap-4 sm:grid-cols-2"
+        className="mt-6 grid gap-x-4 gap-y-5 sm:grid-cols-2"
         onSubmit={handleSubmit}
       >
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.fullName}
           </span>
           <input
@@ -82,7 +85,7 @@ export default function RegistrationInterestForm({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.guardianName}
           </span>
           <input
@@ -94,7 +97,7 @@ export default function RegistrationInterestForm({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.phone}
           </span>
           <input
@@ -108,7 +111,7 @@ export default function RegistrationInterestForm({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.email}
           </span>
           <input
@@ -122,7 +125,7 @@ export default function RegistrationInterestForm({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.age}
           </span>
           <input
@@ -135,7 +138,7 @@ export default function RegistrationInterestForm({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.status}
           </span>
           <select name="status" className={fieldClasses} defaultValue={copy.statusOptions[0]}>
@@ -148,7 +151,7 @@ export default function RegistrationInterestForm({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.hasUniform}
           </span>
           <select
@@ -165,7 +168,7 @@ export default function RegistrationInterestForm({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.size}
           </span>
           <select name="size" className={fieldClasses} defaultValue={copy.sizeOptions[4]}>
@@ -178,7 +181,7 @@ export default function RegistrationInterestForm({
         </label>
 
         <label className="block sm:col-span-2">
-          <span className="mb-2 block text-sm font-medium text-[#264D3B]">
+          <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.message}
           </span>
           <textarea
@@ -188,19 +191,26 @@ export default function RegistrationInterestForm({
             className={`${fieldClasses} resize-y`}
             placeholder={copy.messagePlaceholder}
           />
+          <span
+            className={`mt-2 block text-xs text-[#4B4A45]/62 ${
+              isRtl ? "leading-6" : "leading-5"
+            }`}
+          >
+            {copy.messageHelper}
+          </span>
         </label>
 
         <div className={`sm:col-span-2 flex flex-col ${submitAlignment}`}>
           <button
             type="submit"
-            className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CBAE84] bg-[#264D3B] px-6 py-3 text-sm font-semibold text-[#F7F3EC] shadow-[0_12px_28px_rgba(38,77,59,0.16)] transition-[transform,background-color] duration-200 hover:-translate-y-px hover:bg-[#315B47]"
+            className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CDB98E] bg-[#2E4D3F] px-6 py-3 text-sm font-semibold text-[#F8F2E8] shadow-[0_14px_30px_rgba(46,77,63,0.18)] transition-[transform,background-color] duration-200 hover:-translate-y-px hover:bg-[#365946]"
           >
             {copy.submitLabel}
           </button>
 
           {submitted ? (
             <p
-              className={`mt-4 text-sm text-[#264D3B] ${
+              className={`mt-4 text-sm text-[#415B4C] ${
                 isRtl ? "leading-[1.95]" : "leading-7"
               }`}
             >

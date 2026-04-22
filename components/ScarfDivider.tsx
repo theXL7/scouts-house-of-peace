@@ -7,7 +7,17 @@ const scarfDividerAsset = {
   height: 225,
 } as const;
 
-export default function ScarfDivider() {
+type ScarfDividerProps = {
+  isArabic?: boolean;
+};
+
+export default function ScarfDivider({
+  isArabic = false,
+}: ScarfDividerProps) {
+  const imagePositionClass = isArabic
+    ? "relative left-1/2 w-[104vw] max-w-none translate-x-[calc(-50%+7.5vw)]"
+    : "relative left-1/2 w-[104vw] max-w-none translate-x-[calc(-50%+2.5vw)]";
+
   return (
     <div
       aria-hidden="true"
@@ -15,7 +25,7 @@ export default function ScarfDivider() {
     >
       {/* The divider breaks out to the full viewport width so it feels like a band
           tying the two sections together instead of another boxed element. */}
-      <div className="relative left-1/2 w-[104vw] max-w-none translate-x-[calc(-50%+2.5vw)]">
+      <div className={imagePositionClass}>
         <Image
           src={scarfDividerAsset.src}
           alt=""

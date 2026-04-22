@@ -39,8 +39,12 @@ export default function HomePage({ locale }: { locale: Locale }) {
         {/* Keeping the homepage split into small sections makes it easier to build on later. */}
         <Hero copy={messages.hero} locale={locale} isRtl={isRtl} />
         <TrustStrip copy={messages.trustStrip} />
-        <HouseOfPeace copy={messages.houseOfPeace} isRtl={isRtl} />
-        <ScarfDivider />
+        <HouseOfPeace
+          copy={messages.houseOfPeace}
+          locale={locale}
+          isRtl={isRtl}
+        />
+        <ScarfDivider isArabic={locale === "ar"} />
         <Values
           copy={messages.values}
           actionLabel={messages.actions.explore}
