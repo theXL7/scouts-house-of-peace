@@ -21,8 +21,8 @@ const fr = {
   },
   hero: {
     backgroundAlt: "Des scouts réunis dehors dans une lumière dorée et chaleureuse.",
-    logoAlt: "Logo des Scouts de la Maison de la Paix",
-    eyebrow: "Scouts de la Maison de la Paix",
+    logoAlt: "Logo des Scouts Maison de la Paix",
+    eyebrow: "Scouts Maison de la Paix",
     titleLines: ["Construire", "une culture de paix", "par le scoutisme"],
     description:
       "Donner aux jeunes et aux communautés les moyens d'agir par le service, l'éducation et l'ouverture au monde.",
@@ -221,12 +221,19 @@ const fr = {
       "Nous accueillons les jeunes, les familles, les bénévoles et les institutions qui veulent contribuer avec soin et sens.",
   },
   footer: {
-    title: "Scouts de la Maison de la Paix",
+    title: "Scouts Maison de la Paix",
     description:
-      "Construire une culture de paix par le scoutisme, la communauté et une appartenance partagée.",
+      "Construire une culture de paix par le scoutisme, la communauté et l’appartenance partagée.",
     navAriaLabel: "Navigation de pied de page",
-    tagline: "Enraciné dans le service communautaire et ouvert à des liens plus larges.",
-    note: "Version source anglaise du site pour Scouts Maison de La Paix.",
+    quickLinksTitle: "Liens rapides",
+    contactTitle: "Contact",
+    phoneLabel: "Téléphone / WhatsApp",
+    emailLabel: "E-mail",
+    emailHelper: "Écrivez à l’association pour toute question d’inscription.",
+    facebookPlatform: "Facebook",
+    instagramPlatform: "Instagram",
+    joinLabel: "Nous rejoindre",
+    copyright: "© {year} Scouts Maison de la Paix. Tous droits réservés.",
   },
 } satisfies DeepPartial<Messages>;
 

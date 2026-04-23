@@ -847,14 +847,15 @@ export default function JoinUsPage({ locale }: { locale: Locale }) {
               {copy.contact.closing}
             </p>
 
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mx-auto mt-12 grid max-w-[80rem] gap-5 sm:grid-cols-2 xl:gap-6 2xl:grid-cols-4">
               {copy.contact.methods.map((method, index) => {
                 const opensExternally = method.href.startsWith("http");
+                const valueIsLtr = /[A-Za-z@+]/.test(method.value);
 
                 return (
                   <article
                     key={method.label}
-                    className={`join-reveal rounded-[1.18rem] border border-[#E1D5C5]/90 bg-[#FFFDFC]/84 p-6 shadow-[0_14px_30px_rgba(60,52,42,0.04)] transition-transform duration-300 hover:-translate-y-0.5 sm:p-7 ${cardTextAlignment}`}
+                    className={`join-reveal flex h-full min-h-[16rem] flex-col rounded-[1.18rem] border border-[#E1D5C5]/90 bg-[#FFFDFC]/84 p-6 shadow-[0_14px_30px_rgba(60,52,42,0.04)] transition-transform duration-300 hover:-translate-y-0.5 sm:p-7 xl:min-h-[17rem] xl:p-8 ${cardTextAlignment}`}
                     style={{ animationDelay: `${index * 75}ms` }}
                   >
                     <div className={`flex items-center gap-3 ${rowDirection}`}>
@@ -869,16 +870,14 @@ export default function JoinUsPage({ locale }: { locale: Locale }) {
                       href={method.href}
                       target={opensExternally ? "_blank" : undefined}
                       rel={opensExternally ? "noreferrer" : undefined}
-                      dir={
-                        /[A-Za-z@+]/.test(method.value) ? "ltr" : undefined
-                      }
-                      className={`mt-4 block text-[1.08rem] font-semibold leading-[1.4] text-[#36463C] transition-colors hover:text-[#A96545] ${
-                        /[A-Za-z@+]/.test(method.value) ? "text-left" : ""
+                      dir={valueIsLtr ? "ltr" : undefined}
+                      className={`mt-5 block min-h-[3.4rem] break-words text-[1.02rem] font-semibold leading-[1.45] text-[#36463C] transition-colors hover:text-[#A96545] sm:text-[1.08rem] xl:min-h-[4rem] xl:text-[1.12rem] ${
+                        valueIsLtr ? "text-left" : ""
                       }`}
                     >
                       {method.value}
                     </a>
-                    <p className="mt-4 text-sm leading-7 text-[#5B554D]/72">
+                    <p className="mt-auto pt-5 text-sm leading-7 text-[#5B554D]/72">
                       {method.description}
                     </p>
                   </article>

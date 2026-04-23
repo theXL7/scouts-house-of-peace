@@ -43,20 +43,28 @@ function LanguageToggle({
   languageLabels,
   ariaLabel,
   compact = false,
+  minimal = false,
   onSelect,
 }: {
   activeLanguage: Locale;
   languageLabels: Messages["languageLabels"];
   ariaLabel: string;
   compact?: boolean;
+  minimal?: boolean;
   onSelect: (language: Locale) => void;
 }) {
+  const wrapperClassName = minimal
+    ? `inline-flex items-center ${
+        compact ? "gap-1" : "gap-1.5"
+      } rounded-full border border-[#264D3B]/10 bg-transparent p-0 shadow-none`
+    : `inline-flex items-center rounded-full border border-white/45 bg-white/34 p-1 shadow-[0_10px_22px_rgba(38,77,59,0.08)] ${
+        compact ? "gap-0.5" : "gap-1"
+      }`;
+
   return (
     <div
       dir="ltr"
-      className={`inline-flex items-center rounded-full border border-white/45 bg-white/34 p-1 shadow-[0_10px_22px_rgba(38,77,59,0.08)] ${
-        compact ? "gap-0.5" : "gap-1"
-      }`}
+      className={wrapperClassName}
       aria-label={ariaLabel}
       role="group"
     >
@@ -74,9 +82,13 @@ function LanguageToggle({
                 ? "min-w-[2rem] px-2.5 py-1.5 text-[0.68rem]"
                 : "min-w-[2.3rem] px-3 py-1.5 text-[0.72rem]"
             } ${
-              isActive
-                ? "bg-[#264D3B] !text-[#F7F3EC] shadow-[0_8px_20px_rgba(38,77,59,0.2)]"
-                : "text-[#264D3B]/62 hover:text-[#264D3B]"
+              minimal
+                ? isActive
+                  ? "bg-[#264D3B]/8 text-[#264D3B] shadow-none"
+                  : "text-[#264D3B]/48 hover:text-[#264D3B]"
+                : isActive
+                  ? "bg-[#264D3B] !text-[#F7F3EC] shadow-[0_8px_20px_rgba(38,77,59,0.2)]"
+                  : "text-[#264D3B]/62 hover:text-[#264D3B]"
             }`}
           >
             {languageLabels[language]}
@@ -209,7 +221,7 @@ export default function Header({
                 />
               </span>
 
-              <span className="min-w-0">
+              <span className="hidden min-w-0 sm:block">
                 <span className="block truncate font-serif text-[1.02rem] font-normal leading-none tracking-[-0.035em] text-[#264D3B] sm:text-[1.12rem]">
                   {copy.brandName}
                 </span>
@@ -235,6 +247,17 @@ export default function Header({
             </ul>
 
             <div className={`${controlsSide} flex items-center gap-2 sm:gap-2.5`}>
+              <div className="sm:hidden">
+                <LanguageToggle
+                  activeLanguage={locale}
+                  languageLabels={languageLabels}
+                  ariaLabel={copy.languageSwitcherLabel}
+                  compact
+                  minimal
+                  onSelect={handleLanguageSelect}
+                />
+              </div>
+
               <div className={`hidden sm:block ${isRtl ? "sm:order-2" : ""}`}>
                 <LanguageToggle
                   activeLanguage={locale}
@@ -316,20 +339,6 @@ export default function Header({
                     </Link>
                   </li>
                 </ul>
-
-                <div
-                  className={`pt-3 sm:hidden ${
-                    isRtl ? "flex justify-start" : ""
-                  }`}
-                >
-                  <LanguageToggle
-                    activeLanguage={locale}
-                    languageLabels={languageLabels}
-                    ariaLabel={copy.languageSwitcherLabel}
-                    compact
-                    onSelect={handleLanguageSelect}
-                  />
-                </div>
               </div>
             </div>
           </div>

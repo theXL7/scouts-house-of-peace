@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Amiri, Fraunces, Manrope, Tajawal } from "next/font/google";
+import { getAbsoluteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -31,8 +32,22 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: "Scouts Maison de La Paix",
-  description: "Homepage for Scouts of the House of Peace",
+  metadataBase: new URL(getAbsoluteUrl("/")),
+  applicationName: "Scouts Maison de La Paix",
+  creator: "Scouts Maison de La Paix",
+  publisher: "Scouts Maison de La Paix",
+  referrer: "origin-when-cross-origin",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({

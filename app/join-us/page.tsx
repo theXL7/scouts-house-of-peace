@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 
 import JoinUsPage from "@/components/JoinUsPage";
-import { getMessages } from "@/messages";
-
-const messages = getMessages("en");
+import { getPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: messages.joinPage.metaTitle,
-  description: messages.joinPage.metaDescription,
+  ...getPageMetadata("join-us", "en"),
 };
 
 export default function EnglishJoinUsPage() {

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 import JoinUsPage from "@/components/JoinUsPage";
-import { getMessages, type Locale } from "@/messages";
+import { getPageMetadata } from "@/lib/seo";
+import { type Locale } from "@/messages";
 
 export const dynamicParams = false;
 
@@ -17,12 +18,8 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const messages = getMessages(locale);
 
-  return {
-    title: messages.joinPage.metaTitle,
-    description: messages.joinPage.metaDescription,
-  };
+  return getPageMetadata("join-us", locale);
 }
 
 export default async function LocaleJoinUsPage({
