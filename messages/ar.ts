@@ -441,7 +441,7 @@ const ar = {
         "يمكن للأسر والكشافة المستقبليين استعماله للسؤال عن المسار أو الملف أو الزيارات الأولى أو تفاصيل الزي.",
       submitLabel: "أرسل الطلب",
       successMessage: "شكراً على اهتمامكم. سنتواصل معكم لتوضيح الخطوات التالية.",
-      recipientEmail: "scoutmaisondelapaix@gmail.com",
+      recipientEmail: "contact@scoutsmaisonpaix.org",
       emailSubject: "طلب استفسار أولي حول الانخراط - Scouts Maison de La Paix",
       fields: {
         fullName: "الاسم الكامل",
@@ -480,26 +480,26 @@ const ar = {
       methods: [
         {
           label: "الهاتف",
-          value: "+212657171003",
+          value: "+212 6571 71003",
           href: "tel:+212657171003",
           description: "اتصل بالجمعية مباشرة أو راسلها عبر الهاتف.",
         },
         {
           label: "البريد الإلكتروني",
-          value: "scoutmaisondelapaix@gmail.com",
-          href: "mailto:scoutmaisondelapaix@gmail.com",
+          value: "contact@scoutsmaisonpaix.org",
+          href: "mailto:contact@scoutsmaisonpaix.org",
           description: "اكتب إلى الجمعية بخصوص الانخراط أو الاستفسارات.",
         },
         {
           label: "فيسبوك",
-          value: "Scouts Maison de La Paix",
+          value: "كشافة دار السلام المغربية",
           href: "https://www.facebook.com/profile.php?id=100067192446286",
           description: "تابع المستجدات وتواصل مع الجمعية عبر فيسبوك.",
         },
         {
           label: "إنستغرام",
-          value: "@scouts.maison_de_la_paix",
-          href: "https://www.instagram.com/scouts.maison_de_la_paix/",
+          value: "scoutsmaisondelapaix",
+          href: "https://www.instagram.com/scoutsmaisondelapaix/",
           description: "اطلع على الأنشطة الحديثة وراسل الجمعية عبر إنستغرام.",
         },
       ],
@@ -513,13 +513,19 @@ const ar = {
     },
   },
   footer: {
-    title: "كشافة دار السلام",
+    title: "كشافة دار السلام المغربية",
     description:
-      "نبني ثقافة السلام من خلال الكشفية والمجتمع والانتماء المشترك.",
+      "نبني ثقافة السلام من خلال الكشفية، والخدمة، والانتماء المشترك.",
     navAriaLabel: "تنقل التذييل",
-    joinLabel: "سجّل الآن",
-    tagline: "متجذرون في خدمة المجتمع ومنفتحون على روابط أوسع.",
-    note: "النسخة المرجعية للموقع كُتبت بالإنجليزية لصالح Scouts Maison de La Paix.",
+    quickLinksTitle: "روابط سريعة",
+    contactTitle: "تواصل",
+    phoneLabel: "الهاتف / واتساب",
+    emailLabel: "البريد الإلكتروني",
+    emailHelper: "راسلوا الجمعية بخصوص أسئلة الانخراط.",
+    facebookPlatform: "فيسبوك",
+    instagramPlatform: "إنستغرام",
+    joinLabel: "انضموا إلينا",
+    copyright: "© {year} كشافة دار السلام المغربية. جميع الحقوق محفوظة.",
   },
 } satisfies DeepPartial<Messages>;
 

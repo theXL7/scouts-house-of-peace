@@ -474,7 +474,7 @@ const en = {
       submitLabel: "Send Request",
       successMessage:
         "Thank you for your interest. We will contact you to explain the next steps.",
-      recipientEmail: "scoutmaisondelapaix@gmail.com",
+      recipientEmail: "contact@scoutsmaisonpaix.org",
       emailSubject: "Pre-registration request - Scouts Maison de La Paix",
       fields: {
         fullName: "Full name",
@@ -513,26 +513,26 @@ const en = {
       methods: [
         {
           label: "Phone",
-          value: "+212657171003",
+          value: "+212 6571 71003",
           href: "tel:+212657171003",
           description: "Call or message the association directly.",
         },
         {
           label: "Email",
-          value: "scoutmaisondelapaix@gmail.com",
-          href: "mailto:scoutmaisondelapaix@gmail.com",
+          value: "contact@scoutsmaisonpaix.org",
+          href: "mailto:contact@scoutsmaisonpaix.org",
           description: "Write to the association for registration questions.",
         },
         {
           label: "Facebook",
-          value: "Scouts Maison de La Paix",
+          value: "كشافة دار السلام المغربية",
           href: "https://www.facebook.com/profile.php?id=100067192446286",
           description: "Follow updates and contact the association on Facebook.",
         },
         {
           label: "Instagram",
-          value: "@scouts.maison_de_la_paix",
-          href: "https://www.instagram.com/scouts.maison_de_la_paix/",
+          value: "scoutsmaisondelapaix",
+          href: "https://www.instagram.com/scoutsmaisondelapaix/",
           description: "See recent activity and send a message on Instagram.",
         },
       ],
@@ -550,9 +550,15 @@ const en = {
     description:
       "Building a culture of peace through scouting, community, and shared belonging.",
     navAriaLabel: "Footer navigation",
+    quickLinksTitle: "Quick Links",
+    contactTitle: "Contact",
+    phoneLabel: "Phone / WhatsApp",
+    emailLabel: "Email",
+    emailHelper: "Write to the association for registration questions.",
+    facebookPlatform: "Facebook",
+    instagramPlatform: "Instagram",
     joinLabel: "Join Us",
-    tagline: "Rooted in community service and open to wider connection.",
-    note: "English site foundation for Scouts Maison de La Paix.",
+    copyright: "© {year} Scouts Maison de la Paix. All rights reserved.",
   },
 } as const;
 
