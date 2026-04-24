@@ -10,7 +10,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL;
 const X_DEFAULT_LOCALE: Locale = "ar";
 const SITE_NAME = "Scouts Maison de La Paix";
 const SITE_LOGO_PATH = "/scouts-house-of-peace-logo.png";
-const OPEN_GRAPH_IMAGE_PATH = "/hero/hero-bg.png";
+const OPEN_GRAPH_IMAGE_PATH = "/og/scouts-maison-paix-share.png";
+const OPEN_GRAPH_IMAGE_ALT =
+  "Scouts Maison de La Paix official website social sharing image";
 const FACEBOOK_PROFILE_URL =
   "https://www.facebook.com/profile.php?id=100067192446286";
 const INSTAGRAM_PROFILE_URL = "https://www.instagram.com/scoutsmaisondelapaix/";
@@ -151,7 +153,9 @@ export function getPageMetadata(page: SeoPageKey, locale: Locale): Metadata {
       images: [
         {
           url: openGraphImageUrl,
-          alt: `${SITE_NAME} official website`,
+          width: 1200,
+          height: 630,
+          alt: OPEN_GRAPH_IMAGE_ALT,
         },
       ],
     },

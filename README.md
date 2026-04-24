@@ -50,6 +50,36 @@ Lint the project:
 npm run lint
 ```
 
+## Search Console Readiness
+
+The site is set up to expose:
+
+- localized canonical URLs
+- `hreflang` for English, French, and Arabic
+- Arabic as `x-default`
+- `sitemap.xml`
+- `robots.txt`
+- Open Graph and Twitter metadata
+- Organization JSON-LD on the homepage
+
+Optional verification tokens can be added at deploy time:
+
+- `GOOGLE_SITE_VERIFICATION`
+- `BING_SITE_VERIFICATION`
+
+You can start from [`.env.example`](./.env.example).
+
+After deployment, submit this sitemap in Google Search Console:
+
+- `https://scoutsmaisonpaix.org/sitemap.xml`
+
+Recommended first indexing requests:
+
+- `https://scoutsmaisonpaix.org/`
+- `https://scoutsmaisonpaix.org/ar/`
+- `https://scoutsmaisonpaix.org/fr/`
+- `https://scoutsmaisonpaix.org/join-us/`
+
 ## GitHub Pages Deployment
 
 This project is configured for GitHub Pages static export.
@@ -83,7 +113,9 @@ If you replace the logo later:
 
 ## Main Files
 
-- [`app/page.tsx`](./app/page.tsx) - homepage composition
+- [`app/(default)/page.tsx`](./app/(default)/page.tsx) - English homepage route
+- [`app/[locale]/page.tsx`](./app/[locale]/page.tsx) - localized homepage routes
+- [`app/root-shell.tsx`](./app/root-shell.tsx) - shared root document and verification metadata
 - [`components/Hero.tsx`](./components/Hero.tsx) - hero section
 - [`components/TrustStrip.tsx`](./components/TrustStrip.tsx) - recognition ribbon
 - [`components/HouseOfPeace.tsx`](./components/HouseOfPeace.tsx) - identity section
