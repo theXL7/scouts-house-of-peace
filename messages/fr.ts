@@ -18,6 +18,7 @@ const fr = {
     ariaLabel: "Navigation principale",
     languageSwitcherLabel: "Sélecteur de langue",
     toggleNavigationLabel: "Ouvrir le menu de navigation",
+    joinLabel: "Nous rejoindre",
   },
   hero: {
     backgroundAlt: "Des scouts réunis dehors dans une lumière dorée et chaleureuse.",
@@ -220,12 +221,316 @@ const fr = {
     footnote:
       "Nous accueillons les jeunes, les familles, les bénévoles et les institutions qui veulent contribuer avec soin et sens.",
   },
+  joinPage: {
+    metaTitle: "Nous rejoindre | Scouts Maison de La Paix",
+    metaDescription:
+      "Informations d'inscription pour la saison 2026-2027 chez Scouts Maison de La Paix, avec les frais, les documents demandés, les moyens de contact et le formulaire de pré-inscription.",
+    hero: {
+      eyebrow: "Inscription 2026-2027",
+      title: "Les inscriptions pour la saison 2026-2027 sont ouvertes",
+      paragraphs: [
+        "Nous accueillons chaleureusement les nouveaux scouts, les scouts qui reviennent et les familles qui souhaitent découvrir l'association avant de passer à l'étape suivante.",
+        "L'inscription se finalise directement avec l'association afin que le dossier, les questions, les frais et le reçu soient traités clairement et personnellement.",
+      ],
+      primaryCta: "Découvrir comment nous rejoindre",
+      secondaryCta: "Demander des informations",
+      reassuranceItems: [
+        "Les nouveaux scouts sont les bienvenus",
+        "Les parents peuvent poser leurs questions",
+        "L'inscription se finalise avec l'association",
+      ],
+      mediaEyebrow: "Saison 2026-2027",
+      mediaTitle: "Un premier pas simple vers la vie scoute",
+      mediaDescription:
+        "Cette page aide les familles à comprendre le parcours avant de compléter le dossier officiel avec l'association.",
+    },
+    overview: {
+      title: "L'inscription en un coup d'œil",
+      description:
+        "L'essentiel est simple : préparer le dossier, finaliser l'inscription en présentiel et recevoir un reçu après le paiement.",
+      items: [
+        {
+          value: "60 MAD",
+          label: "Inscription annuelle",
+          description: "Les frais d'inscription saisonniers pour chaque scout.",
+        },
+        {
+          value: "260 MAD",
+          label: "Nouveau scout avec uniforme",
+          description:
+            "Le total pour un nouveau scout qui a besoin de la chemise officielle et du foulard.",
+        },
+        {
+          value: "En présentiel",
+          label: "Inscription directe",
+          description:
+            "Le dossier final est complété directement avec l'association.",
+        },
+        {
+          value: "Reçu",
+          label: "Remis après paiement",
+          description: "Un reçu est remis une fois les frais payés.",
+        },
+      ],
+    },
+    fees: {
+      title: "Frais d'inscription",
+      introduction: [
+        "Les montants d'inscription sont volontairement clairs afin que les familles comprennent rapidement le total.",
+        "Un scout qui revient et possède déjà l'uniforme officiel renouvelle uniquement son inscription annuelle.",
+      ],
+      cardEyebrow: "Inscription",
+      items: [
+        {
+          title: "Inscription annuelle",
+          amount: "60 MAD",
+          description:
+            "Les frais d'inscription annuelle sont de 60 MAD par scout pour la saison 2026-2027.",
+        },
+        {
+          title: "Uniforme scout officiel",
+          amount: "200 MAD",
+          description:
+            "L'ensemble de l'uniforme scout officiel comprend la chemise scoute et le foulard, préparés selon la taille.",
+          details: ["Tailles disponibles : S, M, L, XL"],
+        },
+      ],
+      summaryTitle: "Totaux de saison",
+      summaryHeading: "Des montants saisonniers clairs",
+      summary: [
+        {
+          title: "Total pour un nouveau scout",
+          amount: "260 MAD",
+          description:
+            "Total pour un nouveau scout ayant besoin de l'uniforme : 260 MAD.",
+        },
+        {
+          title: "Total pour un scout qui revient",
+          amount: "60 MAD",
+          description:
+            "Les scouts qui reviennent et possèdent déjà leur uniforme paient 60 MAD.",
+        },
+      ],
+    },
+    process: {
+      title: "Comment se déroule l'inscription",
+      description:
+        "Le processus est simple et se fait directement avec l'association.",
+      steps: [
+        {
+          title: "Nous rendre visite ou nous contacter",
+          description:
+            "Vous pouvez d'abord contacter l'association, poser vos questions ou venir découvrir le groupe avant de préparer le dossier complet.",
+        },
+        {
+          title: "Préparer le dossier",
+          description:
+            "Apportez les photos demandées, la copie d'identité si nécessaire et l'autorisation pour les mineurs.",
+        },
+        {
+          title: "Finaliser l'inscription avec l'association",
+          description:
+            "Le bureau vérifie le dossier directement, répond aux questions et confirme avec vous les détails de l'inscription.",
+        },
+        {
+          title: "Payer et recevoir le reçu",
+          description:
+            "Les frais sont payés directement à l'association, et un reçu est remis.",
+        },
+      ],
+      note:
+        "Les éléments manquants peuvent souvent être complétés plus tard selon la situation, afin que l'inscription ne devienne pas un obstacle pour rejoindre le groupe.",
+    },
+    documents: {
+      title: "Documents demandés",
+      introduction:
+        "Pour compléter le dossier facilement, merci de préparer les éléments suivants lorsque cela s'applique.",
+      items: [
+        "Formulaire d'inscription complété",
+        "Deux photos d'identité standard",
+        "Photocopie recto verso de la carte nationale d'identité pour toute personne qui en possède une",
+        "Taille de l'uniforme demandé, si nécessaire",
+      ],
+      minorsTitle: "Pour les mineurs",
+      minorsHeading: "L'autorisation fait partie du dossier",
+      minorsNote:
+        "L'autorisation du parent ou du tuteur légal doit être complétée, signée et légalisée auprès de l'autorité administrative locale avant la finalisation de l'inscription.",
+    },
+    audiences: {
+      title: "À qui s'adresse cette inscription ?",
+      description:
+        "Que ce soit une première visite ou un renouvellement saisonnier, le parcours d'inscription est pensé pour être clair et accueillant.",
+      items: [
+        {
+          title: "Nouveaux scouts",
+          description:
+            "Aucune expérience scoute préalable n'est nécessaire. Vous êtes les bienvenus pour visiter, poser vos questions et découvrir l'association avant de compléter l'inscription.",
+        },
+        {
+          title: "Scouts qui reviennent",
+          description:
+            "Les scouts qui reviennent renouvellent leur inscription pour la nouvelle saison et confirment s'ils possèdent déjà l'uniforme officiel.",
+        },
+        {
+          title: "Parents et tuteurs",
+          description:
+            "Les parents et tuteurs peuvent poser leurs questions avant l'inscription et compléter l'autorisation demandée lorsque le futur scout est mineur.",
+        },
+      ],
+    },
+    faq: {
+      title: "Questions fréquentes",
+      items: [
+        {
+          question: "L'inscription se fait-elle en ligne ?",
+          answer:
+            "Vous pouvez envoyer des questions, demander des informations ou manifester votre intérêt via le site, mais l'inscription finale se fait directement avec l'association car le dossier comprend des documents et des photos physiques.",
+        },
+        {
+          question:
+            "Un nouveau scout peut-il rejoindre sans expérience scoute préalable ?",
+          answer:
+            "Oui, absolument. Les nouveaux scouts sont toujours les bienvenus, même sans expérience scoute préalable.",
+        },
+        {
+          question:
+            "Les parents ou tuteurs peuvent-ils poser des questions avant l'inscription ?",
+          answer:
+            "Oui, bien sûr. Ils en ont pleinement le droit, et nous accueillons leurs questions avant l'inscription.",
+        },
+        {
+          question: "Combien paie un scout qui revient ?",
+          answer:
+            "Si le scout qui revient possède déjà l'uniforme officiel, il renouvelle son inscription pour 60 MAD pour la saison.",
+        },
+        {
+          question: "Que doit préparer un nouveau scout avant de venir ?",
+          answer:
+            "Rien de spécial. Il suffit de venir avec de la curiosité, l'envie de découvrir l'association et la disponibilité pour commencer une nouvelle expérience.",
+        },
+        {
+          question: "Que faut-il pour l'inscription des mineurs ?",
+          answer:
+            "Pour les mineurs, nous demandons deux photos d'identité standard et l'autorisation complétée par le père, la mère ou le tuteur légal, avec la signature légalisée auprès de l'autorité locale.",
+        },
+        {
+          question: "Vais-je recevoir un reçu après le paiement ?",
+          answer:
+            "Oui, bien sûr. Un reçu est remis après le paiement, et vous pouvez toujours le demander s'il ne vous est pas remis directement.",
+        },
+        {
+          question:
+            "Puis-je déposer le dossier d'abord et compléter certains documents plus tard ?",
+          answer:
+            "Oui, cela peut être possible selon la situation. Nous gardons une flexibilité pratique afin que l'inscription ne devienne pas un obstacle.",
+        },
+        {
+          question: "La taille peut-elle être choisie plus tard ?",
+          answer:
+            "Oui, la taille peut être confirmée plus tard si elle n'est pas connue au début.",
+        },
+        {
+          question: "L'uniforme officiel est-il nécessaire ?",
+          answer:
+            "Oui, l'uniforme officiel est très important pour l'identité scoute. Il est particulièrement nécessaire pour les activités officielles, les camps et les événements où l'association se représente. Parfois, le foulard seul est essentiel avant même que l'uniforme complet soit prêt.",
+        },
+        {
+          question:
+            "Est-il préférable de contacter l'association avant de venir ?",
+          answer:
+            "Oui, vous pouvez nous contacter avant de venir, et nous vous y accueillons volontiers.",
+        },
+      ],
+    },
+    form: {
+      title: "Demander des informations",
+      introduction:
+        "Ce formulaire sert aux premières questions et aux premiers contacts. Ce n'est pas le formulaire d'inscription final.",
+      note:
+        "Les familles et futurs scouts peuvent l'utiliser pour poser des questions sur le parcours, le dossier, les premières visites ou les détails de l'uniforme.",
+      submitLabel: "Envoyer la demande",
+      successMessage:
+        "Merci pour votre intérêt. Nous vous contacterons pour expliquer les prochaines étapes.",
+      recipientEmail: "contact@scoutsmaisonpaix.org",
+      emailSubject: "Demande de pré-inscription - Scouts Maison de La Paix",
+      fields: {
+        fullName: "Nom complet",
+        guardianName: "Nom du parent ou tuteur, si nécessaire",
+        phone: "Numéro de téléphone",
+        email: "Adresse e-mail",
+        age: "Âge du futur scout",
+        status: "Nouveau scout ou scout qui revient",
+        hasUniform: "Le scout possède-t-il déjà l'uniforme ?",
+        size: "Taille demandée, si elle est connue",
+        message: "Message ou question",
+      },
+      statusOptions: ["Nouveau scout", "Scout qui revient"],
+      uniformOptions: [
+        "Oui, le scout possède déjà l'uniforme",
+        "Non, le scout a besoin de l'uniforme",
+        "Pas encore sûr",
+      ],
+      sizeOptions: ["S", "M", "L", "XL", "Pas encore sûr"],
+      messagePlaceholder:
+        "Partagez toute question sur l'inscription, les documents demandés, les horaires de rencontre ou les tailles d'uniforme.",
+      messageHelper:
+        "Vous pouvez poser une question sur le parcours d'inscription, le dossier demandé, les premières visites ou les détails de l'uniforme.",
+      reassuranceItems: [
+        "Une première question suffit pour commencer.",
+        "L'inscription finale se fait avec l'association.",
+        "Les familles sont les bienvenues avant une visite.",
+      ],
+    },
+    contact: {
+      title: "Contacter l'association",
+      introduction:
+        "Pour toute question sur l'inscription, les documents demandés ou les horaires de rencontre, merci de contacter directement l'association.",
+      closing:
+        "Nous serons heureux de vous accompagner calmement vers la prochaine étape.",
+      methods: [
+        {
+          label: "Téléphone",
+          value: "+212 6571 71003",
+          href: "tel:+212657171003",
+          description: "Appelez ou écrivez directement à l'association.",
+        },
+        {
+          label: "E-mail",
+          value: "contact@scoutsmaisonpaix.org",
+          href: "mailto:contact@scoutsmaisonpaix.org",
+          description:
+            "Écrivez à l'association pour vos questions d'inscription.",
+        },
+        {
+          label: "Facebook",
+          value: "كشافة دار السلام المغربية",
+          href: "https://www.facebook.com/profile.php?id=100067192446286",
+          description:
+            "Suivez les actualités et contactez l'association sur Facebook.",
+        },
+        {
+          label: "Instagram",
+          value: "scoutsmaisondelapaix",
+          href: "https://www.instagram.com/scoutsmaisondelapaix/",
+          description:
+            "Découvrez les activités récentes et envoyez un message sur Instagram.",
+        },
+      ],
+    },
+    downloads: {
+      title: "Téléchargement des formulaires",
+      heading: "Espace prévu pour les futurs formulaires",
+      description:
+        "Cet espace est préparé afin que les formulaires d'inscription et d'autorisation puissent être partagés ici dès qu'ils seront prêts.",
+      status: "Les formulaires à télécharger seront ajoutés ici bientôt.",
+    },
+  },
   footer: {
     title: "Scouts Maison de la Paix",
     description:
-      "Construire une culture de paix par le scoutisme, la communauté et l’appartenance partagée.",
+      "Bâtir une culture de paix par le scoutisme, la communauté et l’appartenance partagée.",
     navAriaLabel: "Navigation de pied de page",
-    quickLinksTitle: "Liens rapides",
+    quickLinksTitle: "Explorer",
     contactTitle: "Contact",
     phoneLabel: "Téléphone / WhatsApp",
     emailLabel: "E-mail",
@@ -233,7 +538,7 @@ const fr = {
     facebookPlatform: "Facebook",
     instagramPlatform: "Instagram",
     joinLabel: "Nous rejoindre",
-    copyright: "© {year} Scouts Maison de la Paix. Tous droits réservés.",
+    copyright: "© {year} Scouts Maison de la Paix — Tous droits réservés.",
   },
 } satisfies DeepPartial<Messages>;
 

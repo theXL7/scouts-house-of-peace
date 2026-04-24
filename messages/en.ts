@@ -546,11 +546,11 @@ const en = {
     },
   },
   footer: {
-    title: "Scouts of the House of Peace",
+    title: "Scouts Maison de la Paix",
     description:
       "Building a culture of peace through scouting, community, and shared belonging.",
     navAriaLabel: "Footer navigation",
-    quickLinksTitle: "Quick Links",
+    quickLinksTitle: "Explore",
     contactTitle: "Contact",
     phoneLabel: "Phone / WhatsApp",
     emailLabel: "Email",
@@ -558,7 +558,7 @@ const en = {
     facebookPlatform: "Facebook",
     instagramPlatform: "Instagram",
     joinLabel: "Join Us",
-    copyright: "© {year} Scouts Maison de la Paix. All rights reserved.",
+    copyright: "© {year} Scouts Maison de la Paix — All rights reserved.",
   },
 } as const;
 

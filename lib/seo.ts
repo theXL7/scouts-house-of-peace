@@ -7,6 +7,7 @@ export type SeoPageKey = "home" | "join-us";
 
 const DEFAULT_SITE_URL = "https://scoutsmaisonpaix.org";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL;
+const IS_VERCEL_PREVIEW = process.env.VERCEL_ENV === "preview";
 const X_DEFAULT_LOCALE: Locale = "ar";
 const SITE_NAME = "Scouts Maison de La Paix";
 const SITE_LOGO_PATH = "/scouts-house-of-peace-logo.png";
@@ -165,17 +166,7 @@ export function getPageMetadata(page: SeoPageKey, locale: Locale): Metadata {
       description: seo.description,
       images: [openGraphImageUrl],
     },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-        "max-video-preview": -1,
-      },
-    },
+    robots: getRobotsMetadata(),
   };
 }
 
@@ -218,4 +209,34 @@ export function serializeJsonLd(data: object) {
 
 export function getSiteOrigin() {
   return new URL(normalizeSiteUrl(SITE_URL)).origin;
+}
+
+export function isSearchIndexingEnabled() {
+  return !IS_VERCEL_PREVIEW;
+}
+
+export function getRobotsMetadata(): Metadata["robots"] {
+  if (!isSearchIndexingEnabled()) {
+    return {
+      index: false,
+      follow: false,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: true,
+      },
+    };
+  }
+
+  return {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  };
 }
