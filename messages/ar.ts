@@ -525,7 +525,7 @@ const ar = {
     facebookPlatform: "فيسبوك",
     instagramPlatform: "إنستغرام",
     joinLabel: "انضموا إلينا",
-    copyright: "© {year} كشافة دار السلام المغربية. جميع الحقوق محفوظة.",
+    copyright: "© {year} كشافة دار السلام المغربية — جميع الحقوق محفوظة",
   },
 } satisfies DeepPartial<Messages>;
 
