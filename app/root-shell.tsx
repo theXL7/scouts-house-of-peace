@@ -3,7 +3,7 @@ import { Amiri, Fraunces, Manrope, Tajawal } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { getDirection, type Locale } from "@/messages";
-import { getAbsoluteUrl } from "@/lib/seo";
+import { getAbsoluteUrl, getRobotsMetadata } from "@/lib/seo";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -73,17 +73,7 @@ export const baseMetadata: Metadata = {
   publisher: "Scouts Maison de La Paix",
   referrer: "origin-when-cross-origin",
   verification: getVerificationMetadata(),
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: getRobotsMetadata(),
 };
 
 export function RootDocument({
