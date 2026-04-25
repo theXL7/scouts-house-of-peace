@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Amiri, Fraunces, Manrope, Tajawal } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { getDirection, type Locale } from "@/messages";
@@ -105,6 +106,7 @@ export function RootDocument({
       </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col">
         {children}
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>
