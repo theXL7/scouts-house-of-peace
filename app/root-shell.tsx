@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Amiri, Fraunces, Manrope, Tajawal } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { getDirection, type Locale } from "@/messages";
 import { getAbsoluteUrl, getRobotsMetadata } from "@/lib/seo";
+import { withBasePath } from "@/lib/site";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -71,6 +73,22 @@ export const baseMetadata: Metadata = {
   applicationName: "Scouts Maison de La Paix",
   creator: "Scouts Maison de La Paix",
   publisher: "Scouts Maison de La Paix",
+  icons: {
+    icon: [
+      { url: withBasePath("/favicon.ico"), sizes: "any" },
+      {
+        url: withBasePath("/logos/association-tab-logo.png"),
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+    shortcut: withBasePath("/favicon.ico"),
+    apple: {
+      url: withBasePath("/logos/association-tab-logo.png"),
+      type: "image/png",
+      sizes: "512x512",
+    },
+  },
   referrer: "origin-when-cross-origin",
   verification: getVerificationMetadata(),
   robots: getRobotsMetadata(),
@@ -105,6 +123,7 @@ export function RootDocument({
       </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col">
         {children}
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>
