@@ -54,6 +54,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         <ScoutingCulture
           copy={messages.scoutingCulture}
           actionLabel={messages.actions.explore}
+          ctaHref={getLocalePath(locale, "/scouting-culture")}
           isRtl={isRtl}
         />
         <GlobalMovement copy={messages.globalMovement} isRtl={isRtl} />

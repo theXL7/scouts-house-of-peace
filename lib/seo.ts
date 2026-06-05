@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getJoinUsPath, getLocalePath, type Locale } from "@/messages";
 import { withBasePath } from "@/lib/site";
 
-export type SeoPageKey = "home" | "join-us";
+export type SeoPageKey = "home" | "join-us" | "scouting-culture";
 
 const DEFAULT_SITE_URL = "https://scoutsmaisonpaix.org";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL;
@@ -41,6 +41,10 @@ const pageSeoByLocale: Record<
       description:
         "Official registration and contact page for Scouts Maison de La Paix in Taourirt, Morocco. Review fees, required documents, contact details, and the pre-registration request form.",
     },
+    "scouting-culture": {
+      title: "Scouting Culture | Scouts Maison de La Paix",
+      description: "Discover the culture behind the journey at Scouts Maison de La Paix.",
+    },
   },
   fr: {
     home: {
@@ -55,6 +59,10 @@ const pageSeoByLocale: Record<
       description:
         "Page officielle d'inscription et de contact des Scouts Maison de La Paix à Taourirt, au Maroc. Consultez les frais, les documents demandés et les moyens de contact.",
     },
+    "scouting-culture": {
+      title: "Culture Scoute | Scouts Maison de La Paix",
+      description: "Découvrez la culture derrière l'aventure aux Scouts Maison de La Paix.",
+    },
   },
   ar: {
     home: {
@@ -68,6 +76,10 @@ const pageSeoByLocale: Record<
         "الانخراط في Scouts Maison de La Paix | التسجيل في تاوريرت، المغرب",
       description:
         "الصفحة الرسمية للتسجيل والتواصل الخاصة بـ Scouts Maison de La Paix في تاوريرت بالمغرب. اطلع على الرسوم والوثائق المطلوبة ووسائل التواصل ونموذج طلب المعلومات.",
+    },
+    "scouting-culture": {
+      title: "الثقافة الكشفية | Scouts Maison de La Paix",
+      description: "اكتشف الثقافة وراء الرحلة في Scouts Maison de La Paix.",
     },
   },
 };
@@ -90,6 +102,12 @@ const keywordsByPage: Record<SeoPageKey, string[]> = {
     "Scouts Maison de La Paix contact",
     "كشافة دار السلام المغربية",
   ],
+  "scouting-culture": [
+    "Scouting culture",
+    "Scouts Maison de La Paix culture",
+    "Moroccan scouting traditions",
+    "peace scouting culture",
+  ],
 };
 
 const organizationDescriptionByLocale: Record<Locale, string> = {
@@ -103,7 +121,9 @@ function normalizeSiteUrl(siteUrl: string) {
 }
 
 function getPagePath(page: SeoPageKey, locale: Locale) {
-  return page === "home" ? getLocalePath(locale) : getJoinUsPath(locale);
+  if (page === "home") return getLocalePath(locale);
+  if (page === "scouting-culture") return getLocalePath(locale, "/scouting-culture");
+  return getJoinUsPath(locale);
 }
 
 function withTrailingSlash(path: string) {

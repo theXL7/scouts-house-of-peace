@@ -471,9 +471,11 @@ function CultureCardCluster({
 
 function CultureIntroBlock({
   copy,
+  ctaHref,
   isRtl,
 }: {
   copy: Messages["scoutingCulture"];
+  ctaHref: string;
   isRtl: boolean;
 }) {
   const displayTitle = isRtl
@@ -524,7 +526,7 @@ function CultureIntroBlock({
       </div>
 
       <a
-        href="#contact"
+        href={ctaHref}
         className="mt-7 inline-flex min-h-14 items-center gap-3 rounded-full border border-[#D5C0A2] bg-[#F8EFE2] px-6 py-3 text-[0.98rem] font-medium text-[#5F4C3E] shadow-[0_12px_28px_rgba(105,84,58,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#CFA984] hover:bg-[#FBF4E9]"
       >
         {copy.cta}
@@ -538,11 +540,13 @@ function CultureScenePanel({
   copy,
   cards,
   actionLabel,
+  ctaHref,
   isRtl,
 }: {
   copy: Messages["scoutingCulture"];
   cards: CultureCardData[];
   actionLabel: string;
+  ctaHref: string;
   isRtl: boolean;
 }) {
   return (
@@ -561,7 +565,7 @@ function CultureScenePanel({
 
       <div className="relative px-6 py-8 sm:px-8 sm:py-10 md:aspect-[43/25] md:min-h-0">
         <div className="relative z-[60] md:absolute md:left-[5.75%] md:top-[11.5%] md:w-[30%]">
-          <CultureIntroBlock copy={copy} isRtl={isRtl} />
+          <CultureIntroBlock copy={copy} ctaHref={ctaHref} isRtl={isRtl} />
         </div>
 
         <div className="relative mt-10 min-h-[24rem] sm:min-h-[28rem] md:absolute md:bottom-[6%] md:left-[26%] md:right-[1%] md:top-[6%] md:mt-0">
@@ -779,10 +783,12 @@ function CultureScenePanel({
 export default function ScoutingCulture({
   copy,
   actionLabel,
+  ctaHref,
   isRtl = false,
 }: {
   copy: Messages["scoutingCulture"];
   actionLabel: string;
+  ctaHref: string;
   isRtl?: boolean;
 }) {
   const cards = cultureClusterCards.map((card, index) => ({
@@ -800,6 +806,7 @@ export default function ScoutingCulture({
           copy={copy}
           cards={cards}
           actionLabel={actionLabel}
+          ctaHref={ctaHref}
           isRtl={isRtl}
         />
       </div>
