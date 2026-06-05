@@ -1,0 +1,16 @@
+.git
+.github
+.next
+.codex
+.vscode
+node_modules
+out
+docs
+qa-artifacts
+tmp
+tmp-*.png
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
