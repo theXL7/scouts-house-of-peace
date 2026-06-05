@@ -9,6 +9,8 @@ docs
 qa-artifacts
 tmp
 tmp-*.png
+public/media/scouts-placeholder.mp4
+public/media/house-of-peace-alpha.webm
 *.tsbuildinfo
 npm-debug.log*
 yarn-debug.log*
