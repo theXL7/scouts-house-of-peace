@@ -151,6 +151,73 @@ const en = {
       },
     ],
   },
+  programsPage: {
+    hero: {
+      eyebrow: "Programs & Activities",
+      title: "Programs & Activities",
+      subtitle:
+        "From outdoor adventures to community service, our programs help young people grow through learning, responsibility, friendship, and action.",
+      primaryCta: "Explore activities",
+      secondaryCta: "Follow our latest moments",
+      posterKicker: "A curated showcase",
+      posterTitle: "A glimpse of what we do",
+      posterText:
+        "Selected highlights, upcoming activities, and scout-life moments are gathered here without turning the page into a full archive.",
+    },
+    families: {
+      eyebrow: "Program families",
+      title: "Explore the main experiences that shape our scout life throughout the year.",
+      description:
+        "Each family gives young people a different way to learn, serve, lead, and belong.",
+      filterLabel: "View activities",
+    },
+    upcoming: {
+      eyebrow: "Upcoming activities",
+      title: "Activities are continuously updated.",
+      description:
+        "Only activities that are upcoming or currently happening appear here.",
+      viewAllLabel: "Show upcoming",
+      emptyState:
+        "New activities will be announced here soon. Follow our social media for real-time updates.",
+    },
+    highlights: {
+      eyebrow: "Selected highlights",
+      title: "Activity Highlights",
+      description:
+        "A selected look at recent and memorable moments from our scout journey.",
+    },
+    social: {
+      eyebrow: "Social updates",
+      title: "Follow the Journey",
+      description:
+        "For more photos, stories, and real-time updates, follow our latest moments on Instagram and Facebook.",
+    },
+    finalCta: {
+      eyebrow: "Take part",
+      title: "Want to take part in the next activity?",
+      joinLabel: "Join Us",
+      contactLabel: "Contact Us",
+    },
+    filters: {
+      all: "All",
+      camps: "Camps",
+      workshops: "Workshops",
+      service: "Service",
+      exchange: "Exchange",
+      training: "Training",
+      "scout-life": "Scout Life",
+      upcoming: "Upcoming",
+    },
+    status: {
+      upcoming: "Upcoming",
+      happening: "Happening now",
+      completed: "Completed",
+    },
+    actions: {
+      share: "Share",
+      copied: "Copied",
+    },
+  },
   scoutingCulture: {
     eyebrow: "Scouting Culture",
     title: "The culture behind the journey.",

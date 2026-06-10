@@ -136,6 +136,74 @@ const fr = {
       },
     ],
   },
+  programsPage: {
+    hero: {
+      eyebrow: "Programmes et activités",
+      title: "Programmes et activités",
+      subtitle:
+        "Des aventures en plein air au service communautaire, nos programmes aident les jeunes à grandir par l'apprentissage, la responsabilité, l'amitié et l'action.",
+      primaryCta: "Explorer les activités",
+      secondaryCta: "Suivre nos derniers moments",
+      posterKicker: "Une sélection soignée",
+      posterTitle: "Un aperçu de ce que nous faisons",
+      posterText:
+        "Des temps forts choisis, des activités à venir et des moments de vie scoute sont réunis ici sans transformer la page en archive complète.",
+    },
+    families: {
+      eyebrow: "Familles de programmes",
+      title:
+        "Découvrez les grandes expériences qui façonnent notre vie scoute tout au long de l'année.",
+      description:
+        "Chaque famille offre aux jeunes une manière différente d'apprendre, de servir, de guider et d'appartenir.",
+      filterLabel: "Voir les activités",
+    },
+    upcoming: {
+      eyebrow: "Activités à venir",
+      title: "Les activités sont mises à jour régulièrement.",
+      description:
+        "Seules les activités à venir ou en cours apparaissent dans cette section.",
+      viewAllLabel: "Afficher à venir",
+      emptyState:
+        "De nouvelles activités seront annoncées ici bientôt. Suivez nos réseaux sociaux pour les mises à jour en temps réel.",
+    },
+    highlights: {
+      eyebrow: "Temps forts choisis",
+      title: "Temps forts des activités",
+      description:
+        "Un regard sélectionné sur des moments récents et mémorables de notre parcours scout.",
+    },
+    social: {
+      eyebrow: "Actualités sociales",
+      title: "Suivre le parcours",
+      description:
+        "Pour plus de photos, d'histoires et de mises à jour en temps réel, suivez nos derniers moments sur Instagram et Facebook.",
+    },
+    finalCta: {
+      eyebrow: "Participer",
+      title: "Envie de prendre part à la prochaine activité ?",
+      joinLabel: "Nous rejoindre",
+      contactLabel: "Nous contacter",
+    },
+    filters: {
+      all: "Tous",
+      camps: "Camps",
+      workshops: "Ateliers",
+      service: "Service",
+      exchange: "Échange",
+      training: "Formation",
+      "scout-life": "Vie scoute",
+      upcoming: "À venir",
+    },
+    status: {
+      upcoming: "À venir",
+      happening: "En cours",
+      completed: "Terminé",
+    },
+    actions: {
+      share: "Partager",
+      copied: "Copié",
+    },
+  },
   scoutingCulture: {
     eyebrow: "Culture scoute",
     title: "La culture derrière le parcours.",

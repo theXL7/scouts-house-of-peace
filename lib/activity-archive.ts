@@ -1,0 +1,1766 @@
+import type { ActivityCategory } from "@/lib/activities";
+import type { Locale } from "@/messages";
+
+export type ActivityArchiveEntry = {
+  id: string;
+  year: string;
+  date: string;
+  title: string;
+  details: string[];
+  imageSrc?: string;
+};
+
+type ArchiveLocale = Exclude<Locale, "ar">;
+
+export type LocalizedActivityArchiveEntry = {
+  date: string;
+  title: string;
+  details: string[];
+};
+
+export const activityArchiveYears = [
+  "2026",
+  "2025",
+  "2024",
+  "2023",
+  "2022",
+  "2021",
+  "2020",
+  "2019",
+  "2018",
+] as const;
+
+export const activityArchiveEntries: ActivityArchiveEntry[] = [
+  {
+    id: "2018-imlil-candle-vigil",
+    year: "2018",
+    date: "26 دجنبر 2018",
+    title: "المشاركة في وقفة الشموع التأبينية لضحايا إمليل",
+    details: [
+      "شاركت الجمعية في الوقفة التي نظمتها الجمعية الوطنية من أجل العدالة فرع تاوريرت.",
+      'رفعت الوقفة شعار: "لا للإرهاب والقتل، نعم للحياة والعيش المشترك".',
+    ],
+  },
+  {
+    id: "2018-tafadist-trip",
+    year: "2018",
+    date: "23 دجنبر 2018",
+    title: "رحلة ترفيهية إلى منطقة ابنـي كولال (تفاديست)",
+    details: [
+      "ألعاب تربوية وترفيهية.",
+      "أناشيد كشفية.",
+      "مسابقات ثقافية.",
+      "مواضيع كشفية ودينية.",
+    ],
+  },
+  {
+    id: "2019-seniors-home-honor",
+    year: "2019",
+    date: "12 يناير 2019",
+    title: "حفل تكريمي بدار المسنين تاوريرت",
+    details: [
+      "نظمت جمعية كشافة دار السلام المغربية حفلا تكريميا على شرف نزلاء الجمعية الخيرية دار المسنين تاوريرت بمناسبة الذكرى 75 لتقديم وثيقة المطالبة بالاستقلال.",
+    ],
+  },
+  {
+    id: "2019-weekly-activities-march-17",
+    year: "2019",
+    date: "17 مارس 2019",
+    title: "الأنشطة الأسبوعية بمقر كشافة دار السلام",
+    details: [
+      "صور من الأنشطة الأسبوعية ليوم الأحد 17 مارس 2019 بمقر كشافة دار السلام المغربية، من تأطير القائدة بوشرى هموري ويمينة لمحمدي.",
+    ],
+  },
+  {
+    id: "2019-new-zealand-solidarity",
+    year: "2019",
+    date: "18 مارس 2019",
+    title: "وقفة تضامنية مع شهداء مسجدي نيوزيلندا",
+    details: [
+      "لا للإرهاب.",
+      "نعم للعيش معا بسلام.",
+      "نبني المستقبل، الواحد مع الآخر، ليس الواحد ضد الآخر.",
+    ],
+  },
+  {
+    id: "2019-weekly-activities-march-24",
+    year: "2019",
+    date: "24 مارس 2019",
+    title: "الأنشطة الأسبوعية لكشافة دار السلام",
+    details: [
+      "صور من الأنشطة الأسبوعية لكشافة دار السلام المغربية، من تأطير القائدة غريبة عبد السميع والقائدة خديجة بالحاجوج.",
+    ],
+  },
+  {
+    id: "2019-preparatory-training",
+    year: "2019",
+    date: "3-5 أبريل 2019",
+    title: "التكوين الإعدادي",
+    details: [
+      "تكوين إعدادي من تأطير القائدة بوشرى هموري وغريبة عبد السميع.",
+      "تضمن النشاط أكثر من منشور توثيقي لنفس المحطة.",
+    ],
+  },
+  {
+    id: "2019-advanced-scouts-weekly",
+    year: "2019",
+    date: "14 أبريل 2019",
+    title: "الأنشطة الأسبوعية للكشاف المتقدم والرائدات",
+    details: ["لقاء تربوي دوري لفئة الكشاف المتقدم والرائدات."],
+  },
+  {
+    id: "2019-oued-za-trip",
+    year: "2019",
+    date: "28 أبريل 2019",
+    title: "رحلة تربوية ترفيهية إلى واد زا",
+    details: [
+      "نظمت لفائدة منخرطي الجمعية.",
+      "تضمنت ألعابا وأنشطة كشفية متنوعة.",
+    ],
+  },
+  {
+    id: "2019-ibn-sina-tree-planting",
+    year: "2019",
+    date: "4 ماي 2019",
+    title: "عملية تشجير بثانوية ابن سينا الإعدادية",
+    details: [
+      "نظمت في إطار التربية البيئية.",
+      "اختتمت بأمسية احتفالية تضمنت عروضا مسرحية ورقصات وأناشيد تربوية.",
+    ],
+  },
+  {
+    id: "2019-living-together-candle-vigil",
+    year: "2019",
+    date: "18 ماي 2019",
+    title: "وقفة شموع بمناسبة اليوم الدولي للعيش معا في سلام",
+    details: ["نظمت بساحة محمد السادس بتاوريرت وكانت مفتوحة للعموم."],
+  },
+  {
+    id: "2019-social-animation-discussion",
+    year: "2019",
+    date: "12 يوليوز 2019",
+    title: "جلسة مناقشة برنامج التنشيط الاجتماعي عن قرب",
+    details: [
+      "شاركت الجمعية في جلسة بمقر عمالة إقليم تاوريرت حول الثقافة والرياضة والترفيه بأحياء المدينة.",
+    ],
+  },
+  {
+    id: "2019-throne-day-flag",
+    year: "2019",
+    date: "30 يوليوز 2019",
+    title: "المشاركة في حفل رفع العلم بمناسبة عيد العرش",
+    details: ["حضور بمقر عمالة إقليم تاوريرت."],
+  },
+  {
+    id: "2019-math-and-living-together",
+    year: "2019",
+    date: "8 غشت 2019",
+    title: "تكوين حول الرياضيات والعيش معا",
+    details: ["نظم بمقر دار السلام."],
+  },
+  {
+    id: "2019-independence-flag-and-pool",
+    year: "2019",
+    date: "18 نونبر 2019",
+    title: "حضور حفل رفع العلم بمناسبة عيد الاستقلال",
+    details: [
+      "حضور الكشافة في حفل رفع العلم بمناسبة عيد الاستقلال.",
+      "حضور في إعطاء انطلاق أشغال بناء المسبح الجماعي بتجزئة النسيم تاوريرت.",
+    ],
+  },
+  {
+    id: "2019-december-weekly",
+    year: "2019",
+    date: "1 دجنبر 2019",
+    title: "الأنشطة الأسبوعية",
+    details: ["صور من الأنشطة الأسبوعية ليوم 1 دجنبر 2019."],
+  },
+  {
+    id: "2020-cemetery-cleanup",
+    year: "2020",
+    date: "31 يناير 2020",
+    title: "تنظيف مقبرة مولاي علي الشريف",
+    details: [
+      "شاركت جمعية كشافة دار السلام في عملية تنظيف مقبرة مولاي علي الشريف التي أشرف عليها المجلس البلدي بتاوريرت.",
+    ],
+    imageSrc: "/activities/programme/community-cleanup-2020.jpg",
+  },
+  {
+    id: "2020-farhat-omi-abi",
+    year: "2020",
+    date: "1 فبراير 2020",
+    title: 'حفل "فرحة أمي وأبي" بدار المسنين',
+    details: [
+      "شاركت الجمعية في حفل بدار المسنين بتاوريرت نظم من طرف جمعية الناشئة للتنمية والثقافة والفنان عمي بسيسو وجمعية اجي نتعاونو.",
+    ],
+  },
+  {
+    id: "2020-warm-winter",
+    year: "2020",
+    date: "11 فبراير 2020",
+    title: "حملة شتاء دافئ",
+    details: [
+      'تم توزيع ملابس شتوية لفائدة قرية "زرايب" التابعة لإقليم تاوريرت.',
+    ],
+  },
+  {
+    id: "2020-road-safety-evening",
+    year: "2020",
+    date: "23 فبراير 2020",
+    title: "أمسية تحسيسية حول السلامة الطرقية",
+    details: [
+      "نظمت الجمعية أمسية تحسيسية توعوية لفائدة منخرطيها بمناسبة اليوم الوطني للسلامة الطرقية.",
+    ],
+  },
+  {
+    id: "2020-civil-protection-day",
+    year: "2020",
+    date: "1-2 مارس 2020",
+    title: "الاحتفالات الخاصة باليوم العالمي للوقاية المدنية",
+    details: ["حضور الكشافة في الاحتفالات الخاصة باليوم العالمي للوقاية المدنية."],
+  },
+  {
+    id: "2020-covid-awareness-day-one",
+    year: "2020",
+    date: "29 غشت 2020",
+    title: "اليوم الأول من الحملة التحسيسية ضد فيروس كورونا",
+    details: [
+      "حملة تحسيسية توعوية حول مخاطر جائحة كورونا وسبل الوقاية منها.",
+      "نظمت من طرف جمعيات المجتمع المدني بتنسيق مع السلطة المحلية ومصالح الأمن والقوات المساعدة لفائدة ساكنة مدينة تاوريرت.",
+    ],
+  },
+  {
+    id: "2020-covid-awareness-day-two",
+    year: "2020",
+    date: "30 غشت 2020",
+    title: "اليوم الثاني من الحملة التحسيسية ضد فيروس كورونا",
+    details: ["اليوم الثاني من الحملة التحسيسية التوعوية حول مخاطر جائحة كورونا."],
+  },
+  {
+    id: "2020-covid-awareness-august-31",
+    year: "2020",
+    date: "31 غشت 2020",
+    title: "حملات تحسيسية صباحية ومسائية حول كورونا",
+    details: [
+      "حملة صباحية بمجموعة من الأماكن: مصانع، مقاهي، مكتبات.",
+      "حملة مسائية تحسيسية توعوية حول مخاطر جائحة كورونا.",
+    ],
+  },
+  {
+    id: "2020-covid-awareness-september",
+    year: "2020",
+    date: "1 شتنبر 2020",
+    title: "استكمال الحملة التحسيسية حول جائحة كورونا",
+    details: [
+      "اليوم الرابع من الحملة التحسيسية حول مخاطر جائحة كورونا.",
+      "توثيق اليوم الخامس واليوم السادس واليوم الأخير من الحملة.",
+      "تمت بتنسيق مع السلطات المحلية ومصالح الأمن والقوات المساعدة لفائدة ساكنة مدينة تاوريرت.",
+    ],
+  },
+  {
+    id: "2021-blood-donation",
+    year: "2021",
+    date: "20 يونيو 2021",
+    title: "المشاركة في حملة التبرع بالدم",
+    details: ["مشاركة بعض القادة في حملة التبرع بالدم."],
+  },
+  {
+    id: "2021-mehraz-trip",
+    year: "2021",
+    date: "27 يونيو 2021",
+    title: "رحلة ترفيهية إلى منطقة مهراز",
+    details: [
+      'نظمت الجمعية رحلة ترفيهية إلى منطقة "مهراز" نواحي مدينة تاوريرت لفائدة منخرطي الجمعية.',
+    ],
+  },
+  {
+    id: "2021-summer-weekly-start",
+    year: "2021",
+    date: "2 يوليوز 2021",
+    title: "بداية الأنشطة الأسبوعية الصيفية",
+    details: ["بداية الأنشطة الأسبوعية الصيفية يوم 2 يوليوز 2021."],
+  },
+  {
+    id: "2021-summer-weekly-second",
+    year: "2021",
+    date: "9 يوليوز 2021",
+    title: "الأسبوع الثاني من الأنشطة الأسبوعية الصيفية",
+    details: ["الأسبوع الثاني من الأنشطة الأسبوعية الصيفية يوم الجمعة 9 يوليوز 2021."],
+  },
+  {
+    id: "2022-peace-culture-training-forum",
+    year: "2022",
+    date: "8 يناير 2022",
+    title: "الملتقى التكويني الأول حول التربية لثقافة السلام",
+    details: ["صور من الملتقى التكويني الأول حول التربية لثقافة السلام."],
+  },
+  {
+    id: "2022-road-safety-ayoub",
+    year: "2022",
+    date: "19 فبراير 2022",
+    title: "نشاط السلامة الطرقية",
+    details: [
+      "نظم بشراكة مع مدرسة أيوب لتعليم السياقة.",
+      'تحت شعار: "مبادرتي... من أجل الحياة".',
+    ],
+  },
+  {
+    id: "2022-first-aid-red-cross",
+    year: "2022",
+    date: "5 مارس 2022",
+    title: "تكوين في الإسعافات الأولية",
+    details: ["تكوين First-aid بتعاون مع منظمة الصليب الأحمر المغربي."],
+  },
+  {
+    id: "2022-kerrarma-hike",
+    year: "2022",
+    date: "27 مارس 2022",
+    title: "رحلة كشفية إلى الكرارمة (الحمام الحامي)",
+    details: [
+      "نظمت سيرا على الأقدام وبمشاركة حوالي 50 فردا.",
+      'تحت شعار: "لنعيش بسلام مع الطبيعة".',
+    ],
+  },
+  {
+    id: "2022-forest-directorate-visit",
+    year: "2022",
+    date: "7 أبريل 2022",
+    title: "زيارة تربوية لمديرية المياه والغابات ومحاربة التصحر",
+    details: [
+      "نظمت تحت شعار: الطفل والسلم البيئي مسؤولية مشتركة.",
+      "شارك 22 فردا من الكشفية في زيارة للتعرف على الغرس والحفاظ على النباتات وتوسيع الغطاء النباتي ومحاربة التصحر.",
+      "تم تأطير الزيارة من طرف مهندس بالمديرية شرح عملية الغرس وأنواعه وأهمية النباتات وطرق الحفاظ عليها.",
+    ],
+    imageSrc: "/activities/programme/forest-visit-2022.jpg",
+  },
+  {
+    id: "2022-cemetery-cleanup",
+    year: "2022",
+    date: "9 أبريل 2022",
+    title: "حملة تنظيف مقبرة مولاي علي الشريف",
+    details: ["نشاط تطوعي شارك فيه مختلف أفراد الجمعية."],
+  },
+  {
+    id: "2022-animation-techniques-training",
+    year: "2022",
+    date: "5-10 أبريل 2022",
+    title: "دورة تقنيات التنشيط التربوي",
+    details: [
+      "شارك أعضاء الجمعية في دورة تكوينية لاكتساب تقنيات التنشيط التربوي وتوظيفها.",
+      "دامت الدورة من 5 إلى 10 أبريل 2022 بمركز إدماج ورعاية الأطفال في وضعية صعبة وقاعة التنشيط الاجتماعي مولاي علي الشريف بتاوريرت.",
+      'نظمت من تأطير جمعية محترف شعلة للتنشيط التربوي والتخييم تحت شعار "تقوية وتأهيل العنصر البشري دعامة أساسية في الارتقاء بتجويد الخدمات التربوية التنشيطية".',
+      "تضمنت المعامل التربوية والأشغال اليدوية، الألعاب الداخلية، التعبير الجسدي في المسرح، تقنيات اللعب، وإعداد سينوغرافيا عمل مسرحي.",
+    ],
+  },
+  {
+    id: "2022-ramadan-educational-cultural",
+    year: "2022",
+    date: "17 أبريل 2022",
+    title: "نشاط تربوي ثقافي تعليمي",
+    details: [
+      "نشاط لتعليم الأطفال مبادئ العقيدة الإسلامية وقيمها الأخلاقية.",
+      "تعلم الأطفال كيفية الوضوء، ومارسوا أنشطة عملية وفنية وصنعوا فانوس رمضان من الورق الملون.",
+      "تم تعليم الأطفال النشيد الرسمي للكشفية في جو يسوده المرح والنشاط.",
+    ],
+  },
+  {
+    id: "2022-memory-resistance-visit",
+    year: "2022",
+    date: "20 أبريل 2022",
+    title: "زيارة فضاء الذاكرة للمقاومة والتحرير",
+    details: [
+      "قام أعضاء الجمعية بزيارة مقر فضاء الذاكرة للمقاومة والتحرير بتاوريرت للتعرف على المتحف والتراث التاريخي للمملكة.",
+      "اطلع الأطفال على أروقة الفضاء ومعروضاته وصور المجاهدين القدماء.",
+    ],
+  },
+  {
+    id: "2022-hadith-contest",
+    year: "2022",
+    date: "1 ماي 2022",
+    title: "مسابقة حفظ الأحاديث",
+    details: [
+      "اختتمت الجمعية أنشطتها الرمضانية بتنظيم مسابقة لحفظ الأحاديث، مع تقديم جوائز وشواهد للمتفوقين استعدادا للاحتفال باليوم الدولي للعيش معا.",
+    ],
+  },
+  {
+    id: "2022-child-peace-culture-forum",
+    year: "2022",
+    date: "14 ماي 2022",
+    title: 'ملتقى "الطفل والتربية على ثقافة السلام"',
+    details: [
+      "نظم بالمركب الاجتماعي مولاي علي الشريف.",
+      "تضمن محاضرات، عروضا مسرحية، عروضا موسيقية، فيلما حول ثقافة السلام، وتكريم المشاركين.",
+      "يعد من أكبر الأنشطة العمومية التي نظمتها الجمعية خلال هذه الفترة.",
+    ],
+  },
+  {
+    id: "2022-scout-training-course",
+    year: "2022",
+    date: "21 ماي 2022",
+    title: "دورة تكوينية كشفية",
+    details: [
+      "نظمت لفائدة أعضاء المنظمة المتحدة للكشافة والمرشدات ومحبي الحركة الكشفية.",
+      "تناولت مبادئ الحركة الكشفية، عناصر الطريقة الكشفية، التقاليد الكشفية، التجمعات والصفارات.",
+    ],
+  },
+  {
+    id: "2022-large-oued-za-trip",
+    year: "2022",
+    date: "24 ماي 2022",
+    title: "رحلة كشفية كبرى على ضفاف واد زا",
+    details: [
+      "نظمت بشراكة مع المنظمة المتحدة للكشافة والمرشدات وبمشاركة أكثر من 70 مشاركا.",
+      "تضمنت تدريبات كشفية، ورش العقد الكشفية، الإسعافات الأولية، ألعابا كشفية، أناشيد، وحملة نظافة.",
+    ],
+  },
+  {
+    id: "2022-mawlid-activity",
+    year: "2022",
+    date: "15 أكتوبر 2022",
+    title: "نشاط بمناسبة ذكرى المولد النبوي الشريف",
+    details: ["مواضيع حول السيرة والأخلاق النبوية، وأناشيد وألعاب تربوية."],
+  },
+  {
+    id: "2022-green-march-flag",
+    year: "2022",
+    date: "6 نونبر 2022",
+    title: "حفل تحية العلم والخطاب الملكي بمناسبة المسيرة الخضراء",
+    details: [
+      "حضور بعض القائدات في حفل تحية العلم والأمسية الخاصة بسماع الخطاب الملكي بمناسبة عيد المسيرة الخضراء بعمالة إقليم تاوريرت.",
+    ],
+  },
+  {
+    id: "2023-laayoune-scout-consultation",
+    year: "2023",
+    date: "3 فبراير 2023",
+    title: "اللقاء التشاوري الأول لقادة التنظيمات الكشفية بالجهة الشرقية",
+    details: [
+      "حضور بعض القادة بمدينة العيون الشرقية في اللقاء التشاوري الأول للتحضير لتأسيس المكتب الجهوي للرابطة الكشفية المغربية بجهة الشرق.",
+    ],
+  },
+  {
+    id: "2023-road-safety-preschool",
+    year: "2023",
+    date: "17 فبراير 2023",
+    title: "نشاط تحسيسي حول السلامة الطرقية",
+    details: [
+      "نظم لفائدة أطفال التعليم الأولي بمدرسة التقدم بمدينة تاوريرت بمناسبة اليوم الوطني للسلامة الطرقية.",
+    ],
+  },
+  {
+    id: "2023-women-sports-activity",
+    year: "2023",
+    date: "11 مارس 2023",
+    title: "نشاط رياضي بمناسبة عيد المرأة",
+    details: [
+      "نظمت الجمعية نشاطا رياضيا لفائدة بعض النساء.",
+      "تخلل النشاط حصة رياضية مع المدربة محجوبة مغراوي، وحصة توعوية حول أهمية الرياضة، وأناشيد، واختتم بإفطار جماعي.",
+    ],
+  },
+  {
+    id: "2023-tafoughalt-trip",
+    year: "2023",
+    date: "12 مارس 2023",
+    title: "رحلة إلى منطقة تافوغالت (مغارة الحمام)",
+    details: [
+      "قامت كشافة دار السلام المغربية برحلة إلى منطقة تافوغالت ضمن برنامجها السنوي.",
+    ],
+  },
+  {
+    id: "2023-ramadan-scouting",
+    year: "2023",
+    date: "26 مارس 2023",
+    title: "الأنشطة الكشفية الرمضانية",
+    details: ["صور من الأنشطة الكشفية الرمضانية صبيحة يوم الأحد 26 مارس 2023."],
+  },
+  {
+    id: "2023-quran-contest",
+    year: "2023",
+    date: "19 أبريل 2023",
+    title: "مسابقة رمضانية في حفظ سور من القرآن الكريم",
+    details: [
+      "نظمت الجمعية مسابقة رمضانية لحفظ سور من القرآن الكريم تخص مرحلتي الأشبال والزهرات والكشاف المبتدأ والمرشدات.",
+      "تمت بدعم من المندوبية الإقليمية للأوقاف والشؤون الإسلامية بتاوريرت من خلال جوائز عبارة عن نسخ من المصحف المحمدي برواية ورش عن نافع.",
+      "ارتبط النشاط بمبادئ الحركة الكشفية، خصوصا الواجب نحو الله، وربط الناشئة بكتاب الله تلاوة وحفظا وتجويدا.",
+    ],
+  },
+  {
+    id: "2023-peace-education-event",
+    year: "2023",
+    date: "17 ماي 2023",
+    title: "نشاط تربوي بمناسبة اليوم الدولي للعيش معا في سلام",
+    details: [
+      'نظم تحت شعار "التربية من أجل ثقافة السلام" بمؤسسة طيور جنة العلوم للتعليم الخصوصي.',
+      "هدف إلى ترسيخ قيم التربية على ثقافة السلام لدى الأطفال مع النفس والمحيط والآخرين.",
+      "تضمن النشيد الوطني والنشيد الرسمي للجمعية وآيات من الذكر الحكيم، وورشة نفسية روحية للتربية على السلام الباطني، وأناشيد كشفية، وورشة رسم حول السلام، ورقصة حول السلام والعيش معا.",
+    ],
+  },
+  {
+    id: "2023-azrou-mobile-camp",
+    year: "2023",
+    date: "1-12 غشت 2023",
+    title: "المخيم الكشفي المتنقل بأزرو",
+    details: [
+      "مشاركة كشافة دار السلام المغربية في المخيم الكشفي المتنقل مسيرة الأطلس من 1 إلى 12 غشت 2023.",
+      'نظم تحت إشراف الرابطة الكشفية المغربية تحت شعار "المخيم العشيرة في خدمة وتنمية المجتمع" بفوج الوحدة الكشفية رهان المستقبل.',
+      "تم توثيق صور وفعاليات المخيم ضمن ألبوم الصور.",
+    ],
+  },
+  {
+    id: "2024-peace-culture-cultural-activity",
+    year: "2024",
+    date: "17 فبراير 2024",
+    title: "نشاط ثقافي حول التربية على ثقافة السلام",
+    details: [
+      "تضمن محاضرات للدكتورة سعدية اسلايلي والأستاذ رمضان مكاسري.",
+      "تخلل النشاط فقرات فنية وإنشادية.",
+    ],
+  },
+  {
+    id: "2024-ajibiya-trip",
+    year: "2024",
+    date: "18 فبراير 2024",
+    title: "رحلة إلى منطقة عجيبية",
+    details: [
+      'نظمت تحت شعار "على خطى ثقافة السلام" إلى منطقة عجيبية بقبيلة بني شبل.',
+    ],
+  },
+  {
+    id: "2024-womens-day-sports",
+    year: "2024",
+    date: "2 مارس 2024",
+    title: "نشاط رياضي بمناسبة اليوم العالمي للمرأة",
+    details: ['نظم تحت شعار "دور المرأة في بناء ثقافة السلام".'],
+  },
+  {
+    id: "2024-kerrarma-trip",
+    year: "2024",
+    date: "13 أبريل 2024",
+    title: "رحلة ترفيهية بمنطقة الكرارمة",
+    details: [
+      'نظمت تحت شعار "على خطى ثقافة السلام".',
+      "تضمنت تدريبات كشفية، ألعابا تربوية، أناشيد، وحملة نظافة.",
+    ],
+  },
+  {
+    id: "2024-camp-facilitators-training",
+    year: "2024",
+    date: "28 أبريل - 3 ماي 2024",
+    title: "تداريب مؤطري المخيمات الصيفية ومراكز الاصطياف",
+    details: [
+      "مشاركة متميزة لقائدات وقادة كشافة دار السلام في تداريب مؤطري المخيمات الصيفية ومراكز الاصطياف لفئة اليافعين بمركز الزرارقة بوجدة.",
+    ],
+  },
+  {
+    id: "2024-school-peace-values",
+    year: "2024",
+    date: "18 ماي 2024",
+    title: "نشاط تربوي ترفيهي بمدرسة 20 غشت",
+    details: [
+      'نظم بمناسبة اليوم الدولي للعيش معا بسلام وتحت شعار "تربية الأبناء على قيم السلام"، بشراكة مع جمعية أنا موهوب للتنمية والثقافة والفن.',
+      "تضمن آيات من الذكر الحكيم، النشيد الوطني والنشيد الرسمي، رقصة تعبيرية بعنوان رغم كل اختلاف، كلمة حول تربية الأبناء على قيم السلام، مسرحية توعوية حول تأثير مواقع التواصل الاجتماعي، وفقرة بهلوان ووصلات تنشيطية.",
+    ],
+  },
+  {
+    id: "2024-tafoughalt-school-trip",
+    year: "2024",
+    date: "1 يونيو 2024",
+    title: "رحلة تربوية ترفيهية إلى تافوغالت",
+    details: [
+      "نظمت لفائدة تلاميذ مؤسسة طيور جنة العلوم.",
+      "تضمنت ورشات تربوية، تعليم التيمم، صلاة جماعية، زيارة مغارة الحمام، وحملة نظافة.",
+    ],
+  },
+  {
+    id: "2024-arabic-calligraphy-training",
+    year: "2024",
+    date: "22 يونيو 2024",
+    title: "دورة تكوينية حول فن الخط العربي",
+    details: ["مشاركة في دورة تكوينية حول فن الخط العربي بتأطير الأستاذ محمد الدحماني."],
+  },
+  {
+    id: "2024-national-peace-culture-tangier",
+    year: "2024",
+    date: "25-26 يوليوز 2024",
+    title: "الملتقى الوطني لثقافة السلام بمدينة طنجة",
+    details: [
+      "نظم بشراكة مع جمعية أنوار السلام.",
+      "تضمن ورشات حول ثقافة السلام، مائدة مستديرة، عروضا فنية، زيارة المدينة العتيقة بطنجة، وزيارة معالم تاريخية ومتاحف.",
+    ],
+  },
+  {
+    id: "2024-mobile-atlas-camp",
+    year: "2024",
+    date: "27 يوليوز - 8 غشت 2024",
+    title: "المخيم الكشفي المتنقل مسيرة الأطلس",
+    details: [
+      "مشاركة في المخيم الكشفي المتنقل مسيرة الأطلس بنسخته الثالثة تحت إشراف وتنظيم الرابطة الكشفية المغربية.",
+      "حمل شعار مخيم العشيرة في خدمة الشباب والمجتمع: فوج الصقور.",
+    ],
+  },
+  {
+    id: "2024-young-scouts-camp",
+    year: "2024",
+    date: "9-20 غشت 2024",
+    title: "Young Scouts Camp",
+    details: ["مخيم خاص بالفئات الصغرى تم توثيقه بأكثر من منشور وبألبوم صور."],
+    imageSrc: "/activities/programme/young-scouts-camp-2024.jpg",
+  },
+  {
+    id: "2024-houzia-autumn-meeting",
+    year: "2024",
+    date: "أكتوبر 2024",
+    title: "الملتقى الخريفي الحوزية 2024",
+    details: [
+      "مشاركة متميزة لوفد كشافة دار السلام بالملتقى الخريفي الحوزية 2024.",
+      "#الرابطةـالكشفيةـالمغربية تجمعنا",
+      "#الكشفيةـللجميع شعارنا المنيع",
+    ],
+  },
+  {
+    id: "2024-green-march-ceremonies",
+    year: "2024",
+    date: "6 نونبر 2024",
+    title: "مراسيم رفع العلم والخطاب الملكي بمناسبة المسيرة الخضراء",
+    details: [
+      "حضور قائدات وقادة من كشافة دار السلام مراسيم رفع العلم صباحا بمقر عمالة تاوريرت.",
+      "حضور وازن لمراسيم الإنصات للخطاب الملكي السامي مساء ببهور عمالة تاوريرت.",
+    ],
+  },
+  {
+    id: "2024-green-march-independence-activity",
+    year: "2024",
+    date: "أواخر نونبر 2024",
+    title: "نشاط بمناسبة ذكرى المسيرة الخضراء وعيد الاستقلال",
+    details: [
+      "استهل النشاط بالنشيد الوطني والنشيد الرسمي.",
+      'تضمن رقصة تعبيرية بعنوان "المغرب بلادي" من أداء مرحلة الأشبال والزهرات، وورشة للرسم وورشة للأناشيد والألعاب.',
+    ],
+  },
+  {
+    id: "2024-december-weekly-activities",
+    year: "2024",
+    date: "21 دجنبر 2024",
+    title: "الأنشطة الأسبوعية بدار الشباب",
+    details: ["الأنشطة الأسبوعية يوم السبت 21 دجنبر 2024 بدار الشباب."],
+  },
+  {
+    id: "2025-kingdom-of-letters",
+    year: "2025",
+    date: "19 يناير 2025",
+    title: "معرض مملكة الخطوط",
+    details: [
+      "حضور كشافة دار السلام المغربية في معرض مملكة الخطوط في نسخته الثالثة بمناسبة الاحتفالات بذكرى تقديم وثيقة المطالبة بالاستقلال.",
+      "نظم من طرف مركز الهدى لفن الخط العربي والزخرفة.",
+    ],
+    imageSrc: "/activities/programme/calligraphy-exhibition-2025.jpg",
+  },
+  {
+    id: "2025-independence-document-celebration",
+    year: "2025",
+    date: "25 يناير 2025",
+    title: "احتفال تقديم وثيقة المطالبة بالاستقلال",
+    details: [
+      "احتفلت كشافة دار السلام المغربية بهذه المناسبة بدار الشباب.",
+      "تخلل النشاط موضوع حول المناسبة وأناشيد وألعاب ترفيهية وتربوية.",
+    ],
+  },
+  {
+    id: "2025-road-safety",
+    year: "2025",
+    date: "15 فبراير 2025",
+    title: "نشاط السلامة الطرقية",
+    details: [
+      "نظم بدار الشباب تاوريرت.",
+      "تضمن ورشات توعوية، ورشات رسم، ألعابا وأناشيد تربوية.",
+    ],
+  },
+  {
+    id: "2025-ramadan-meals",
+    year: "2025",
+    date: "12 مارس 2025",
+    title: "توزيع وجبات الإفطار لفائدة الأشخاص بدون مأوى",
+    details: ["نشاط اجتماعي رمضاني لفائدة الأشخاص بدون مأوى."],
+  },
+  {
+    id: "2025-ramadan-celebration",
+    year: "2025",
+    date: "15 مارس 2025",
+    title: "أمسية احتفالية بمناسبة الشهر الفضيل",
+    details: [
+      "افتتح النشاط بآيات من الذكر الحكيم، ثم النشيد الوطني المغربي والنشيد الرسمي لكشافة دار السلام.",
+      "تضمن وصلة للمديح والسماع من أداء كشافة دار السلام.",
+    ],
+  },
+  {
+    id: "2025-first-degree-animator-training",
+    year: "2025",
+    date: "16-23 مارس 2025",
+    title: "تدريب الدرجة الأولى للمنشط التربوي فئة الأطفال",
+    details: [
+      "مشاركة بعض أفراد كشافة دار السلام المغربية في تدريب الدرجة الأولى للمنشط التربوي فئة الأطفال.",
+      "نظم من طرف الجامعة الوطنية للتخييم جهة الشرق بمركز الاصطياف السعيدية.",
+    ],
+    imageSrc: "/activities/programme/animator-training-2025.jpg",
+  },
+  {
+    id: "2025-painting-peace-workshop",
+    year: "2025",
+    date: "26 أبريل 2025",
+    title: "ورشة الصباغة والرسم حول السلام والتعايش",
+    details: [
+      "نظمت بمناسبة اليوم الدولي للعيش معا في سلام بدار الشباب تاوريرت.",
+    ],
+  },
+  {
+    id: "2025-toubkal-peace-trek",
+    year: "2025",
+    date: "5 ماي 2025",
+    title: "رحلة لجبل توبقال تحت شعار على خطى السلام",
+    details: [
+      'نظمت بمناسبة اليوم الدولي للعيش معا في سلام وتحت شعار "على خطى السلام".',
+      "تم توثيق النشاط بألبوم توبقال 2025.",
+    ],
+    imageSrc: "/activities/programme/toubkal-peace-trek-2025.jpg",
+  },
+  {
+    id: "2025-taza-educational-trip",
+    year: "2025",
+    date: "17 ماي 2025",
+    title: "رحلة تربوية ترفيهية إلى باب بودير تازة",
+    details: [
+      "نظمت لفائدة تلميذات وتلاميذ مؤسسة طيور جنة العلوم بمنطقة باب بودير تازة.",
+      "تمثل دور الجمعية في التأطير والتنشيط بفقرات متنوعة ومختلفة.",
+      'تضمن النشاط تجمعات كشفية، ألعابا كشفية، فقرات تنشيطية، أناشيد تربوية، ورشة "لنحلم بعالم جديد الذي نود العيش فيه"، وورشة للرسم حول الطبيعة والسلام.',
+      "تم تخصيص وقت لقراءة القرآن جماعة وتأدية صلاة الظهر، وتنظيم رقصات وأناشيد متنوعة، واختتم النشاط بنشيد حول غزة.",
+    ],
+    imageSrc: "/activities/programme/taza-educational-trip-2025.jpg",
+  },
+  {
+    id: "2025-taqaddom-school-education",
+    year: "2025",
+    date: "24 ماي 2025",
+    title: "نشاط تربوي بمدرسة التقدم",
+    details: [
+      'تضمن ورشة "لنحلم بالعالم الذي نود العيش فيه".',
+      'تضمن ورشة "لنرتقي إلى النجوم".',
+      "تضمن فقرات تنشيطية لفائدة التلاميذ.",
+    ],
+  },
+  {
+    id: "2025-farhat-najah",
+    year: "2025",
+    date: "14 يونيو 2025",
+    title: "أمسية نهاية الموسم الدراسي فرحة نجاح",
+    details: [
+      'نظمت بدار الشباب بمناسبة نهاية الموسم الدراسي تحت شعار "فرحة نجاح".',
+      "تخلل النشاط ألعاب وأناشيد ورقصات، واختتم بإنجاز شجرة الكشاف حيث وضع كل مشارك بصمته.",
+    ],
+  },
+  {
+    id: "2025-young-scouts-camp",
+    year: "2025",
+    date: "2025",
+    title: "Young Scouts Camp",
+    details: ["مخيم كشفي للفئات الصغرى تم توثيقه بمنشور خاص."],
+  },
+  {
+    id: "2025-oujda-peace-culture-conference",
+    year: "2025",
+    date: "18-19 يوليوز 2025",
+    title: "ندوة أكاديمية وجدة للتربية على ثقافة السلام",
+    details: [
+      "حضور كشافة دار السلام المغربية في الندوة المنظمة من طرف أكاديمية وجدة للتربية على ثقافة السلام في نسختها الأولى.",
+      "موضوع الندوة: من المسيرة الخضراء إلى الذكاء الاصطناعي، التربية الروحية جسر نحو ثقافة السلام.",
+    ],
+  },
+  {
+    id: "2025-tangier-peace-education",
+    year: "2025",
+    date: "23-27 يوليوز 2025",
+    title: "إدراج السلام في قلب التربية والتعليم بمدينة طنجة",
+    details: [
+      "نظم النشاط بمناسبة عيد العرش المجيد وعيد الشباب وبشراكة مع جمعية أنوار السلام وكشافة دار السلام المغربية تاوريرت.",
+      "تضمن ورشات حول التواضع للأطفال، وورشة التربية على ثقافة السلام تقديم نظري، وورشة تطبيق عملي.",
+      "تم رفع برقية ولاء للسدة العالية بالله جلالة الملك محمد السادس نصره الله.",
+      "أعقب النشاط تنظيم مائدة مستديرة حول السلام في قلب التربية والتعليم من أجل العيش معا المبني على قيم التسامح والحوار والاحترام.",
+      "تضمن تكوينا لأساتذة التعليم والمربين وجولات سياحية لبعض معالم المدينة وأنشطة ترفيهية وألعاب للأطفال.",
+    ],
+    imageSrc: "/activities/programme/tangier-peace-education-2025.jpg",
+  },
+  {
+    id: "2025-new-youth-center-inauguration",
+    year: "2025",
+    date: "28 يوليوز 2025",
+    title: "تدشين دار الشباب الجديدة",
+    details: [
+      "بحضور عامل الإقليم والمديرة الجهوية لقطاع الشباب تم تدشين دار الشباب الجديدة بمناسبة عيد العرش المجيد.",
+    ],
+  },
+  {
+    id: "2025-green-march-school-unity",
+    year: "2025",
+    date: "8 نونبر 2025",
+    title: "نشاط تربوي بمدرسة الوحدة بمناسبة الذكرى الخمسين للمسيرة الخضراء",
+    details: [
+      "نظم لتعزيز وغرس قيم المواطنة في نفوس المتعلمين.",
+      'افتتح بآيات من الذكر الحكيم ثم النشيد الوطني وورشة "لنرتقي نحو النجوم" لتربية ثقافة السلام، واختتم بأنشطة ترفيهية للتلاميذ.',
+    ],
+  },
+  {
+    id: "2025-proximity-childrens-camp",
+    year: "2025",
+    date: "8-12 دجنبر 2025",
+    title: "مخيم القرب للأطفال بدار الشباب النسيم",
+    details: [
+      "شاركت كشافة دار السلام المغربية بمخيم القرب للأطفال بدار الشباب النسيم.",
+    ],
+  },
+  {
+    id: "2025-association-management-training",
+    year: "2025",
+    date: "15 دجنبر 2025",
+    title: "الدورة التكوينية الإدارة الجمعوية - تدريب أساس",
+    details: [
+      "مشاركة كشافة دار السلام المغربية في الدورة التكوينية المنظمة من طرف المديرية الجهوية لقطاع الشباب بجهة الشرق.",
+    ],
+  },
+  {
+    id: "2026-tafrent-scout-outing",
+    year: "2026",
+    date: "22 مارس 2026",
+    title: "رحلة تربوية وترفيهية إلى تافرنت",
+    details: [
+      "نظمت إلى منطقة تافرنت بالقرب من دبدو بإقليم تاوريرت، تزامنا مع الاحتفال بيوم الأخوة الكشفية العربية، وبمشاركة إخوتنا من المنظمة المتحدة للكشافة والمرشدات.",
+      "تميز اليوم بطقس غائم وضباب خفيف، وأنشطة كشفية متنوعة، وإنشاد جماعي، وإعداد وجبتي الفطور والغداء في أجواء طبيعية عززت الاعتماد على النفس والعمل الجماعي.",
+      "كانت رحلة مليئة بالمتعة والتعلم وتقاسم القيم الكشفية الأصيلة.",
+    ],
+    imageSrc: "/activities/programme/albums/tafrent-2026/01.jpg",
+  },
+  {
+    id: "2026-ajibiya-outing",
+    year: "2026",
+    date: "2026",
+    title: "خرجة خلوية إلى منطقة العجيبية",
+    details: [
+      "نظمت الكشافة دار السلام المغربية خرجة خلوية إلى منطقة العجيبية بإقليم تاوريرت، في تجربة أعادت ربط المشاركين بالطبيعة الجبلية وهدوئها.",
+      "شكلت الخرجة فرصة لإحياء القيم الكشفية الأصيلة: التعاون، التضامن، وروح المسؤولية، في أجواء مليئة بالحماس والمغامرة.",
+      "Les Scouts Maison de la Paix ont organisé une sortie scoute à L’Ajibiya, dans la région de Taourirt, offrant une expérience unique de reconnexion à la nature montagneuse.",
+    ],
+  },
+  {
+    id: "2026-tifzouine-camp-announcement",
+    year: "2026",
+    date: "8-10 ماي 2026",
+    title: "إعلان المخيم الجبلي بتيفزوين",
+    details: [
+      "في قلب الطبيعة وبين جبال تيفزوين، تجربة كشفية مليئة بالمغامرة والتعلم والتعايش.",
+      "برنامج متنوع يجمع بين الهايك، الألعاب الكشفية، التحديات، السمر الليلي، والعمل الجماعي في أجواء أخوية.",
+      '"المخيم فضاء للتربية والتعايش" - تيفزوين، إقليم تاوريرت.',
+      "Au cœur de la nature et des montagnes de Tifzouine, une expérience scoute pleine d’aventure, d’apprentissage et de coexistence.",
+    ],
+  },
+  {
+    id: "2026-leaders-continuous-training",
+    year: "2026",
+    date: "5 ماي 2026",
+    title: "دورة تكوينية لفائدة القادة والجوالة والدليلات",
+    details: [
+      "نظمت بدار الشباب النسيم بتاوريرت في إطار ترسيخ قيم السلام والتكوين المستمر.",
+      'الورشة الأولى من تأطير القائدة بوشرى بعنوان "قصة الحروف التوأم"، تلاها نقاش تفاعلي عبر نظام دائرة اليقظة للجود والفضائل.',
+      'الورشة الثانية من تأطير القائدة غريبة بعنوان "شجرة الأركان تحكي قصتها"، سلطت الضوء على شجرة الأركان ورمزيتها المرتبطة بالإنسان والعيش في سلام.',
+      "تم تجسيد الورشة في عمل مسرحي من إبداع الجوالة والدليلات.",
+    ],
+  },
+  {
+    id: "2026-tifzouine-camp-report",
+    year: "2026",
+    date: "8-10 ماي 2026",
+    title: "المخيم الجبلي بتيفزوين",
+    details: [
+      "عاشت الجمعية تجربة كشفية مميزة بمنطقة تيفزوين بإقليم تاوريرت من خلال مخيم جبلي جمع بين روح المغامرة والتحدي والتعايش الأخوي.",
+      "تميز المخيم بأجواء الحب والتعاون والانسجام بين القادة والكشافة، وعزز قيم الأخوة والاعتماد على النفس والعمل الجماعي.",
+      "تخللته أنشطة متنوعة، سهرات كشفية، ورشات وألعاب تربوية زرعت الفرح والحماس وخلقت ذكريات جميلة.",
+    ],
+  },
+  {
+    id: "2026-international-living-together-message",
+    year: "2026",
+    date: "16 ماي 2026",
+    title: "اليوم الدولي للعيش معا في سلام",
+    details: [
+      "السلام ماشي غير كلمة، بل أسلوب حياة كيتبنى بالاحترام، بالحوار، وبالعمل الجماعي.",
+      "فالكشافة، كنربّيو الأجيال على الخدمة، المسؤولية، التضامن، والتعايش.",
+      "Dans le scoutisme, nous éduquons les jeunes au service, à la responsabilité, à la solidarité et à la coexistence.",
+      "In Scouting, we empower young people to serve, to lead, and to build bridges of understanding.",
+      "Together, we turn peace into action.",
+    ],
+  },
+  {
+    id: "2026-peace-coexistence-event-announcement",
+    year: "2026",
+    date: "23 ماي 2026",
+    title: "إعلان النشاط التربوي والثقافي حول السلام والتعايش",
+    details: [
+      "تنظمه الجمعية بشراكة وتعاون مع محترف شعلة للتنشيط التربوي الثقافي والتخييم، جمعية أنا موهوب، المنظمة المتحدة للكشافة والمرشدات فرع تاوريرت، جمعية الفجر، وجمعية الأبطال الرياضية لكرة القدم تاوريرت.",
+      'ينظم تحت شعار: "يد في يد من أجل مجتمع يسوده السلام".',
+      "المكان: دار الشباب النسيم - تاوريرت، الساعة الرابعة مساء.",
+      "Événement éducatif et culturel autour du thème « Paix et coexistence ».",
+    ],
+  },
+  {
+    id: "2026-peace-coexistence-event-report",
+    year: "2026",
+    date: "23 ماي 2026",
+    title: "نشاط تربوي وثقافي ناجح ضمن فعاليات اليوم الدولي للعيش معا في سلام",
+    details: [
+      "نظم بشراكة وتعاون مع مختلف الجمعيات المحلية بتاوريرت، وجمع أكثر من 120 طفلا إلى جانب القادة والشباب والأطر التربوية والمنشطين الذين تجاوز عددهم 40 مشاركا.",
+      "عزز التعاون بين الجمعيات والمنظمات المحلية، ورسخ قيم التعايش والسلم والمصلحة المشتركة.",
+      "شمل البرنامج آيات من الذكر الحكيم، قصيدة، عرضا مسرحيا، فقرات غنائية وموسيقية، رقصات وأناشيد، وخمس ورشات تربوية وتفاعلية.",
+      "تضمن أنشطة ترفيهية وجلسات تصوير وزراعة شجرة السلام رمزا للأمل والتآخي.",
+      "Une belle rencontre qui a uni éducation, créativité et engagement pour un seul message : ensemble, construisons la paix.",
+    ],
+  },
+];
+
+export const activityArchiveImageMap: Record<string, string> = {
+  "2018-imlil-candle-vigil": "/activities/programme/archive/dec 26.jpg",
+  "2018-tafadist-trip": "/activities/programme/archive/dec 23.jpg",
+  "2019-seniors-home-honor": "/activities/programme/archive/jan 12.jpg",
+  "2019-weekly-activities-march-17": "/activities/programme/archive/mar 17.jpg",
+  "2019-new-zealand-solidarity": "/activities/programme/archive/mar 18.jpg",
+  "2019-weekly-activities-march-24": "/activities/programme/archive/mar 24.jpg",
+  "2019-preparatory-training": "/activities/programme/archive/apr 3 4 5.jpg",
+  "2019-advanced-scouts-weekly": "/activities/programme/archive/apr 14.jpg",
+  "2019-oued-za-trip": "/activities/programme/archive/apr 28.jpg",
+  "2019-ibn-sina-tree-planting": "/activities/programme/archive/may 4.jpg",
+  "2019-living-together-candle-vigil": "/activities/programme/archive/may 18.jpg",
+  "2019-social-animation-discussion": "/activities/programme/archive/12 july 2019.jpg",
+  "2019-throne-day-flag": "/activities/programme/archive/jul 30.jpg",
+  "2019-math-and-living-together": "/activities/programme/archive/aug 8.jpg",
+  "2019-independence-flag-and-pool": "/activities/programme/archive/nov 18.jpg",
+  "2019-december-weekly": "/activities/programme/archive/dec 1.jpg",
+  "2020-cemetery-cleanup": "/activities/programme/archive/jan 31 2020.jpg",
+  "2020-farhat-omi-abi": "/activities/programme/archive/feb 1 2020.jpg",
+  "2020-warm-winter": "/activities/programme/archive/feb 11 2020.jpg",
+  "2020-road-safety-evening": "/activities/programme/archive/feb 23 2020.jpg",
+  "2020-civil-protection-day": "/activities/programme/archive/mar 1-2 2020.jpg",
+  "2020-covid-awareness-day-one": "/activities/programme/archive/aug 29 2020.jpg",
+  "2020-covid-awareness-day-two": "/activities/programme/archive/aug 30.jpg",
+  "2020-covid-awareness-august-31": "/activities/programme/archive/aug 31 2020.jpg",
+  "2020-covid-awareness-september": "/activities/programme/archive/sep 1 2020.jpg",
+  "2021-blood-donation": "/activities/programme/archive/20 june 2021.jpg",
+  "2021-mehraz-trip": "/activities/programme/archive/june 27 2021.jpg",
+  "2021-summer-weekly-start": "/activities/programme/archive/jul 2 2021.jpg",
+  "2021-summer-weekly-second": "/activities/programme/archive/july 9 2021.jpg",
+  "2022-peace-culture-training-forum": "/activities/programme/archive/jan 8 2022.jpg",
+  "2022-road-safety-ayoub": "/activities/programme/archive/feb 19 2022.jpg",
+  "2022-first-aid-red-cross": "/activities/programme/archive/mar 5 2022.jpg",
+  "2022-kerrarma-hike": "/activities/programme/archive/mar 27 2022.jpg",
+  "2022-forest-directorate-visit": "/activities/programme/archive/apr 7 2022.jpg",
+  "2022-cemetery-cleanup": "/activities/programme/archive/apr 9 2022.jpg",
+  "2022-animation-techniques-training": "/activities/programme/archive/apr 5-6-7-8-9-10 2022.jpg",
+  "2022-ramadan-educational-cultural": "/activities/programme/archive/april 17 2022.jpg",
+  "2022-memory-resistance-visit": "/activities/programme/archive/apr 20 2022.jpg",
+  "2022-hadith-contest": "/activities/programme/archive/may 1 2022.jpg",
+  "2022-child-peace-culture-forum": "/activities/programme/archive/may 14 2022.jpg",
+  "2022-scout-training-course": "/activities/programme/archive/21 may 2022.jpg",
+  "2022-large-oued-za-trip": "/activities/programme/archive/may 24  2022.jpg",
+  "2022-mawlid-activity": "/activities/programme/archive/15 oct 2022.jpg",
+  "2022-green-march-flag": "/activities/programme/archive/6 nov 2022.jpg",
+  "2023-laayoune-scout-consultation": "/activities/programme/archive/3 feb 2023.jpg",
+  "2023-road-safety-preschool": "/activities/programme/archive/17 feb 2023.jpg",
+  "2023-women-sports-activity": "/activities/programme/archive/11 mar 2023.jpg",
+  "2023-tafoughalt-trip": "/activities/programme/archive/mar 12 2023.jpg",
+  "2023-ramadan-scouting": "/activities/programme/archive/mar 26 2023.jpg",
+  "2023-quran-contest": "/activities/programme/archive/april 19 2023.jpg",
+  "2023-peace-education-event": "/activities/programme/archive/may 17 2023.jpg",
+  "2023-azrou-mobile-camp": "/activities/programme/azrou-mobile-camp-2023.jpg",
+  "2024-peace-culture-cultural-activity": "/activities/programme/albums/17-feb-2024/01.jpg",
+  "2024-ajibiya-trip": "/activities/programme/archive/feb 18 2024.jpg",
+  "2024-womens-day-sports": "/activities/programme/albums/mar-2-2024/01.jpg",
+  "2024-kerrarma-trip": "/activities/programme/archive/apr 13 2024.jpg",
+  "2024-camp-facilitators-training": "/activities/programme/archive/April 28- may 3 2024.jpg",
+  "2024-national-peace-culture-tangier": "/activities/programme/archive/25 26 jkly 2024.jpg",
+  "2024-mobile-atlas-camp": "/activities/programme/mobile-atlas-camp-2024.jpg",
+  "2024-houzia-autumn-meeting": "/activities/programme/archive/oct 2024.jpg",
+  "2024-green-march-ceremonies": "/activities/programme/archive/nov 6 2024.jpg",
+  "2025-kingdom-of-letters": "/activities/programme/archive/jan 19 2025.jpg",
+  "2025-independence-document-celebration": "/activities/programme/archive/jan 25 2025.jpg",
+  "2026-tifzouine-camp-report": "/activities/programme/albums/camp-tifzouine-2026/01.jpg",
+};
+
+function numberedAlbum(slug: string, count: number) {
+  return Array.from(
+    { length: Math.min(count, 2) },
+    (_, index) =>
+      `/activities/programme/albums/${slug}/${String(index + 1).padStart(
+        2,
+        "0",
+      )}.jpg`,
+  );
+}
+
+export const activityArchiveGalleryMap: Record<string, string[]> = {
+  "2018-imlil-candle-vigil": [
+    "/activities/programme/archive/dec 26.jpg",
+    "/activities/programme/archive/dec 26.2.jpg",
+  ],
+  "2018-tafadist-trip": [
+    "/activities/programme/archive/dec 23.jpg",
+    "/activities/programme/archive/dec 23.2.jpg",
+    "/activities/programme/archive/dex 23.3.jpg",
+    "/activities/programme/archive/dec 23.4.jpg",
+  ],
+  "2019-oued-za-trip": [
+    "/activities/programme/archive/apr 28.jpg",
+    "/activities/programme/archive/apr 28.2.jpg",
+    "/activities/programme/archive/apr 28.3.jpg",
+    "/activities/programme/archive/apr 28.4.jpg",
+    "/activities/programme/archive/apr 28.5.jpg",
+  ],
+  "2019-ibn-sina-tree-planting": [
+    "/activities/programme/archive/may 4.jpg",
+    "/activities/programme/archive/may 4,2.jpg",
+    "/activities/programme/archive/may 4.3.jpg",
+  ],
+  "2019-living-together-candle-vigil": [
+    "/activities/programme/archive/may 18.jpg",
+    "/activities/programme/archive/may 18.2.jpg",
+    "/activities/programme/archive/may 18.3.jpg",
+  ],
+  "2019-social-animation-discussion": [
+    "/activities/programme/archive/12 july 2019.jpg",
+  ],
+  "2020-cemetery-cleanup": [
+    "/activities/programme/archive/jan 31 2020.jpg",
+  ],
+  "2020-covid-awareness-august-31": [
+    "/activities/programme/archive/aug 31 2020.jpg",
+    "/activities/programme/archive/aug 31.2 2020.jpg",
+  ],
+  "2022-forest-directorate-visit": [
+    "/activities/programme/archive/apr 7 2022.jpg",
+  ],
+  "2022-cemetery-cleanup": [
+    "/activities/programme/archive/apr 9 2022.jpg",
+    "/activities/programme/archive/apr 9.2 2022.jpg",
+  ],
+  "2022-scout-training-course": [
+    "/activities/programme/archive/21 may 2022.jpg",
+  ],
+  "2022-mawlid-activity": [
+    "/activities/programme/archive/15 oct 2022.jpg",
+  ],
+  "2022-green-march-flag": [
+    "/activities/programme/archive/6 nov 2022.jpg",
+  ],
+  "2023-laayoune-scout-consultation": [
+    "/activities/programme/archive/3 feb 2023.jpg",
+  ],
+  "2023-road-safety-preschool": [
+    "/activities/programme/archive/17 feb 2023.jpg",
+  ],
+  "2023-women-sports-activity": [
+    "/activities/programme/archive/11 mar 2023.jpg",
+    "/activities/programme/archive/11.2 mar 2023.jpg",
+  ],
+  "2023-azrou-mobile-camp": numberedAlbum("azrou-2023", 99),
+  "2024-peace-culture-cultural-activity": numberedAlbum("17-feb-2024", 4),
+  "2024-school-peace-values": numberedAlbum("18-may-2024", 6),
+  "2024-womens-day-sports": numberedAlbum("mar-2-2024", 4),
+  "2024-tafoughalt-school-trip": numberedAlbum("june-1-2024", 4),
+  "2024-arabic-calligraphy-training": numberedAlbum("22-june-2024", 6),
+  "2024-mobile-atlas-camp": numberedAlbum("atlas-camp-2024", 20),
+  "2024-young-scouts-camp": numberedAlbum("young-scouts-2024", 15),
+  "2024-green-march-independence-activity": [
+    "/activities/programme/videos/posters/late-nov-2024.png",
+  ],
+  "2024-december-weekly-activities": [
+    "/activities/programme/videos/posters/21-dec-2024.png",
+  ],
+  "2025-kingdom-of-letters": [
+    "/activities/programme/archive/jan 19 2025.jpg",
+  ],
+  "2025-road-safety": numberedAlbum("15-feb-2025", 13),
+  "2025-ramadan-meals": numberedAlbum("12-mar-2025", 6),
+  "2025-ramadan-celebration": [
+    "/activities/programme/videos/posters/15-mar-2025.png",
+  ],
+  "2025-first-degree-animator-training": [
+    ...numberedAlbum("16-23-mar-2025", 3),
+    "/activities/programme/archive/mar 16-23 2025.jpg",
+  ],
+  "2025-painting-peace-workshop": numberedAlbum("26-apr-2025", 14),
+  "2025-toubkal-peace-trek": numberedAlbum("toubkal-2025", 9),
+  "2025-taza-educational-trip": numberedAlbum("taza-2025", 5),
+  "2025-taqaddom-school-education": numberedAlbum("24-may-2025", 18),
+  "2025-farhat-najah": numberedAlbum("14-june-2025", 6),
+  "2025-young-scouts-camp": numberedAlbum("young-scouts-camp-2025", 1),
+  "2025-oujda-peace-culture-conference": numberedAlbum("18-19-2025", 10),
+  "2025-tangier-peace-education": numberedAlbum("tangier-2025", 64),
+  "2025-new-youth-center-inauguration": numberedAlbum(
+    "dar-chabab-nassime-july-2025",
+    7,
+  ),
+  "2025-green-march-school-unity": numberedAlbum("8-nov-2025", 12),
+  "2025-proximity-childrens-camp": numberedAlbum("8-12-dec-2025", 13),
+  "2025-association-management-training": numberedAlbum("15-dec-2025", 5),
+  "2026-tafrent-scout-outing": numberedAlbum("tafrent-2026", 24),
+  "2026-ajibiya-outing": numberedAlbum("ajibiya-18-apr-2026", 14),
+  "2026-tifzouine-camp-announcement": numberedAlbum(
+    "camp-tifzouine-poster-2026",
+    4,
+  ),
+  "2026-leaders-continuous-training": numberedAlbum("5-may-2026", 5),
+  "2026-tifzouine-camp-report": [
+    ...numberedAlbum("camp-tifzouine-2026", 10),
+  ],
+  "2026-international-living-together-message": numberedAlbum("16-may-2026", 5),
+  "2026-peace-coexistence-event-announcement": numberedAlbum(
+    "23-may-2026-poster",
+    1,
+  ),
+  "2026-peace-coexistence-event-report": numberedAlbum("23-may-2026", 12),
+};
+
+export function getActivityArchiveCategory(
+  entry: ActivityArchiveEntry,
+): ActivityCategory {
+  const text = `${entry.id} ${entry.title} ${entry.details.join(" ")}`;
+
+  if (/training|formation|تكوين|تدريب|مؤطري|المنشط|الإدارة/.test(text)) {
+    return "training";
+  }
+
+  if (
+    /camp|مخيم|تخييم|trip|رحلة|خرجة|hike|outing|تافرنت|تافوغالت|كرارمة|توبقال|واد زا|مهراز|تفاديست|العجيبية|أزرو/.test(
+      text,
+    )
+  ) {
+    return "camps";
+  }
+
+  if (/تنظيف|تبرع|مقبرة|وجبات|كورونا|دار المسنين|شتاء|تدشين/.test(text)) {
+    return "service";
+  }
+
+  if (/طنجة|وجدة|الملتقى الوطني|أكاديمية|اللقاء التشاوري|الرابطة الكشفية/.test(text)) {
+    return "exchange";
+  }
+
+  if (
+    /ورشة|ورشات|مدرسة|ثقافي|تعليمي|السلامة الطرقية|رمضان|الأحاديث|قرآن|الخط|الرسم|محاضرات|معرض/.test(
+      text,
+    )
+  ) {
+    return "workshops";
+  }
+
+  return "scout-life";
+}
+
+const archiveTitleOverrides: Record<
+  string,
+  Record<ArchiveLocale, string>
+> = {
+  "2018-imlil-candle-vigil": {
+    en: "Candle vigil for the victims of Imlil",
+    fr: "Veillee aux bougies pour les victimes d'Imlil",
+  },
+  "2018-tafadist-trip": {
+    en: "Recreational trip to Tafadist",
+    fr: "Sortie recreative a Tafadist",
+  },
+  "2019-seniors-home-honor": {
+    en: "Honoring residents at the Taourirt seniors' home",
+    fr: "Hommage aux residents de la maison des personnes agees de Taourirt",
+  },
+  "2019-new-zealand-solidarity": {
+    en: "Solidarity gathering for the New Zealand mosque victims",
+    fr: "Rassemblement de solidarite pour les victimes des mosquees de Nouvelle-Zelande",
+  },
+  "2019-ibn-sina-tree-planting": {
+    en: "Tree planting at Ibn Sina middle school",
+    fr: "Plantation d'arbres au college Ibn Sina",
+  },
+  "2019-living-together-candle-vigil": {
+    en: "Candle vigil for the International Day of Living Together in Peace",
+    fr: "Veillee aux bougies pour la Journee internationale du vivre-ensemble en paix",
+  },
+  "2022-forest-directorate-visit": {
+    en: "Educational visit to the Water and Forests Directorate",
+    fr: "Visite educative a la Direction des eaux et forets",
+  },
+  "2024-national-peace-culture-tangier": {
+    en: "National peace culture event in Tangier",
+    fr: "Evenement national autour de la culture de paix a Tanger",
+  },
+  "2025-toubkal-peace-trek": {
+    en: "Toubkal trek on the path of peace",
+    fr: "Randonnee au Toubkal sur les pas de la paix",
+  },
+  "2025-tangier-peace-education": {
+    en: "Peace at the heart of education in Tangier",
+    fr: "La paix au coeur de l'education a Tanger",
+  },
+  "2026-peace-coexistence-event-report": {
+    en: "Peace and coexistence event report",
+    fr: "Compte rendu de l'evenement paix et coexistence",
+  },
+};
+
+const archiveTitleTokenMap: Record<string, Record<ArchiveLocale, string>> = {
+  advanced: { en: "advanced", fr: "avance" },
+  ajibiya: { en: "Ajibiya", fr: "Ajibiya" },
+  animation: { en: "animation", fr: "animation" },
+  animator: { en: "animator", fr: "animateur" },
+  arabic: { en: "Arabic", fr: "arabe" },
+  association: { en: "association", fr: "association" },
+  atlas: { en: "Atlas", fr: "Atlas" },
+  awareness: { en: "awareness", fr: "sensibilisation" },
+  ayoub: { en: "Ayoub", fr: "Ayoub" },
+  azrou: { en: "Azrou", fr: "Azrou" },
+  camp: { en: "camp", fr: "camp" },
+  celebration: { en: "celebration", fr: "celebration" },
+  ceremonies: { en: "ceremonies", fr: "ceremonies" },
+  cemetery: { en: "cemetery", fr: "cimetiere" },
+  center: { en: "center", fr: "centre" },
+  child: { en: "children", fr: "enfants" },
+  childrens: { en: "children's", fr: "enfants" },
+  civil: { en: "civil", fr: "civile" },
+  cleanup: { en: "cleanup", fr: "nettoyage" },
+  coexistence: { en: "coexistence", fr: "coexistence" },
+  conference: { en: "conference", fr: "conference" },
+  consultation: { en: "consultation", fr: "consultation" },
+  contest: { en: "contest", fr: "concours" },
+  continuous: { en: "continuous", fr: "continue" },
+  covid: { en: "COVID", fr: "COVID" },
+  cultural: { en: "cultural", fr: "culturel" },
+  culture: { en: "culture", fr: "culture" },
+  day: { en: "day", fr: "journee" },
+  december: { en: "December", fr: "decembre" },
+  degree: { en: "degree", fr: "degre" },
+  document: { en: "document", fr: "document" },
+  educational: { en: "educational", fr: "educative" },
+  education: { en: "education", fr: "education" },
+  evening: { en: "evening", fr: "soiree" },
+  event: { en: "event", fr: "evenement" },
+  facilitators: { en: "facilitators", fr: "facilitateurs" },
+  farhat: { en: "Farhat", fr: "Farhat" },
+  first: { en: "first", fr: "premier" },
+  flag: { en: "flag", fr: "drapeau" },
+  forum: { en: "forum", fr: "forum" },
+  green: { en: "Green", fr: "Verte" },
+  hadith: { en: "Hadith", fr: "Hadith" },
+  hike: { en: "hike", fr: "randonnee" },
+  home: { en: "home", fr: "maison" },
+  honor: { en: "honor", fr: "hommage" },
+  houzia: { en: "Houzia", fr: "Houzia" },
+  independence: { en: "Independence", fr: "Independance" },
+  inauguration: { en: "inauguration", fr: "inauguration" },
+  international: { en: "international", fr: "internationale" },
+  kerrarma: { en: "Kerrarma", fr: "Kerrarma" },
+  kingdom: { en: "Kingdom", fr: "Royaume" },
+  laayoune: { en: "Laayoune", fr: "Laayoune" },
+  large: { en: "large", fr: "grande" },
+  leaders: { en: "leaders", fr: "responsables" },
+  letters: { en: "Letters", fr: "lettres" },
+  life: { en: "life", fr: "vie" },
+  living: { en: "living", fr: "vivre" },
+  march: { en: "March", fr: "Marche" },
+  math: { en: "mathematics", fr: "mathematiques" },
+  mawliD: { en: "Mawlid", fr: "Mawlid" },
+  mawlid: { en: "Mawlid", fr: "Mawlid" },
+  meals: { en: "meals", fr: "repas" },
+  mehraz: { en: "Mehraz", fr: "Mehraz" },
+  memory: { en: "memory", fr: "memoire" },
+  message: { en: "message", fr: "message" },
+  mobile: { en: "mobile", fr: "mobile" },
+  national: { en: "national", fr: "national" },
+  najah: { en: "Najah", fr: "Najah" },
+  new: { en: "new", fr: "nouveau" },
+  omi: { en: "Omi", fr: "Omi" },
+  oued: { en: "Oued", fr: "Oued" },
+  oujda: { en: "Oujda", fr: "Oujda" },
+  outing: { en: "outing", fr: "sortie" },
+  painting: { en: "painting", fr: "peinture" },
+  peace: { en: "peace", fr: "paix" },
+  preschool: { en: "preschool", fr: "prescolaire" },
+  preparatory: { en: "preparatory", fr: "preparatoire" },
+  protection: { en: "protection", fr: "protection" },
+  proximity: { en: "proximity", fr: "proximite" },
+  quran: { en: "Quran", fr: "Coran" },
+  ramadan: { en: "Ramadan", fr: "Ramadan" },
+  red: { en: "Red", fr: "Rouge" },
+  report: { en: "report", fr: "compte rendu" },
+  resistance: { en: "resistance", fr: "resistance" },
+  road: { en: "road", fr: "routiere" },
+  safety: { en: "safety", fr: "securite" },
+  school: { en: "school", fr: "ecole" },
+  scout: { en: "scout", fr: "scoute" },
+  scouting: { en: "scouting", fr: "scoutisme" },
+  scouts: { en: "scouts", fr: "scouts" },
+  second: { en: "second", fr: "deuxieme" },
+  seniors: { en: "seniors", fr: "personnes agees" },
+  social: { en: "social", fr: "sociale" },
+  solidarity: { en: "solidarity", fr: "solidarite" },
+  sports: { en: "sports", fr: "sports" },
+  tafadist: { en: "Tafadist", fr: "Tafadist" },
+  tafoughalt: { en: "Tafoughalt", fr: "Tafoughalt" },
+  tafrent: { en: "Tafrent", fr: "Tafrent" },
+  tangier: { en: "Tangier", fr: "Tanger" },
+  taqaddom: { en: "Taqaddom", fr: "Taqaddom" },
+  taza: { en: "Taza", fr: "Taza" },
+  techniques: { en: "techniques", fr: "techniques" },
+  tifzouine: { en: "Tifzouine", fr: "Tifzouine" },
+  toubkal: { en: "Toubkal", fr: "Toubkal" },
+  training: { en: "training", fr: "formation" },
+  tree: { en: "tree", fr: "arbres" },
+  trek: { en: "trek", fr: "randonnee" },
+  trip: { en: "trip", fr: "sortie" },
+  throne: { en: "Throne", fr: "Trone" },
+  unity: { en: "unity", fr: "unite" },
+  values: { en: "values", fr: "valeurs" },
+  visit: { en: "visit", fr: "visite" },
+  warm: { en: "warm", fr: "chaud" },
+  weekly: { en: "weekly", fr: "hebdomadaire" },
+  winter: { en: "winter", fr: "hiver" },
+  women: { en: "women", fr: "femmes" },
+  womens: { en: "women's", fr: "femmes" },
+  workshop: { en: "workshop", fr: "atelier" },
+  young: { en: "young", fr: "jeunes" },
+  za: { en: "Za", fr: "Za" },
+};
+
+const archiveCategorySummary: Record<
+  ArchiveLocale,
+  Record<ActivityCategory, string>
+> = {
+  en: {
+    camps:
+      "An outdoor scouting highlight centered on discovery, teamwork, and learning in nature.",
+    workshops:
+      "An educational or cultural highlight where young people learned through practice, discussion, and creative activity.",
+    service:
+      "A community-service highlight shaped by solidarity, responsibility, and care for people or shared places.",
+    exchange:
+      "A partnership or exchange highlight connecting the association with wider civic, cultural, or scout networks.",
+    training:
+      "A formation highlight strengthening leadership, facilitation, and the skills needed to guide young people well.",
+    "scout-life":
+      "A scout-life highlight documenting ceremonies, weekly meetings, traditions, and the everyday rhythm of the group.",
+  },
+  fr: {
+    camps:
+      "Un temps fort de plein air autour de la decouverte, de l'esprit d'equipe et de l'apprentissage dans la nature.",
+    workshops:
+      "Un temps fort educatif ou culturel ou les jeunes apprennent par la pratique, l'echange et la creation.",
+    service:
+      "Un temps fort de service communautaire marque par la solidarite, la responsabilite et le soin des personnes ou des lieux communs.",
+    exchange:
+      "Un temps fort de partenariat ou d'echange reliant l'association a des reseaux civiques, culturels ou scouts plus larges.",
+    training:
+      "Un temps fort de formation qui renforce le leadership, l'animation et les competences d'encadrement des jeunes.",
+    "scout-life":
+      "Un temps fort de vie scoute autour des ceremonies, rencontres hebdomadaires, traditions et rythmes du groupe.",
+  },
+};
+
+const archiveMonthTranslations: Record<
+  ArchiveLocale,
+  Record<string, string>
+> = {
+  en: {
+    يناير: "January",
+    فبراير: "February",
+    مارس: "March",
+    أبريل: "April",
+    ماي: "May",
+    يونيو: "June",
+    يوليوز: "July",
+    غشت: "August",
+    شتنبر: "September",
+    أكتوبر: "October",
+    نونبر: "November",
+    دجنبر: "December",
+    أواخر: "Late",
+  },
+  fr: {
+    يناير: "janvier",
+    فبراير: "fevrier",
+    مارس: "mars",
+    أبريل: "avril",
+    ماي: "mai",
+    يونيو: "juin",
+    يوليوز: "juillet",
+    غشت: "aout",
+    شتنبر: "septembre",
+    أكتوبر: "octobre",
+    نونبر: "novembre",
+    دجنبر: "decembre",
+    أواخر: "Fin",
+  },
+};
+
+function humanizeArchiveTitle(id: string, locale: ArchiveLocale) {
+  const override = archiveTitleOverrides[id]?.[locale];
+
+  if (override) return override;
+
+  const words = id
+    .replace(/^\d{4}-/, "")
+    .split("-")
+    .filter((word) => !/^\d+$/.test(word))
+    .map((word) => archiveTitleTokenMap[word]?.[locale] ?? word);
+
+  const title = words.join(" ").replace(/\s+/g, " ").trim();
+
+  return title ? title.charAt(0).toUpperCase() + title.slice(1) : id;
+}
+
+function translateArchiveDate(date: string, locale: ArchiveLocale) {
+  return Object.entries(archiveMonthTranslations[locale]).reduce(
+    (translatedDate, [source, target]) =>
+      translatedDate.replaceAll(source, target),
+    date,
+  );
+}
+
+export function getLocalizedActivityArchiveEntry(
+  entry: ActivityArchiveEntry,
+  locale: Locale,
+): LocalizedActivityArchiveEntry {
+  if (locale === "ar") {
+    return {
+      date: entry.date,
+      title: entry.title,
+      details: entry.details,
+    };
+  }
+
+  const archiveLocale = locale as ArchiveLocale;
+  const category = getActivityArchiveCategory(entry);
+  const title = humanizeArchiveTitle(entry.id, archiveLocale);
+  const translatedDate = translateArchiveDate(entry.date, archiveLocale);
+  const detailCount = entry.details.length;
+
+  return {
+    date: translatedDate,
+    title,
+    details: [
+      archiveCategorySummary[archiveLocale][category],
+      archiveLocale === "en"
+        ? `This ${entry.year} archive story is summarized from ${detailCount} original note${detailCount === 1 ? "" : "s"} and keeps its source links and photo story attached when available.`
+        : `Ce recit d'archive ${entry.year} est resume a partir de ${detailCount} note${detailCount === 1 ? "" : "s"} originale${detailCount === 1 ? "" : "s"} et conserve ses liens sources et son recit photo lorsqu'ils sont disponibles.`,
+    ],
+  };
+}
+
+export const activityArchiveFacebookSourceMap: Record<string, string[]> = {
+  "2018-imlil-candle-vigil": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0nNenhcttaAw2s9CWc9za68AyDQFGjwtxSuGuxHqHHSPHumNYktGsNaRX39dfaScrl&id=100067192446286",
+  ],
+  "2018-tafadist-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0prGvhczGvgRQmRupEzyATPCEeGUkPmmNWuFeVAfRbFEcnb5oa9k2ULbxEPF2i3Jl&id=100067192446286",
+  ],
+  "2019-seniors-home-honor": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0yg8aJ2pCeRQdFRvg2SwEui7Bghbe7odnsG44uKNQa1s2vgUm7hBjuPkUTdH8QTMhl&id=100067192446286",
+  ],
+  "2019-weekly-activities-march-17": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02eFJP3gZSJDj2vc48Zm6iH8nzGwToUL2Di9hFQY4X3Ew1iKh5Ms8HZoCQvX7RJFpvl&id=100067192446286",
+  ],
+  "2019-new-zealand-solidarity": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0Mkczamcy41ZvehsrHAmkMsiaq7QGLMw5SF22y3yCTFkfPUiZeARoYEjzEQier6mbl&id=100067192446286",
+  ],
+  "2019-weekly-activities-march-24": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid05NiEwxwG6QvWPWqFtRDQ56dznHs2DiysgsDXP8RD3W7ibe4shiZPZXkDwMH5siZYl&id=100067192446286",
+  ],
+  "2019-preparatory-training": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0v8vfSTJn5TvhS6zVtnmTP5LWhvFerHLaaYHnSjdeSbsSKcQFzSRF6USV3pGVG326l&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02XMUx2x7dNi4bMwVwxsaKAqpkCXsDVbUX9atxrTWkiQTJkaHzHLu9bKHw9hFhpTDfl&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0TEe9JwQgTrGeJ1vJbSwKZ7YUvuQrtZFCqBZkBbnbaGWNoanY1m5BpKjKCVG8GUcnl&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02SXaRuWjFxpgHdfL8WAB9dUPxGSs1cNWZUhNPQz85wcndQKomQCgZ88zHRevAEATTl&id=100067192446286",
+  ],
+  "2019-advanced-scouts-weekly": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02DLtS5CSDgRMkUXrK2cJ1nVhaGoYqMu7bmFEYf6RZ2J5xDPxaHobbEchwgthCj6Eml&id=100067192446286",
+  ],
+  "2019-oued-za-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02hvb56jCPEvV3YzUV9oVF5To5gWKDCytPRZ7doEg3YCx4AwwnFbz8cJ6VoDfbTXx4l&id=100067192446286",
+  ],
+  "2019-ibn-sina-tree-planting": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0iNuePZM8a5Kcv3WvEJ7y3GVPXR16PRPSDAWigeSqmq77yfhVmojXqx98KRhx6w76l&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02qGqNkWHeq4N63jr94oxomfuHsxg1tCqZUvbebMzK7Cv9QMfSFcFBTWLVHSTCmz6Fl&id=100067192446286",
+  ],
+  "2019-living-together-candle-vigil": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02WQmVpBMSRXzNdzx3yWLohmTCi62HmnZj1N9AbrXLK5Vt2a4gG9jDnQ9BRzme9J9wl&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0UC7umtpC5M3vDTsT75PHScjczrzFuZqt294aFSQpuDk6HnnMNQMHnuGQpHhoout6l&id=100067192446286",
+  ],
+  "2019-social-animation-discussion": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02CXbjKSdohLfGDrxD5JPyQ6n8MGKMvTFzZcnDSVb9LeNdv7L5WhHboKeHzNrwsULVl&id=100067192446286",
+  ],
+  "2019-throne-day-flag": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid06WEkdZn37eETbkfFDMBiT3wKDT5mDyyZhS1kCRASKj4XVCVzfDBj383hdCvxTUQAl&id=100067192446286",
+  ],
+  "2019-math-and-living-together": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid05x29GYVRQWxv4QK8UWk36Qq48V3ZMyuQtKsysa1yX6ezqibk3u79BmTfTrUrpXRBl&id=100067192446286",
+  ],
+  "2019-independence-flag-and-pool": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02htWhPeDZmGUynQd9nNeig7i2KpvUpfZdbji1oiWDfvMfDKVcpWajKjwA8NPNAAFtl&id=100067192446286",
+  ],
+  "2019-december-weekly": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02EMRah4cX8MTt15SXuZfJML62DBfAXxSjN5KeU2Z7mrEJQxeLtsfUbeSPjaXaS2Xcl&id=100067192446286",
+  ],
+  "2020-cemetery-cleanup": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02yevqcacX1A3vmmd7ED23CKTwE8zMrTiKA6THxnAfAXLxaCuHMc5Uh4QcuNSFMkp4l&id=100067192446286",
+  ],
+  "2020-farhat-omi-abi": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02TVPB5qkzXEeTigqohbaKm8wJVngVKeqg1g7EmyaexWHzdFExJGyrAY5qQpYWa3aal&id=100067192446286",
+  ],
+  "2020-warm-winter": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02wyQSCqGsomp3FGYQ8XJRzU9JX5kuCCCDgj7f7QBYgmnphcuYjCLpqLWLzLtusnGdl&id=100067192446286",
+  ],
+  "2020-road-safety-evening": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0xWe5A22akiSXoEQCQf5KYwPWuT3pt3X6i9HaWAyZt33T3m1bySBWUX7pMVMDLcNwl&id=100067192446286",
+  ],
+  "2020-civil-protection-day": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02AWTGR7XDx96jo38dAqF6zbUwYtYxXqFR8UJQzzPJvewL4dYDWfLmqDtv9kXunewl&id=100067192446286",
+  ],
+  "2020-covid-awareness-day-one": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0jWepqZhTT6QzbVimiq68hfm24MwrW6FaxyL95LochAyZKm8GVaEG2fBikR5FHE7al&id=100067192446286",
+  ],
+  "2020-covid-awareness-day-two": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0UocVkXTqxNSnXS23PJzhVQddGfYyTFUPG2uPDMrpirxok4cKP4B57Y9uFiwnAEgNl&id=100067192446286",
+  ],
+  "2020-covid-awareness-august-31": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0JV99yuWtVQr87EoThJhcoDGz29XKakdpbP9Y12jPSBY4HMDMsGdsUmiWtw1Z5mMKl&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0U1RAG2rH6Wsp75QRvAb4jbQprpAUWMHrvdJSuwJE6vrHtz1oPnj91yyWqCGygPrJl&id=100067192446286",
+  ],
+  "2020-covid-awareness-september": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0tXSaKjcbZGYAPGNV8jMfHjVobJWKiPiAaufZpXqedfZaMYhTHR7UE8zDVr5TND3fl&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0eAVm7DtcievVBkLh88jeycX2sBo7D7uhLxJrckxsxwVEydxmEfH4RQYrbbqx9e1kl&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid06zCJdSzLn33BPDnH73WPxrPBDLUUkZAybTtabUeuXnGhpcA8kP3KqD6PU3xqwYoyl&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0jVZWSmnp1QvCEnjtyq37DYKzuEsN8VsoCgeZVjk2dxWGKD6SofAjR6QgFDaj8gysl&id=100067192446286",
+  ],
+  "2021-blood-donation": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0boYh55TEYYDd2DccXxdYc1Jcgj6HYNgsSHuhAhzXk1gLBKWo9JifCJ8RvfdskL9Wl&id=100067192446286",
+  ],
+  "2021-mehraz-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02QaKswM4yF6CE3GJcvU8ySGEW1BbmZrZ26FmFcV7LzEPC9qpVuMk6Nr3HaG52cLbrl&id=100067192446286",
+  ],
+  "2021-summer-weekly-start": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02T4vLmgLaQWALu1NqxT4G1kq6aFyN6qjfSPPQtL48vrByZ83rxnZf2xNBSNoBT6WLl&id=100067192446286",
+  ],
+  "2021-summer-weekly-second": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02aKbdLMaSVEqccvynWuUSnZ9qRQCJNG4bcD8zqMKML9AysteDxGYTzuXNPq52FK7ul&id=100067192446286",
+  ],
+  "2022-peace-culture-training-forum": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid022M6ovrRVqu9QstZf1VRQqiqNRpSCTKwKW5GfvYJYNVxEMWq3omG9eEMptdVDyCHZl&id=100067192446286",
+  ],
+  "2022-road-safety-ayoub": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid026z5tLnhJaRpZUpUSDRYmPtYS7AwvG9CAEFtcCRuRBrJmjoSUefVpBLRUmWLZ4APvl&id=100067192446286",
+  ],
+  "2022-first-aid-red-cross": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0LQKMgDqTZxgUyTMXJZRmhfADTUewHdRd3MGyTa79eBrKhmuYcZoWU2TED8SxyrW6l&id=100067192446286",
+  ],
+  "2022-kerrarma-hike": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02cf8MPsCkbJHT7mfQeGy3pVYwkXxd2t1mUi5h5e98QmhNHMjh5XRhUxwj4i3u5mZRl&id=100067192446286",
+  ],
+  "2022-forest-directorate-visit": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02MdjsznB18iWP4Mm1Y66oFszf3XhaieGbMcMzFjAveffSHA1XukDdAjv551vx1RtFl&id=100067192446286",
+  ],
+  "2022-cemetery-cleanup": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0BGKaMukJ2kj4u8P4eiWsTxXUv9domrpg1p98UQda7D19DPG7TUYUe9sbwvy4EcKVl&id=100067192446286",
+  ],
+  "2022-animation-techniques-training": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid028mj44MaXSW2zUEsMuVg5vfRKjmEV3J4YA5jq32R5q62HgxQBepCkwHWa2jBSfqvFl&id=100067192446286",
+  ],
+  "2022-ramadan-educational-cultural": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02QbkDuyt3K6fY45hw4hw3rr3HKewv5tPvJs6keDvuGoEoAFdmRmoAYR2yqcTGN3fCl&id=100067192446286",
+  ],
+  "2022-memory-resistance-visit": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02vTpRCHydFsFtYzNEtQE5aQvJo8bi64xwYdJMAJfajbn4QNnZrDt3XHMsUdgSLDWyl&id=100067192446286",
+  ],
+  "2022-hadith-contest": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid026yDDHAf79cdA72Vn8SmhucGm73ER5KJkDDxKBpkrq9TkrS6jg8NMYaHZBZtqBMakl&id=100067192446286",
+  ],
+  "2022-child-peace-culture-forum": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02qGqNkWHeqAnN9tbNkqjQJqY2z62bMJVxnCN8U1BsdycZS81cQRRZsJdQk9TN2woUl&id=100067192446286",
+  ],
+  "2022-scout-training-course": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid06jZVu4DSXwZEdQv6U4XC2FzVssjxN4b4BomS1UYMkbotZCsk6vYkj9Jqy4Z5hXJ4l&id=100067192446286",
+  ],
+  "2022-large-oued-za-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02D1fchXbtHZoPiqQYnXfgP66wQo55uNxuoTSocGhGhAF5vbLTkqYy2MneVWLn8uiFl&id=100067192446286",
+  ],
+  "2022-mawlid-activity": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0PLuMcnjRgdg9dEqfbYN8E9sN2iXzhBFV6dDWrDoVHRMwK8E1biCyuyeqySRkkLiEl&id=100067192446286",
+  ],
+  "2022-green-march-flag": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid04mSGsGWxPTQqCdjijTRHioA6eyjxX8q8JpfUe8fEWn5KRtTfUjqyQbDxnAxp3AHrl&id=100067192446286",
+  ],
+  "2023-laayoune-scout-consultation": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid03uXaMtF3xtJq4ahwiDNahhcKazXskRBaERHVqk9TQKiyx2MQzVNNyTqUiL1qXGLUl&id=100067192446286",
+  ],
+  "2023-road-safety-preschool": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02YwyyqNjds72haeu5VPfVu5xMZ2hHN1ceBjQ3roTK2M6Pg1VbiZsdhmBGUa3MHUAkl&id=100067192446286",
+  ],
+  "2023-women-sports-activity": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02c6oS5soTnzVxZLBLVCMddyyPNiwaBu1gQL9AeQxgEb1RsgGJYbVZUqdj2xNUdaQUl&id=100067192446286",
+  ],
+  "2023-tafoughalt-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02RTewrbo3aXDgw8SEr5kxH4tj54Wa1tSTvE4ZyzTkB88nXDF2mfXpbCjmtE8jD4Wol&id=100067192446286",
+  ],
+  "2023-ramadan-scouting": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02BZuKXKMr4zZhHQoCzSSuxtGbzUGtCT413BiyQsRdgbk542RTfruHtLrvPg7rt8cAl&id=100067192446286",
+  ],
+  "2023-quran-contest": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02Yp7wi22xrwhzCEmqF5TqgMi7vsKwTiccU9ZJQuoAAVUu8ScGhnc7rkSRY11uFQjal&id=100067192446286",
+  ],
+  "2023-peace-education-event": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0RiBRoYS8eRusECYao8zNmpHcKyQDENzoiQugtzv4vTn9DKFHPHTUSqeoHoU6xbxXl&id=100067192446286",
+  ],
+  "2024-peace-culture-cultural-activity": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0MmPLGBuPYtr4XpiuWZDu3CRpH4dsD9MpgRgKtUdj5G8HskcJCXcik1RcF6AXeZ9Fl&id=100067192446286",
+  ],
+  "2024-ajibiya-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0MUnWe9YYbYunTLaauop7s29GSF8Mc7jY3j6pMQaN1RqtzjAN9GvhNacpNmSmV3EPl&id=100067192446286",
+  ],
+  "2024-womens-day-sports": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid03244bJn9PkG1y65tWXRBWRb6Xm1jNpGJ8UwdQnbXg9wV54GYtXJwc2zgztwsdVTgBl&id=100067192446286",
+  ],
+  "2024-kerrarma-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0331DMd8HaaF8gw1ukRboTWnbaiw7seASGNWtfJWdZGRWPAdQcbhxg6u5gJJzA3QV1l&id=100067192446286",
+  ],
+  "2024-camp-facilitators-training": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0kyBWZfW7r7JctdAYN2bnU14bPSfX3vP7Cd7wF2k2mHK4NHegjQ8GBC44zUZ1mE93l&id=100067192446286",
+  ],
+  "2024-school-peace-values": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0JWnCABUcFgoR5oS6gtNNRqAoiWpjzNJoBKhiGyBLNfLjM4njfed7oadxAopS47GEl&id=100067192446286",
+  ],
+  "2024-tafoughalt-school-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0JpaiRgn5FsWRpg1cP2d3HaC78bmw2RcX2AXoz6LoDTCym7pLy1A4kaYAJ4N1B84Dl&id=100067192446286",
+  ],
+  "2024-arabic-calligraphy-training": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02QTLU198HzR757dv9bcQ64SsS4HoxL2cEnq9C4XZtNxpNfATUqMG8FVbYpJzNgdhwl&id=100067192446286",
+  ],
+  "2024-national-peace-culture-tangier": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02QQ4SX4V48vaQP3rezeQfNNrLBAQKgXk5Srg3EBhRxxKtXi9ZBUbvTsHWBD3xBG5al&id=100067192446286",
+  ],
+  "2024-mobile-atlas-camp": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid036zrBzDifV3fk2HwypussTHrwTci8xUKERCY6ETFbDVu1ySnjcKtMbTGcB7doQr41l&id=100067192446286",
+  ],
+  "2024-young-scouts-camp": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid026HEuAzRbNAdp5tVvJZXC8eQzfbGKLtg2eAkZvyUrmk9j5ANiemxdNfSVrVq1iJ49l&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02LJxwtJbSVAju9ybS84V8EKebDs2nDjQVbscreRhqWc9S9KUExLoC6sLHegRkNVxBl&id=100067192446286",
+  ],
+  "2024-houzia-autumn-meeting": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid033rMjtKvALY8NB316xnWFhiYkVGRE7LCYAkPxHikQsDgoPW6C6kkKtiwrCnymPxTCl&id=100067192446286",
+  ],
+  "2024-green-march-ceremonies": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02DNrUQ5fGEPh4L5xgQnbAFE2uSnAJAAa6hTyqDd4QUoAigCASMCVxnBtzEyHGCBhZl&id=100067192446286",
+    "https://www.instagram.com/p/DCE5sYoKSIM/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2024-green-march-independence-activity": [
+    "https://www.facebook.com/100067192446286/videos/822290873258082/",
+  ],
+  "2024-december-weekly-activities": [
+    "https://www.facebook.com/100067192446286/videos/929140572527362/",
+  ],
+  "2025-kingdom-of-letters": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid029Uu1wXUTbU6mRUJQ6DBLCWmr4gcKF3pGw4F62jsN7G6CznqJeXJZBceGem5Tyi4Bl&id=100067192446286",
+  ],
+  "2025-independence-document-celebration": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02WiMJSos9tauFMCyZHws7JtWKjMd9tiEaotgbrTm8UKjCBa5as87E7xokurKhDoWtl&id=100067192446286",
+  ],
+  "2025-road-safety": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0Y2MxM64TU6C9EEzFpFXWpLHkHTDfqcfk8rpoeciDZQtCyrw9AEqNhcZVhiN8Bq43l&id=100067192446286",
+  ],
+  "2025-ramadan-meals": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0N5WnNbYspTW8d2V8hgv2QmHhmAyiae6kd1JW5xoS751SR5scqw3McjLgsMe9dfetl&id=100067192446286",
+  ],
+  "2025-ramadan-celebration": [
+    "https://www.facebook.com/100067192446286/videos/2490455034629765/",
+  ],
+  "2025-first-degree-animator-training": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid044bHhUFFBGVUR4VoG1UeTxaVtyYv1Vqt8yGJAhiQkBzjcLAo3dypJ1Jmt9W5Bwkzl&id=100067192446286",
+  ],
+  "2025-painting-peace-workshop": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02TuJPMTgjfzfhPqhtXF5ymwHwqsqyVFriKyRmJps5cBS4VWEAVMQrG8MLdMVyJjoVl&id=100067192446286",
+  ],
+  "2025-toubkal-peace-trek": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0h3UjR6t2CTv9ZjhjfL5Qs6ujjyttVMwp1TYipxpNUChQ6DzKsJtqjCerFRqHq6Wcl&id=100067192446286",
+    "https://www.instagram.com/p/DJ1oVyLtWIu/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2025-taza-educational-trip": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0heReUikoSLBPUsNF2JvbHKrU37oNZ2C7supAjUxtgkz5B9QVpbbtD8hJjTZKb5c1l&id=100067192446286",
+    "https://www.instagram.com/p/DKNmcDto0VJ/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2025-taqaddom-school-education": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0wAt8bif3kp1Jn6TdV2Rhzs96QJE5o69TjEGt7hss9prveQLNS9HrLP151azrQiaDl&id=100067192446286",
+  ],
+  "2025-farhat-najah": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0cMmFZdTeaLgi4nGzZq252zqsrUz6y3LAxqsZg1TpscGv4sZcFRiWndzBkaRThz6cl&id=100067192446286",
+  ],
+  "2025-young-scouts-camp": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02kugjQip4sNhLfFuPwrs5iorjAVAcK6e8gYHV6Dhzht2NBnQKzg6bg61CXfeJFdKxl&id=100067192446286",
+  ],
+  "2025-oujda-peace-culture-conference": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02Dr3fHJx3ZFRU9A37Wf6YHsUmNTWifRb2pLcWeDvoMjXPAZD3TBAB8FqFJNm6Pxstl&id=100067192446286",
+  ],
+  "2025-tangier-peace-education": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0bS2qDv8XpGEqqnSR6GoLT6joac5ZyK2VgQb5HsecSVmFT5k5wUQKJYw1rTsBfv1pl&id=100067192446286",
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02Vt5bFEGmYuh4WQkTf6pzVCb2RinJPTEu4aBmGqnDXd6Xjfaxin5pNm2wte5ay4WXl&id=100067192446286",
+  ],
+  "2025-new-youth-center-inauguration": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid026Agse4nDWEztQjcSeJrBMLoyny6JUUUsUDbaUefkZ5kC8sDW4S7L1KNEkYR6hFYLl&id=100067192446286",
+  ],
+  "2025-green-march-school-unity": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02hkkyDFdZrM9fJgWKmUMYAB7rN3Bth7rp6HRw5Wjefr9TQNkGiBUCa1xBjrrAj8tWl&id=100067192446286",
+  ],
+  "2025-proximity-childrens-camp": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0BirnPA9XdMtL765bbsWwmRE52S7dkW8t3X6R6Q2qTCnURdJCiFV5x5bN4aHBLshml&id=100067192446286",
+  ],
+  "2025-association-management-training": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02eYmsjLxUgC8TSvShF2DQgSsCw9kvNAmkegCMSZaJfvf2Fj4RYs6ByXmMcuz2qzjol&id=100067192446286",
+  ],
+  "2026-tafrent-scout-outing": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0mVyj5ahTowkdCwdCJfj8G8pE3XBodnPkc2hPEHiDwAbm4F8mu3YnZ6NfZ9Rdj66wl&id=100067192446286",
+    "https://www.instagram.com/p/DWU8VMcCOiZ/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2026-ajibiya-outing": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02i6xo2kFsbkaqhf5xBJptQ9Ltu4X41guY4ccawosKFUFWAZnX7krxA2KVwUQzgPWxl&id=100067192446286",
+    "https://www.instagram.com/p/DXaeABNiKDk/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2026-tifzouine-camp-announcement": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02YsHdotvRnWv419LKd3jwEEQhGZBdTXF3rdvC7VA4jkci6XLYeXSN4DjzEaDNyQibl&id=100067192446286",
+  ],
+  "2026-leaders-continuous-training": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02yETysBZ13mqH27br1hmoqvtkXYLjGXQznrHTPRcN5ZcU9Z2wMJJXbFbPSCVfAfoyl&id=100067192446286",
+    "https://www.instagram.com/p/DYNYOhhCLSd/?utm_source=ig_embed&utm_campaign=loading",
+    "https://www.instagram.com/reel/DYNhbdEIHue/?utm_source=ig_embed&utm_campaign=loading",
+    "https://www.instagram.com/p/DYUos8liNdL/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2026-tifzouine-camp-report": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0UcUS967w6njdmviCAWyVCPVYTrzvWuwEyiWHwjMwVC8g5z7TkGjhE2jH453ZS1s6l&id=100067192446286",
+  ],
+  "2026-international-living-together-message": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02ry1otho3SE2PLCcJ8GtzVYh1BGidQSm2aK3PhGZdsUr9cB3MzPFhPng4YxvYbj6bl&id=100067192446286",
+    "https://www.instagram.com/p/DYZzjg1iHmU/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2026-peace-coexistence-event-announcement": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02CTtPjncZyHmQeQT9svK9NS1m5N1bY4ARpMdrvGiwjqXDH3WiAv41ecPVgZaQAuxVl&id=100067192446286",
+  ],
+  "2026-peace-coexistence-event-report": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0gTd7K3GnZabHB3pbGW4Te7EwRrkC5qofazUcZ13iMfoLWGAEdjNyVA91n3T674Tkl&id=100067192446286",
+    "https://www.instagram.com/p/DYwwYwmiD4F/?utm_source=ig_embed&utm_campaign=loading",
+    "https://www.instagram.com/reel/DYxlBA-INvc/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+};
+
+export const activityArchiveNotes = [
+  "ثقافة السلام والعيش المشترك هي المحور الأكثر حضورا في هوية الجمعية خلال السنوات الأخيرة.",
+  "التربية البيئية والتنمية المستدامة حاضرتان بقوة في الرحلات والورشات والزيارات.",
+  "التربية الكشفية التقليدية تظهر عبر الأناشيد، التجمعات، العقد، الصفارات، والمخيمات.",
+  "خدمة المجتمع والعمل التطوعي والانفتاح على المدارس والجمعيات والمؤسسات المحلية من ركائز المسار.",
+];

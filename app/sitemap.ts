@@ -10,7 +10,7 @@ import {
 export const dynamic = "force-static";
 
 const locales: Locale[] = ["en", "fr", "ar"];
-const pages: SeoPageKey[] = ["home", "join-us"];
+const pages: SeoPageKey[] = ["home", "join-us", "programs", "scouting-culture"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   if (!isSearchIndexingEnabled()) {

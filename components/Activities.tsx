@@ -1,6 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
+import { getProgramCategoryUrl, type ActivityCategory } from "@/lib/activities";
 import type { Messages } from "@/messages/en";
+import type { Locale } from "@/messages";
 import { withBasePath } from "@/lib/site";
 
 type ProgramCard = {
@@ -13,45 +16,50 @@ type ProgramCard = {
   imageSrc: string;
   imageAlt: string;
   imagePosition?: string;
+  category: ActivityCategory;
 };
 
 const activityCards = [
   {
+    category: "camps",
     featured: true,
     tone: "bg-[#F8F2E8]/92",
-    imageSrc: withBasePath("/activities/programs/camps-and-adventures.jpg"),
-    imageAlt: "Scouts hiking together on a mountain trail during an outdoor trek.",
-    imagePosition: "object-[center_72%]",
+    imageSrc: withBasePath("/activities/programme/toubkal-peace-trek-2025.jpg"),
+    imageAlt: "Scouts gathered in the mountains during a peace-centered trek.",
+    imagePosition: "object-[center_48%]",
   },
   {
+    category: "workshops",
     tone: "bg-[#FBF7EF]/92",
-    imageSrc: withBasePath("/activities/programs/workshops-and-learning.jpg"),
+    imageSrc: withBasePath("/activities/programme/taza-educational-trip-2025.jpg"),
     imageAlt:
-      "A scout leader guiding children during a hands-on learning workshop.",
-    imagePosition: "object-[center_42%]",
+      "Young participants gathered outdoors during an educational scout activity.",
+    imagePosition: "object-[center_58%]",
   },
   {
+    category: "service",
     tone: "bg-[#F6EFE4]/94",
-    imageSrc: withBasePath("/activities/programs/community-service.jpg"),
-    imageAlt:
-      "Scouts gathering outdoors during a volunteering activity in the community.",
+    imageSrc: withBasePath("/activities/programme/forest-visit-2022.jpg"),
+    imageAlt: "Scouts learning about trees, planting, and environmental care.",
     imagePosition: "object-[center_52%]",
   },
   {
+    category: "exchange",
     wide: true,
     tone: "bg-[#FCF8F1]/92",
-    imageSrc: withBasePath("/activities/programs/international-events.jpg"),
-    imageAlt:
-      "Young people and scout leaders gathered in a circle during an international exchange event.",
-    imagePosition: "object-[center_80%]",
+    imageSrc: withBasePath("/activities/programme/tangier-peace-education-2025.jpg"),
+    imageAlt: "Participants attending a peace education event in Tangier.",
+    imagePosition: "object-[center_50%]",
   },
 ] as const;
 
 export default function Activities({
   copy,
+  locale,
   isRtl = false,
 }: {
   copy: Messages["activities"];
+  locale: Locale;
   isRtl?: boolean;
 }) {
   const activities: ProgramCard[] = copy.cards.map((card, index) => ({
@@ -96,8 +104,9 @@ export default function Activities({
 
         <div className="mt-12 grid items-start gap-5 md:grid-cols-2 xl:grid-cols-3">
           {activities.map((activity) => (
-            <article
+            <Link
               key={activity.title}
+              href={getProgramCategoryUrl(activity.category, locale)}
               className={`${activity.tone} group overflow-hidden rounded-[20px] shadow-[0_14px_28px_rgba(18,59,109,0.04)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-[0_22px_40px_rgba(18,59,109,0.09)] ${
                 activity.featured
                   ? "md:col-span-2"
@@ -189,7 +198,7 @@ export default function Activities({
                   {activity.description}
                 </p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

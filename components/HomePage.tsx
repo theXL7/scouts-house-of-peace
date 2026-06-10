@@ -50,7 +50,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
           actionLabel={messages.actions.explore}
           isRtl={isRtl}
         />
-        <Activities copy={messages.activities} isRtl={isRtl} />
+        <Activities copy={messages.activities} locale={locale} isRtl={isRtl} />
         <ScoutingCulture
           copy={messages.scoutingCulture}
           actionLabel={messages.actions.explore}

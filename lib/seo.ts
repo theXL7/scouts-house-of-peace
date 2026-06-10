@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getJoinUsPath, getLocalePath, type Locale } from "@/messages";
 import { withBasePath } from "@/lib/site";
 
-export type SeoPageKey = "home" | "join-us" | "scouting-culture";
+export type SeoPageKey = "home" | "join-us" | "scouting-culture" | "programs";
 
 const DEFAULT_SITE_URL = "https://scoutsmaisonpaix.org";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL;
@@ -26,7 +26,7 @@ const openGraphLocaleByLocale: Record<Locale, string> = {
 
 const pageSeoByLocale: Record<
   Locale,
-  Record<SeoPageKey, { title: string; description: string }>
+  Record<string, { title: string; description: string }>
 > = {
   en: {
     home: {
@@ -44,6 +44,11 @@ const pageSeoByLocale: Record<
     "scouting-culture": {
       title: "Scouting Culture | Scouts Maison de La Paix",
       description: "Discover the culture behind the journey at Scouts Maison de La Paix.",
+    },
+    programs: {
+      title: "Programs & Activities | Scouts Maison de La Paix",
+      description:
+        "Explore camps, workshops, service, exchanges, leadership training, scout-life moments, upcoming activities, and selected highlights from Scouts Maison de La Paix.",
     },
   },
   fr: {
@@ -84,6 +89,24 @@ const pageSeoByLocale: Record<
   },
 };
 
+const programsSeoByLocale: Record<Locale, { title: string; description: string }> = {
+  en: {
+    title: "Programs & Activities | Scouts Maison de La Paix",
+    description:
+      "Explore camps, workshops, service, exchanges, leadership training, scout-life moments, upcoming activities, and selected highlights from Scouts Maison de La Paix.",
+  },
+  fr: {
+    title: "Programmes et activités | Scouts Maison de La Paix",
+    description:
+      "Découvrez les camps, ateliers, services, échanges, formations, moments de vie scoute, activités à venir et temps forts choisis des Scouts Maison de La Paix.",
+  },
+  ar: {
+    title: "البرامج والأنشطة | Scouts Maison de La Paix",
+    description:
+      "استكشف المخيمات والورشات وخدمة المجتمع والتبادل والتكوين والحياة الكشفية والأنشطة القادمة والمحطات المختارة لدى Scouts Maison de La Paix.",
+  },
+};
+
 const keywordsByPage: Record<SeoPageKey, string[]> = {
   home: [
     "Scouts Maison de La Paix",
@@ -108,6 +131,13 @@ const keywordsByPage: Record<SeoPageKey, string[]> = {
     "Moroccan scouting traditions",
     "peace scouting culture",
   ],
+  programs: [
+    "Scouts Maison de La Paix programs",
+    "Scouts Maison de La Paix activities",
+    "Taourirt scout camps",
+    "peace education workshops Morocco",
+    "community service scouting Morocco",
+  ],
 };
 
 const organizationDescriptionByLocale: Record<Locale, string> = {
@@ -123,6 +153,7 @@ function normalizeSiteUrl(siteUrl: string) {
 function getPagePath(page: SeoPageKey, locale: Locale) {
   if (page === "home") return getLocalePath(locale);
   if (page === "scouting-culture") return getLocalePath(locale, "/scouting-culture");
+  if (page === "programs") return getLocalePath(locale, "/programs");
   return getJoinUsPath(locale);
 }
 
@@ -152,7 +183,8 @@ function getLanguageAlternates(page: SeoPageKey) {
 }
 
 export function getPageMetadata(page: SeoPageKey, locale: Locale): Metadata {
-  const seo = pageSeoByLocale[locale][page];
+  const seo =
+    page === "programs" ? programsSeoByLocale[locale] : pageSeoByLocale[locale][page];
   const canonicalUrl = getPageUrl(page, locale);
   const openGraphImageUrl = getAbsoluteUrl(OPEN_GRAPH_IMAGE_PATH);
 
