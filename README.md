@@ -50,6 +50,26 @@ Lint the project:
 npm run lint
 ```
 
+Check types and crawlability after building:
+
+```bash
+npm run typecheck
+npm run test:crawlability
+```
+
+The crawlability suite serves `out/` over HTTP and checks all 57 public routes,
+content outside scripts, metadata, language alternates, robots, sitemap, and
+internal links. It uses Node's built-in test runner and existing dependencies.
+To preview the same production HTML locally:
+
+```bash
+npm run serve:export
+```
+
+Open `http://127.0.0.1:3010`. `next start` is not used for static exports.
+See [CRAWLABILITY-AUDIT.md](./CRAWLABILITY-AUDIT.md) for findings, verification,
+the full crawler policy, and the remaining hosting actions.
+
 ## Search Console Readiness
 
 The site is set up to expose:
@@ -60,7 +80,16 @@ The site is set up to expose:
 - `sitemap.xml`
 - `robots.txt`
 - Open Graph and Twitter metadata
-- Organization JSON-LD on the homepage
+- Organization and WebSite JSON-LD on homepages
+- FAQPage data matching the Join Us answers
+- BreadcrumbList data on programs, category, archive and culture pages
+- static category pages and yearly archives in all three languages
+
+The canonical host is `https://www.scoutsmaisonpaix.org`, matching the existing
+production redirect. English uses `/`, French `/fr/`, and Arabic `/ar/`.
+Public content is statically generated; JavaScript enhances filters and previews.
+Activity status is evaluated at build time in the Africa/Casablanca calendar;
+rebuild when activity dates or content change.
 
 Optional verification tokens can be added at deploy time:
 
@@ -71,25 +100,27 @@ You can start from [`.env.example`](./.env.example).
 
 After deployment, submit this sitemap in Google Search Console:
 
-- `https://scoutsmaisonpaix.org/sitemap.xml`
+- `https://www.scoutsmaisonpaix.org/sitemap.xml`
 
 Recommended first indexing requests:
 
-- `https://scoutsmaisonpaix.org/`
-- `https://scoutsmaisonpaix.org/ar/`
-- `https://scoutsmaisonpaix.org/fr/`
-- `https://scoutsmaisonpaix.org/join-us/`
+- `https://www.scoutsmaisonpaix.org/`
+- `https://www.scoutsmaisonpaix.org/ar/`
+- `https://www.scoutsmaisonpaix.org/fr/`
+- `https://www.scoutsmaisonpaix.org/programs/`
+- `https://www.scoutsmaisonpaix.org/join-us/`
 
 ## GitHub Pages Deployment
 
-This project is configured for GitHub Pages static export.
+Production responses identify Vercel hosting, with Cloudflare present on the
+non-www host. The repository also retains an optional GitHub Pages workflow.
 
 Important deployment details:
 
 - `output: "export"` is enabled in [next.config.ts](./next.config.ts)
-- `basePath` and `assetPrefix` are set for the repository path
+- `basePath` is optional and derives from `NEXT_PUBLIC_BASE_PATH` or the GitHub repository name in Actions
 - `.nojekyll` is included so GitHub Pages serves the `_next` folder correctly
-- deployment runs through GitHub Actions in [.github/workflows/deploy.yml](./.github/workflows/deploy.yml)
+- the optional Pages deployment runs through [.github/workflows/nextjs.yml](./.github/workflows/nextjs.yml)
 
 To deploy:
 

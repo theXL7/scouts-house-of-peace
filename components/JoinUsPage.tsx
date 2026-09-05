@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import LocaleDocument from "@/components/LocaleDocument";
 import RegistrationInterestForm from "@/components/RegistrationInterestForm";
 import JoinFaqAccordion from "@/components/JoinFaqAccordion";
+import { serializeJsonLd } from "@/lib/seo";
 import { withBasePath } from "@/lib/site";
 import Image from "next/image";
 import {
@@ -370,12 +371,19 @@ export default function JoinUsPage({ locale }: { locale: Locale }) {
 
   const pageNavigation = messages.navigation.map((item) => ({
     ...item,
-    href: item.href === "#contact" ? "#contact-info" : `${homePath}${item.href}`,
+    href: item.href === "#contact" ? "#contact-info" : item.href.startsWith("#") ? `${homePath}${item.href}` : item.href,
   }));
 
   return (
     <div lang={locale} dir={direction} className="locale-root">
       <LocaleDocument locale={locale} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd({
+        "@context": "https://schema.org", "@type": "FAQPage", inLanguage: locale,
+        mainEntity: messages.joinPage.faq.items.map((item) => ({
+          "@type": "Question", name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      }) }} />
       <Header
         locale={locale}
         navigation={pageNavigation}

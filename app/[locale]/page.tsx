@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import HomePage from "@/components/HomePage";
 import {
   getOrganizationStructuredData,
+  getWebSiteStructuredData,
   getPageMetadata,
   serializeJsonLd,
 } from "@/lib/seo";
@@ -38,7 +39,7 @@ export default async function LocaleHomePage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(getOrganizationStructuredData(locale)),
+          __html: serializeJsonLd([getOrganizationStructuredData(locale), getWebSiteStructuredData()]),
         }}
       />
       <HomePage locale={locale} />

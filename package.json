@@ -7,7 +7,10 @@
     "build": "next build",
     "export:docs": "next build && node -e \"const fs=require('fs'); if (fs.existsSync('docs')) fs.rmSync('docs',{recursive:true,force:true}); fs.renameSync('out','docs'); fs.closeSync(fs.openSync('docs/.nojekyll','w'));\"",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "serve:export": "node scripts/serve-export.mjs",
+    "test:crawlability": "node --test scripts/crawlability.test.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

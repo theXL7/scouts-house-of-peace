@@ -77,6 +77,13 @@ export default function GlobalMovement({
               {copy.paragraphs[1]}
             </p>
 
+            <details className="mt-5 text-sm text-[#5A534C]">
+              <summary className="cursor-pointer font-semibold">{copy.mapAriaLabel}</summary>
+              <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                {copy.nodes.map((node) => <li key={node.name}>{node.name} — {node.label}</li>)}
+              </ul>
+            </details>
+
             <a
               href="#contact"
               className="mt-8 inline-flex min-h-14 items-center gap-3 rounded-[18px] border border-[#E2D3C0] bg-white/76 px-6 py-3 text-[1rem] font-medium text-[#4C4944] shadow-[0_14px_32px_rgba(42,42,42,0.07)] backdrop-blur-sm transition-all hover:border-[#D9C3A5] hover:bg-white/84 sm:mt-9"

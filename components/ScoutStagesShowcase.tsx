@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 type StageShowcaseItem = {
   key: string;
@@ -53,11 +53,16 @@ function hexToRgba(hex: string, alpha: number) {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
+const subscribeToEnhancement = () => () => {};
+const enhancedSnapshot = () => true;
+const staticSnapshot = () => false;
+
 export default function ScoutStagesShowcase({
   copy,
   items,
   isRtl,
 }: ScoutStagesShowcaseProps) {
+  const enhanced = useSyncExternalStore(subscribeToEnhancement, enhancedSnapshot, staticSnapshot);
   // Keep one stage active so the row of cards behaves like a visual selector.
   const [activeStageKey, setActiveStageKey] = useState(items[0]?.key ?? "");
   const activeStage =
@@ -66,19 +71,6 @@ export default function ScoutStagesShowcase({
   if (!activeStage) {
     return null;
   }
-
-  const infoCards = [
-    { label: copy.unitLabel, value: activeStage.unit },
-    { label: copy.smallGroupLabel, value: activeStage.smallGroup },
-    { label: copy.leaderLabel, value: activeStage.leader },
-    { label: copy.scarfLabel, value: activeStage.scarf },
-  ];
-
-  const detailGroups = [
-    { title: copy.goalsTitle, items: activeStage.goals },
-    { title: copy.methodsTitle, items: activeStage.methods },
-    { title: copy.outcomesTitle, items: activeStage.outcomes },
-  ];
 
   return (
     <div className="mt-10 grid gap-8">
@@ -119,11 +111,11 @@ export default function ScoutStagesShowcase({
           const isActive = stage.key === activeStage.key;
 
           return (
-            <button
+            <a
               key={stage.key}
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => setActiveStageKey(stage.key)}
+              href={`#stage-${stage.key}`}
+              aria-current={isActive ? "true" : undefined}
+              onClick={(event) => { event.preventDefault(); setActiveStageKey(stage.key); }}
               className={`group flex h-full flex-col rounded-[2rem] border p-5 text-start transition-all duration-300 sm:p-6 ${
                 isRtl ? "text-right" : ""
               }`}
@@ -190,11 +182,35 @@ export default function ScoutStagesShowcase({
                 <span>{copy.detailsLabel}</span>
                 <span aria-hidden="true">{isRtl ? "\u2190" : "\u2192"}</span>
               </span>
-            </button>
+            </a>
           );
         })}
       </div>
 
+      {items.map((stage) => (
+        <section key={stage.key} id={`stage-${stage.key}`} hidden={enhanced && stage.key !== activeStageKey} className="scroll-mt-32">
+          <StageDetails activeStage={stage} copy={copy} isRtl={isRtl} />
+        </section>
+      ))}
+    </div>
+  );
+}
+
+function StageDetails({ activeStage, copy, isRtl }: { activeStage: StageShowcaseItem; copy: ScoutStagesShowcaseProps["copy"]; isRtl: boolean }) {
+  const infoCards = [
+    { label: copy.unitLabel, value: activeStage.unit },
+    { label: copy.smallGroupLabel, value: activeStage.smallGroup },
+    { label: copy.leaderLabel, value: activeStage.leader },
+    { label: copy.scarfLabel, value: activeStage.scarf },
+  ];
+
+  const detailGroups = [
+    { title: copy.goalsTitle, items: activeStage.goals },
+    { title: copy.methodsTitle, items: activeStage.methods },
+    { title: copy.outcomesTitle, items: activeStage.outcomes },
+  ];
+
+  return (
       <div
         className={`rounded-[2.2rem] border p-6 shadow-[0_28px_60px_rgba(63,51,39,0.08)] sm:p-7 lg:p-8 ${
           isRtl ? "text-right" : ""
@@ -330,6 +346,5 @@ export default function ScoutStagesShowcase({
           ))}
         </div>
       </div>
-    </div>
   );
 }

@@ -22,8 +22,8 @@ const fr = {
   },
   hero: {
     backgroundAlt: "Des scouts réunis dehors dans une lumière dorée et chaleureuse.",
-    logoAlt: "Logo des Scouts Maison de la Paix",
-    eyebrow: "Scouts Maison de la Paix",
+    logoAlt: "Logo des Scouts Maison de La Paix",
+    eyebrow: "Scouts Maison de La Paix",
     titleLines: ["Construire", "une culture de paix", "par le scoutisme"],
     description:
       "Donner aux jeunes et aux communautés les moyens d'agir par le service, l'éducation et l'ouverture au monde.",
@@ -62,7 +62,7 @@ const fr = {
       "servent et grandissent ensemble.",
     ],
     intro:
-      "Maison de La Paix est un lieu d'appartenance, où le scoutisme, l'éducation et le service transforment la paix en une réalité vécue chaque jour.",
+      "Scouts Maison de La Paix est une association scoute à Taourirt, au Maroc, qui accompagne les enfants et les jeunes par l'éducation à la paix, les camps, les ateliers et le service communautaire.",
     body:
       "Enracinée dans la communauté et ouverte sur le monde, elle cultive la responsabilité, le respect mutuel et la capacité de bien vivre à travers les différences.",
     tags: ["Coexistence", "Appartenance", "Épanouissement"],
@@ -594,7 +594,7 @@ const fr = {
     },
   },
   footer: {
-    title: "Scouts Maison de la Paix",
+    title: "Scouts Maison de La Paix",
     description:
       "Bâtir une culture de paix par le scoutisme, la communauté et l’appartenance partagée.",
     navAriaLabel: "Navigation de pied de page",
@@ -606,7 +606,8 @@ const fr = {
     facebookPlatform: "Facebook",
     instagramPlatform: "Instagram",
     joinLabel: "Nous rejoindre",
-    copyright: "© {year} Scouts Maison de la Paix — Tous droits réservés.",
+    copyright: "© {year} Scouts Maison de La Paix — Tous droits réservés.",
+    cultureLabel: "Culture scoute",
   },
 } satisfies DeepPartial<Messages>;
 

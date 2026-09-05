@@ -53,6 +53,7 @@ function LanguageToggle({
   minimal?: boolean;
   onSelect: (language: Locale) => void;
 }) {
+  const pathname = usePathname();
   const wrapperClassName = minimal
     ? `inline-flex items-center ${
         compact ? "gap-1" : "gap-1.5"
@@ -72,11 +73,16 @@ function LanguageToggle({
         const isActive = language === activeLanguage;
 
         return (
-          <button
+          <Link
             key={language}
-            type="button"
-            aria-pressed={isActive}
-            onClick={() => onSelect(language)}
+            href={getLocalizedPathname(pathname, language)}
+            hrefLang={language}
+            aria-current={isActive ? "page" : undefined}
+            onClick={(event) => {
+              if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              onSelect(language);
+            }}
             className={`rounded-full font-semibold transition-colors ${
               compact
                 ? "min-w-[2rem] px-2.5 py-1.5 text-[0.68rem]"
@@ -92,7 +98,7 @@ function LanguageToggle({
             }`}
           >
             {languageLabels[language]}
-          </button>
+          </Link>
         );
       })}
     </div>
@@ -187,7 +193,7 @@ export default function Header({
     }
 
     const hash = window.location.hash;
-    router.push(`${getLocalizedPathname(pathname, nextLocale)}${hash}`);
+    router.push(`${getLocalizedPathname(pathname, nextLocale)}${window.location.search}${hash}`);
   }
 
   return (

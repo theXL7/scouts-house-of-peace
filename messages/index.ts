@@ -59,8 +59,15 @@ export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
 
-export function getMessages(locale: Locale): Messages {
-  return mergeMessages(en, localeOverrides[locale]);
+export function getMessages(locale: Locale) {
+  const messages = mergeMessages(en, localeOverrides[locale]);
+  return {
+    ...messages,
+    navigation: messages.navigation.map((item) => ({
+      ...item,
+      href: item.href === "#activities" ? getLocalePath(locale, "/programs/") : item.href,
+    })),
+  };
 }
 
 export function getDirection(locale: Locale) {

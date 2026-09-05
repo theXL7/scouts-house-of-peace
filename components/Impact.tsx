@@ -45,12 +45,12 @@ export default function Impact({
   }));
   const sectionRef = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [counts, setCounts] = useState(() => statCards.map(() => 0));
+  const [counts, setCounts] = useState(() => copy.stats.map((stat) => stat.value));
 
   useEffect(() => {
     const sectionElement = sectionRef.current;
 
-    if (!sectionElement) {
+    if (!sectionElement || !("IntersectionObserver" in window)) {
       return undefined;
     }
 
@@ -146,21 +146,20 @@ export default function Impact({
           {stats.map((stat, index) => (
             <article
               key={stat.label}
-              className={`${stat.tone} rounded-[16px] border border-[#123B6D]/[0.035] px-7 py-9 text-center shadow-[0_10px_26px_rgba(18,59,109,0.035)] transition-all duration-700 ease-out sm:px-8 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-5 opacity-0"
-              }`}
+              className={`${stat.tone} rounded-[16px] border border-[#123B6D]/[0.035] px-7 py-9 text-center shadow-[0_10px_26px_rgba(18,59,109,0.035)] transition-transform duration-700 ease-out sm:px-8`}
               style={{ transitionDelay: `${index * 110}ms` }}
             >
-              <p className="tabular-nums text-[2.7rem] font-semibold leading-none tracking-[-0.03em] text-[#123B6D] sm:text-[3.2rem]">
-                {formatStatValue(counts[index], locale)}
+              <p data-impact-value={`${stat.value}${stat.suffix}`} className="tabular-nums text-[2.7rem] font-semibold leading-none tracking-[-0.03em] text-[#123B6D] sm:text-[3.2rem]">
+                {/* Keep a stable accessible value while the visible copy animates. */}
+                <span className="sr-only">{formatStatValue(stat.value, locale)}{stat.suffix}</span>
+                <span aria-hidden="true">{formatStatValue(counts[index], locale)}
                 <span
                   className={`text-[1.95rem] text-[#123B6D]/76 sm:text-[2.3rem] ${
                     isRtl ? "mr-1" : "ml-1"
                   }`}
                 >
                   {stat.suffix}
+                </span>
                 </span>
               </p>
               <p className="mx-auto mt-4 max-w-[15rem] text-[0.97rem] leading-7 text-[#2A2A2A]/62">

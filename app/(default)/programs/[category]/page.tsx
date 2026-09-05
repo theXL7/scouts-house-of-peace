@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import ProgramsPage from "@/components/ProgramsPage";
+import { activityCategories, type ActivityCategory } from "@/lib/activities";
+import { getProgramCategoryMetadata } from "@/lib/program-seo";
+
+export const dynamicParams = false;
+type Params = { category: ActivityCategory;  };
+export function generateStaticParams() {
+  return activityCategories.map((category) => ({ category }));
+}
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const { category } = await params;
+  if (!(activityCategories as readonly string[]).includes(category)) notFound();
+  return getProgramCategoryMetadata(category, "en");
+}
+export default async function Page({ params }: { params: Promise<Params> }) {
+  const { category } = await params;
+  if (!(activityCategories as readonly string[]).includes(category)) notFound();
+  return <ProgramsPage locale={"en"} category={category} />;
+}

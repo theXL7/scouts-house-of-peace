@@ -6,6 +6,7 @@ import LocaleDocument from "@/components/LocaleDocument";
 import ScarfDivider from "@/components/ScarfDivider";
 import ScoutStagesShowcase from "@/components/ScoutStagesShowcase";
 import { withBasePath } from "@/lib/site";
+import { getPageBreadcrumbs, serializeJsonLd } from "@/lib/seo";
 import {
   getDirection,
   getJoinUsPath,
@@ -2639,6 +2640,7 @@ export default function ScoutingCulturePage({ locale }: { locale: Locale }) {
   return (
     <div lang={locale} dir={direction} className="locale-root">
       <LocaleDocument locale={locale} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getPageBreadcrumbs("scouting-culture", locale)) }} />
       <Header
         locale={locale}
         navigation={pageNavigation}

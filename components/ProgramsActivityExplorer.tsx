@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import ArchiveStoryText from "@/components/ArchiveStoryText";
 
 import {
   activityCategories,
@@ -10,6 +11,7 @@ import {
   activityItems,
   getActivityStatus,
   getActivityUrl,
+  getProgramCategoryUrl,
   getLocalizedText,
   programFamilies,
   type ActivityCategory,
@@ -29,12 +31,24 @@ import {
 } from "@/lib/activity-archive";
 import { getSocialProfileUrls } from "@/lib/seo";
 import { withBasePath } from "@/lib/site";
-import type { Locale } from "@/messages";
+import { getLocalePath, type Locale } from "@/messages";
 import type { Messages } from "@/messages/en";
 
 function isActivityFilter(value: string | null): value is ActivityFilter {
   return Boolean(value && activityFilters.includes(value as ActivityFilter));
 }
+
+// Browser query state enhances static HTML; it must never suspend the content.
+function subscribeToFilters(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  window.addEventListener("activity-filter-change", onChange);
+  return () => {
+    window.removeEventListener("popstate", onChange);
+    window.removeEventListener("activity-filter-change", onChange);
+  };
+}
+const getFilterSnapshot = () => window.location.search;
+const getServerFilterSnapshot = () => "";
 
 function isVideoMedia(src?: string) {
   return Boolean(src?.match(/\.(mp4|webm|mov)$/i));
@@ -281,24 +295,26 @@ export default function ProgramsActivityExplorer({
   copy,
   locale,
   isRtl = false,
+  initialFilter = "all",
+  referenceDate,
 }: {
   copy: Messages["programsPage"];
   locale: Locale;
   isRtl?: boolean;
+  initialFilter?: ActivityFilter;
+  referenceDate: string;
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const queryCategory = searchParams.get("category");
+  const search = useSyncExternalStore(subscribeToFilters, getFilterSnapshot, getServerFilterSnapshot);
+  const queryCategory = new URLSearchParams(search).get("category");
   const selectedFilter: ActivityFilter = isActivityFilter(queryCategory)
     ? queryCategory
-    : "all";
+    : initialFilter;
   const socials = getSocialProfileUrls();
   const [selectedArchiveEntry, setSelectedArchiveEntry] =
     useState<ActivityArchiveEntry | null>(null);
   const [archiveCategoryFilter, setArchiveCategoryFilter] = useState<
     ActivityCategory | "all"
-  >("all");
+  >(initialFilter === "upcoming" ? "all" : initialFilter);
   const [activeArchiveYear, setActiveArchiveYear] = useState<string>(
     activityArchiveYears[0],
   );
@@ -309,10 +325,10 @@ export default function ProgramsActivityExplorer({
   const upcomingActivities = useMemo(
     () =>
       activityItems.filter((activity) => {
-        const status = getActivityStatus(activity);
+        const status = getActivityStatus(activity, referenceDate);
         return status === "upcoming" || status === "happening";
       }),
-    [],
+    [referenceDate],
   );
   const visibleActivities = useMemo(() => {
     if (selectedFilter === "all") return activityItems;
@@ -345,6 +361,7 @@ export default function ProgramsActivityExplorer({
       ).length,
     [archiveCategoryFilter],
   );
+  const displayedArchiveTotal = visibleArchiveTotal;
   const archiveYearSummaries = useMemo(() => {
     const summaries = activityArchiveYears
       .map((year) => {
@@ -379,16 +396,17 @@ export default function ProgramsActivityExplorer({
   );
 
   function setFilter(filter: ActivityFilter) {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(window.location.search);
 
-    if (filter === "all") {
+    if (filter === initialFilter) {
       params.delete("category");
     } else {
       params.set("category", filter);
     }
 
     const query = params.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+    window.history.replaceState(null, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
+    window.dispatchEvent(new Event("activity-filter-change"));
   }
 
   function jumpToArchiveYear(year: string) {
@@ -552,13 +570,18 @@ export default function ProgramsActivityExplorer({
                     <p className="mt-4 text-[0.98rem] leading-7 text-[#2A2A2A]/66">
                       {getLocalizedText(family.description, locale)}
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => setFilter(family.category)}
+                    <Link
+                      href={getProgramCategoryUrl(family.category, locale)}
+                      onClick={(event) => {
+                        if (initialFilter === "all" && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) {
+                          event.preventDefault();
+                          setFilter(family.category);
+                        }
+                      }}
                       className="mt-6 inline-flex items-center rounded-full bg-[#264D3B] px-4 py-2.5 text-sm font-bold text-[#F7F3EC] transition hover:-translate-y-0.5 hover:bg-[#315B47]"
                     >
                       {copy.families.filterLabel}
-                    </button>
+                    </Link>
                   </div>
                 </article>
               );
@@ -604,6 +627,7 @@ export default function ProgramsActivityExplorer({
                   locale={locale}
                   isRtl={isRtl}
                   dark
+                  referenceDate={referenceDate}
                 />
               ))}
             </div>
@@ -641,12 +665,16 @@ export default function ProgramsActivityExplorer({
               const isActive = selectedFilter === filter;
 
               return (
-                <button
+                <Link
                   key={filter}
-                  type="button"
-                  aria-pressed={isActive}
+                  href={filter === "all" ? getLocalePath(locale, "/programs/") : filter === "upcoming" ? `${getLocalePath(locale, "/programs/")}?category=upcoming#activity-highlights` : getProgramCategoryUrl(filter, locale)}
                   aria-current={isActive ? "true" : undefined}
-                  onClick={() => setFilter(filter)}
+                  onClick={(event) => {
+                    if (initialFilter === "all" && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) {
+                      event.preventDefault();
+                      setFilter(filter);
+                    }
+                  }}
                   className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
                     isActive
                       ? "border-[#264D3B] bg-[#264D3B] text-[#F7F3EC] shadow-[0_12px_24px_rgba(38,77,59,0.16)]"
@@ -654,28 +682,29 @@ export default function ProgramsActivityExplorer({
                   }`}
                 >
                   {copy.filters[filter]}
-                </button>
+                </Link>
               );
             })}
           </div>
 
-          {visibleActivities.length ? (
             <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {visibleActivities.map((activity) => (
+              {activityItems.map((activity) => (
                 <ActivityCard
                   key={activity.id}
                   activity={activity}
                   copy={copy}
                   locale={locale}
                   isRtl={isRtl}
+                  referenceDate={referenceDate}
+                  hidden={!visibleActivities.includes(activity)}
                 />
               ))}
             </div>
-          ) : (
+          {!visibleActivities.length ? (
             <div className="mt-10 rounded-[20px] border border-[#D8C9AE] bg-[#FBF8F1] p-7 text-[#2A2A2A]/72">
               {copy.upcoming.emptyState}
             </div>
-          )}
+          ) : null}
         </div>
       </section>
 
@@ -706,7 +735,7 @@ export default function ProgramsActivityExplorer({
             </div>
             <div className="rounded-[20px] border border-[#D8C9AE] bg-[#FBF8F1]/78 px-6 py-5 text-[#264D3B] shadow-[0_18px_40px_rgba(38,77,59,0.08)]">
               <p className="text-4xl font-black leading-none">
-                {visibleArchiveTotal}
+                {displayedArchiveTotal}
               </p>
               <p className="mt-1 text-sm font-bold">
                 {archiveCopy[locale].entryCount}
@@ -776,7 +805,7 @@ export default function ProgramsActivityExplorer({
                       </p>
                     </div>
                     <span className="rounded-full bg-[#264D3B]/8 px-2.5 py-1 text-xs font-black text-[#264D3B]">
-                      {visibleArchiveTotal}
+                      {displayedArchiveTotal}
                     </span>
                   </div>
 
@@ -902,7 +931,9 @@ export default function ProgramsActivityExplorer({
                           : "border-[#D8C9AE] bg-[#FBF8F1]/88 text-[#264D3B]"
                       }`}
                     >
-                      <p className="text-3xl font-black leading-none">{year}</p>
+                      <h3 className="text-3xl font-black leading-none !text-inherit">
+                        <Link href={getLocalePath(locale, `/programs/archive/${year}/`)} className="hover:underline">{year}</Link>
+                      </h3>
                       <p
                         className={`mt-2 text-xs font-bold ${
                           isActiveYear ? "text-[#F7F3EC]/68" : "text-[#2A2A2A]/52"
@@ -934,15 +965,18 @@ export default function ProgramsActivityExplorer({
                       );
 
                       return (
-                        <button
+                        <article
                           key={entry.id}
-                          type="button"
-                          onClick={() => setSelectedArchiveEntry(entry)}
+                          id={`archive-story-${entry.id}`}
+                          data-category={archiveCategory}
                           className={`group overflow-hidden rounded-[22px] border border-[#D8C9AE]/86 bg-[#FBF8F1]/88 shadow-[0_16px_34px_rgba(38,77,59,0.08)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_26px_54px_rgba(38,77,59,0.16)] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#B86A4A]/26 ${
                             isRtl ? "text-right" : "text-left"
                           }`}
                           dir={isRtl ? "rtl" : "ltr"}
                         >
+                          <details>
+                          <summary className="block cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+                            onClick={(event) => { event.preventDefault(); setSelectedArchiveEntry(entry); }}>
                           <div className="relative aspect-[16/10] overflow-hidden">
                             {archiveImage ? (
                               <Image
@@ -975,9 +1009,9 @@ export default function ProgramsActivityExplorer({
                             <p className="text-xs font-black uppercase tracking-[0.16em] text-[#B86A4A]">
                               {entryCopy.date}
                             </p>
-                            <h3 className="mt-3 text-[1.35rem] leading-[1.22] text-[#264D3B]">
+                            <h4 className="mt-3 text-[1.35rem] leading-[1.22] text-[#264D3B]">
                               {entryCopy.title}
-                            </h3>
+                            </h4>
                             <p className="mt-4 text-[0.94rem] leading-7 text-[#2A2A2A]/70">
                               {entryCopy.details[0]}
                             </p>
@@ -985,7 +1019,13 @@ export default function ProgramsActivityExplorer({
                               {archiveCopy[locale].openDetails}
                             </span>
                           </div>
-                        </button>
+                          </summary>
+                          <div className="space-y-4 p-5"><ArchiveStoryText entry={entry} locale={locale} /></div>
+                          </details>
+                          <Link href={`${getLocalePath(locale, `/programs/archive/${year}/`)}#${entry.id}`} className="block px-5 pb-5 text-sm font-bold text-[#264D3B] hover:underline">
+                            {archiveCopy[locale].openDetails} →
+                          </Link>
+                        </article>
                       );
                     })}
                   </div>
@@ -1003,7 +1043,7 @@ export default function ProgramsActivityExplorer({
             <h3 className="text-2xl leading-tight text-[#264D3B]">
               {archiveCopy[locale].notesTitle}
             </h3>
-            <div className="mt-5 grid gap-3 md:grid-cols-2" dir="rtl">
+            <div className="mt-5 grid gap-3 md:grid-cols-2" dir="rtl" lang="ar">
               {activityArchiveNotes.map((note) => (
                 <p
                   key={note}
@@ -1305,14 +1345,18 @@ function ActivityCard({
   locale,
   isRtl,
   dark = false,
+  referenceDate,
+  hidden = false,
 }: {
   activity: ActivityItem;
   copy: Messages["programsPage"];
   locale: Locale;
   isRtl?: boolean;
   dark?: boolean;
+  referenceDate: string;
+  hidden?: boolean;
 }) {
-  const status = getActivityStatus(activity);
+  const status = getActivityStatus(activity, referenceDate);
   const categoryFamily = programFamilies.find(
     (family) => family.category === activity.category,
   );
@@ -1329,7 +1373,10 @@ function ActivityCard({
 
   return (
     <article
-      id={activity.id}
+      id={dark ? `upcoming-${activity.id}` : activity.id}
+      data-activity-id={activity.id}
+      data-category={activity.category}
+      hidden={hidden}
       className={`${cardBase} group overflow-hidden rounded-[20px] border shadow-[0_18px_42px_rgba(38,77,59,0.08)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_56px_rgba(38,77,59,0.13)]`}
     >
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -1372,10 +1419,10 @@ function ActivityCard({
 
       <div className={`${isRtl ? "text-right" : ""} p-6`}>
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#B86A4A]">
-          {getLocalizedText(activity.dateLabel, locale)}
+          <time dateTime={activity.startDate}>{getLocalizedText(activity.dateLabel, locale)}</time>
         </p>
         <h3 className="mt-3 text-[1.72rem] leading-[1.1] text-[#264D3B]">
-          {title}
+          <a href={getActivityUrl(activity, locale)} style={{ fontFamily: "inherit" }} className="hover:underline">{title}</a>
         </h3>
         {location ? (
           <p className="mt-2 text-sm font-bold text-[#2A2A2A]/54">{location}</p>

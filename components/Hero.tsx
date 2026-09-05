@@ -377,22 +377,17 @@ export default function Hero({
               </p>
             </div>
 
-            <h1
-              className={`mt-6 !text-[#F7F1E7] ${mobileHeroHeadingClass} ${
+            <div role="heading" aria-level={1}
+              className={`hero-mobile-heading mt-6 !text-[#F7F1E7] ${mobileHeroHeadingClass} ${
                 isRtl ? "ar-display-heading ar-display-hero" : ""
               }`}
             >
-              <span className="sr-only">
-                {locale === "ar"
-                  ? "Scouts Maison de La Paix - كشافة دار السلام المغربية"
-                  : "Scouts Maison de La Paix official website"}
-              </span>
               {displayTitleLines.map((line) => (
                 <span key={line} className="block">
                   {line}
                 </span>
               ))}
-            </h1>
+            </div>
 
             <p className={mobileHeroBodyClass}>{copy.description}</p>
 
@@ -460,11 +455,6 @@ export default function Hero({
               isRtl ? "ar-display-heading ar-display-hero" : ""
             }`}
           >
-            <span className="sr-only">
-              {locale === "ar"
-                ? "Scouts Maison de La Paix - كشافة دار السلام المغربية"
-                : "Scouts Maison de La Paix official website"}
-            </span>
             {displayTitleLines.map((line) => (
               <span key={line} className="block">
                 {line}

@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LocaleDocument from "@/components/LocaleDocument";
 import ProgramsActivityExplorer from "@/components/ProgramsActivityExplorer";
-import { getUpcomingEventStructuredData } from "@/lib/activities";
+import { getUpcomingEventStructuredData, programFamilies, type ActivityCategory } from "@/lib/activities";
+import { getProgramsBreadcrumbs } from "@/lib/program-seo";
 import { getSocialProfileUrls, serializeJsonLd } from "@/lib/seo";
 import { withBasePath } from "@/lib/site";
 import {
@@ -35,17 +35,21 @@ const archiveCtaByLocale: Record<Locale, string> = {
   ar: "افتح الأرشيف الكامل",
 };
 
-export default function ProgramsPage({ locale }: { locale: Locale }) {
+export default function ProgramsPage({ locale, category }: { locale: Locale; category?: ActivityCategory }) {
   const messages = getMessages(locale);
   const copy = messages.programsPage;
   const direction = getDirection(locale);
   const isRtl = direction === "rtl";
   const socials = getSocialProfileUrls();
-  const eventJsonLd = getUpcomingEventStructuredData(locale);
+  // Pass one build-time date to both HTML and JSON-LD to avoid hydration/date drift.
+  const referenceDate = new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Casablanca" }).format(new Date());
+  const eventJsonLd = getUpcomingEventStructuredData(locale, referenceDate, category);
+  const family = programFamilies.find((item) => item.category === category);
 
   return (
     <div lang={locale} dir={direction} className="locale-root">
       <LocaleDocument locale={locale} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(getProgramsBreadcrumbs(locale, category)) }} />
       {eventJsonLd.length ? (
         <script
           type="application/ld+json"
@@ -97,10 +101,10 @@ export default function ProgramsPage({ locale }: { locale: Locale }) {
                 {copy.hero.eyebrow}
               </p>
               <h1 className="mt-5 max-w-4xl text-[3.35rem] leading-[0.95] !text-[#F7F3EC] sm:text-[5rem]">
-                {copy.hero.title}
+                {family ? family.title[locale] : copy.hero.title}
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-9 text-[#F7F3EC]/76">
-                {copy.hero.subtitle}
+                {family ? family.description[locale] : copy.hero.subtitle}
               </p>
               <div
                 className={`mt-8 flex flex-wrap gap-3 ${
@@ -144,13 +148,13 @@ export default function ProgramsPage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
-        <Suspense fallback={null}>
           <ProgramsActivityExplorer
             copy={copy}
             locale={locale}
             isRtl={isRtl}
+            initialFilter={category ?? "all"}
+            referenceDate={referenceDate}
           />
-        </Suspense>
 
         <section className="bg-[#F7F3EC] px-6 py-20 sm:px-8">
           <div

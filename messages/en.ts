@@ -79,7 +79,7 @@ const en = {
       "serve, and grow together.",
     ],
     intro:
-      "Maison de La Paix is a place of belonging, where scouting, education, and service help turn peace into something lived each day.",
+      "Scouts Maison de La Paix is a scouting association in Taourirt, Morocco, helping children and young people grow through peace education, outdoor camps, workshops, and community service.",
     body:
       "Rooted in community and open to the wider world, it nurtures responsibility, mutual respect, and the ability to live well across differences.",
     tags: ["Coexistence", "Belonging", "Growth"],
@@ -613,7 +613,7 @@ const en = {
     },
   },
   footer: {
-    title: "Scouts Maison de la Paix",
+    title: "Scouts Maison de La Paix",
     description:
       "Building a culture of peace through scouting, community, and shared belonging.",
     navAriaLabel: "Footer navigation",
@@ -625,7 +625,8 @@ const en = {
     facebookPlatform: "Facebook",
     instagramPlatform: "Instagram",
     joinLabel: "Join Us",
-    copyright: "© {year} Scouts Maison de la Paix — All rights reserved.",
+    copyright: "© {year} Scouts Maison de La Paix — All rights reserved.",
+    cultureLabel: "Scouting Culture",
   },
 } as const;
 

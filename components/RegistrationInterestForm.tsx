@@ -67,6 +67,9 @@ export default function RegistrationInterestForm({
       </div>
 
       <form
+        action={`mailto:${copy.recipientEmail}`}
+        method="post"
+        encType="text/plain"
         dir={isRtl ? "rtl" : "ltr"}
         className="mt-6 grid gap-x-4 gap-y-5 sm:grid-cols-2"
         onSubmit={handleSubmit}

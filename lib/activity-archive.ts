@@ -921,6 +921,54 @@ export const activityArchiveEntries: ActivityArchiveEntry[] = [
       "Une belle rencontre qui a uni éducation, créativité et engagement pour un seul message : ensemble, construisons la paix.",
     ],
   },
+  {
+    id: "2026-awareness-earth",
+    year: "2026",
+    date: "13 يونيو 2026",
+    title: "توعية الناشئة بأمنا الأرض",
+    details: [
+      "نظمت بمدرسة عمر بن الخطاب الابتدائية بتاوريرت لتقريب الناشئة من معنى أمانة الأرض والمسؤولية المشتركة تجاه البيئة.",
+      "جمعت بين التوعية البيئية والتربية على السلام وورشات تطبيقية ساعدت الأطفال على تحويل قيم السلام إلى سلوك يومي.",
+      "اختتم النشاط بغرس شجرتي السلام كرمز للأمل والعناية بالأرض والعمل الجماعي.",
+    ],
+    imageSrc: "/activities/programme/awareness-earth-2026.jpg",
+  },
+  {
+    id: "2026-wave-of-peace",
+    year: "2026",
+    date: "17 يوليوز 2026",
+    title: "موج السلام",
+    details: [
+      "يوم كشفي بشاطئ أركمان بالناظور حمل قيم السلام إلى فضاء البحر واللعب والحركة.",
+      "تضمن ألعابا جماعية وأنشطة ترفيهية عززت التعاون والأخوة وروح الفريق بين المشاركين.",
+      "كان اللقاء فرصة لتجسيد قيم السلام في علاقات بسيطة ودافئة داخل الحياة الكشفية اليومية.",
+    ],
+    imageSrc: "/activities/programme/wave-of-peace-2026.jpg",
+  },
+  {
+    id: "2026-peace-heart-education",
+    year: "2026",
+    date: "27-29 يوليوز 2026",
+    title: "السلام في قلب التربية والتعليم",
+    details: [
+      "تكوين بمدينة طنجة امتد على ثلاثة أيام وركز على التربية على السلام والتبادل بين الثقافات.",
+      "اشتغل المشاركون على القيادة والحوار وبناء الجسور بين الخلفيات المختلفة داخل الفضاء التربوي.",
+      "حمل اللقاء فكرة الانتقال من ثقافة الأنا إلى ثقافة النحن، حيث يصبح التعلم مسؤولية مشتركة.",
+    ],
+    imageSrc: "/activities/programme/tangier-peace-heart-education-2026.jpg",
+  },
+  {
+    id: "2026-ifrane-itinerant-camp",
+    year: "2026",
+    date: "9-20 غشت 2026",
+    title: "المخيم المتنقل بإقليم إفران",
+    details: [
+      "مخيم متنقل لمدة 11 يوما جمع أكثر من 50 كشافا وكشافة في تجربة ميدانية بإقليم إفران.",
+      "شمل المسار رأس الماء وبن صميم وزاوية إفران وأزرو ومواقع أخرى عبر المشي والتخييم والاستكشاف.",
+      "جمع البرنامج بين أنشطة جماعية وحياة مخيمية وتنمية الاعتماد على النفس وروح الفريق في الطبيعة.",
+    ],
+    imageSrc: "/activities/programme/ifrane-itinerant-camp-2026.jpg",
+  },
 ];
 
 export const activityArchiveImageMap: Record<string, string> = {
@@ -987,6 +1035,10 @@ export const activityArchiveImageMap: Record<string, string> = {
   "2024-green-march-ceremonies": "/activities/programme/archive/nov 6 2024.jpg",
   "2025-kingdom-of-letters": "/activities/programme/archive/jan 19 2025.jpg",
   "2025-independence-document-celebration": "/activities/programme/archive/jan 25 2025.jpg",
+  "2026-awareness-earth": "/activities/programme/awareness-earth-2026.jpg",
+  "2026-wave-of-peace": "/activities/programme/wave-of-peace-2026.jpg",
+  "2026-peace-heart-education": "/activities/programme/tangier-peace-heart-education-2026.jpg",
+  "2026-ifrane-itinerant-camp": "/activities/programme/ifrane-itinerant-camp-2026.jpg",
   "2026-tifzouine-camp-report": "/activities/programme/albums/camp-tifzouine-2026/01.jpg",
 };
 
@@ -1122,6 +1174,18 @@ export const activityArchiveGalleryMap: Record<string, string[]> = {
     1,
   ),
   "2026-peace-coexistence-event-report": numberedAlbum("23-may-2026", 12),
+  "2026-awareness-earth": [
+    "/activities/programme/awareness-earth-2026.jpg",
+  ],
+  "2026-wave-of-peace": [
+    "/activities/programme/wave-of-peace-2026.jpg",
+  ],
+  "2026-peace-heart-education": [
+    "/activities/programme/tangier-peace-heart-education-2026.jpg",
+  ],
+  "2026-ifrane-itinerant-camp": [
+    "/activities/programme/ifrane-itinerant-camp-2026.jpg",
+  ],
 };
 
 export function getActivityArchiveCategory(
@@ -1207,6 +1271,22 @@ const archiveTitleOverrides: Record<
   "2026-peace-coexistence-event-report": {
     en: "Peace and coexistence event report",
     fr: "Compte rendu de l'evenement paix et coexistence",
+  },
+  "2026-awareness-earth": {
+    en: "Awareness of the Earth",
+    fr: "Sensibilisation a l'Amana de la Terre",
+  },
+  "2026-wave-of-peace": {
+    en: "Wave of Peace",
+    fr: "Vague de Paix",
+  },
+  "2026-peace-heart-education": {
+    en: "Peace at the Heart of Education",
+    fr: "La Paix au Coeur de l'Education",
+  },
+  "2026-ifrane-itinerant-camp": {
+    en: "Ifrane Itinerant Camp",
+    fr: "Camp itinerant d'Ifrane",
   },
 };
 
@@ -1755,6 +1835,22 @@ export const activityArchiveFacebookSourceMap: Record<string, string[]> = {
     "https://www.facebook.com/permalink.php?story_fbid=pfbid0gTd7K3GnZabHB3pbGW4Te7EwRrkC5qofazUcZ13iMfoLWGAEdjNyVA91n3T674Tkl&id=100067192446286",
     "https://www.instagram.com/p/DYwwYwmiD4F/?utm_source=ig_embed&utm_campaign=loading",
     "https://www.instagram.com/reel/DYxlBA-INvc/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2026-awareness-earth": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0mGABNMgs8kNudkHNg2oNgJGG6eBNwMfBkz3JJXa7XiNgCJTpcb87Jt5VPPew6an7l&id=100067192446286",
+    "https://www.instagram.com/p/DZobzsHiPdF/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2026-wave-of-peace": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0khWFum2FYtuAdLebqQFe7eXWGpUA35kYiMfNRAEuhHLgHwER8HXhWNP8MWHhjdRNl&id=100067192446286",
+    "https://www.instagram.com/p/Da-aNH_iBlD/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2026-peace-heart-education": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid0ZcavmtY85Wnf91pA1z8s5n3HUGyL8ZM2zivAAMDhSMRKMpvrX5BGAcc9tBrovmLbl&id=100067192446286",
+    "https://www.instagram.com/p/Dbvudo1COhh/?utm_source=ig_embed&utm_campaign=loading",
+  ],
+  "2026-ifrane-itinerant-camp": [
+    "https://www.facebook.com/permalink.php?story_fbid=pfbid02mHbU9KXqEkwgEdwxYMZ4eZuLBAwqUk9yvJY8Hb1ut5PnEkVQSde22ru9qrcCvVol&id=100067192446286",
+    "https://www.instagram.com/p/DcjXqiJiN_M/?utm_source=ig_embed&utm_campaign=loading",
   ],
 };
 

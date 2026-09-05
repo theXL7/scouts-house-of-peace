@@ -1,6 +1,6 @@
 import { getAbsoluteUrl } from "@/lib/seo";
 import { withBasePath } from "@/lib/site";
-import type { Locale } from "@/messages";
+import { getLocalePath, type Locale } from "@/messages";
 
 export type ActivityCategory =
   | "camps"
@@ -190,11 +190,133 @@ export const programFamilies: ProgramFamily[] = [
 
 export const activityItems: ActivityItem[] = [
   {
+    id: "ifrane-itinerant-camp-2026",
+    title: {
+      en: "Ifrane Itinerant Camp",
+      fr: "Camp itinerant d'Ifrane",
+      ar: "المخيم المتنقل بإقليم إفران",
+    },
+    category: "camps",
+    dateLabel: {
+      en: "August 9-20, 2026",
+      fr: "9-20 aout 2026",
+      ar: "9-20 غشت 2026",
+    },
+    startDate: "2026-08-09",
+    endDate: "2026-08-20",
+    location: {
+      en: "Ifrane Province",
+      fr: "Province d'Ifrane",
+      ar: "إقليم إفران",
+    },
+    shortDescription: {
+      en: "An 11-day mobile camp with more than 50 scouts across Ras El Ma, Ben Smim, Zaouia d'Ifrane, Azrou, and other locations through hiking, camping, exploration, and collective activities.",
+      fr: "Un camp mobile de 11 jours avec plus de 50 scouts a travers Ras El Ma, Ben Smim, Zaouia d'Ifrane, Azrou et d'autres lieux, entre randonnee, camping, exploration et activites collectives.",
+      ar: "مخيم متنقل لمدة 11 يوما بمشاركة أكثر من 50 كشافا وكشافة، شمل رأس الماء وبن صميم وزاوية إفران وأزرو ومناطق أخرى عبر المشي والتخييم والاستكشاف والأنشطة الجماعية.",
+    },
+    coverAlt: {
+      en: "Scouts exploring the forests and mountain paths of Ifrane Province.",
+      fr: "Scouts explorant les forets et sentiers de montagne de la province d'Ifrane.",
+      ar: "كشافة يستكشفون غابات ومسارات إقليم إفران.",
+    },
+    coverImage: "/activities/programme/ifrane-itinerant-camp-2026.jpg",
+    fallbackStyle: "photo",
+    instagramUrl: "https://www.instagram.com/p/DcjXqiJiN_M/?utm_source=ig_embed&utm_campaign=loading",
+    facebookUrl:
+      "https://www.facebook.com/permalink.php?story_fbid=pfbid02mHbU9KXqEkwgEdwxYMZ4eZuLBAwqUk9yvJY8Hb1ut5PnEkVQSde22ru9qrcCvVol&id=100067192446286",
+    shareText: {
+      en: "Follow Scouts Maison de La Paix's Ifrane Itinerant Camp from August 9 to 20, 2026.",
+      fr: "Suivez le camp itinerant d'Ifrane des Scouts Maison de La Paix du 9 au 20 aout 2026.",
+      ar: "تابعوا المخيم المتنقل بإقليم إفران لكشافة دار السلام من 9 إلى 20 غشت 2026.",
+    },
+  },
+  {
+    id: "peace-heart-education-2026",
+    title: {
+      en: "Peace at the Heart of Education",
+      fr: "La Paix au Coeur de l'Education",
+      ar: "السلام في قلب التربية والتعليم",
+    },
+    category: "training",
+    dateLabel: {
+      en: "July 27-29, 2026",
+      fr: "27-29 juillet 2026",
+      ar: "27-29 يوليوز 2026",
+    },
+    startDate: "2026-07-27",
+    endDate: "2026-07-29",
+    location: {
+      en: "Tangier",
+      fr: "Tanger",
+      ar: "طنجة",
+    },
+    shortDescription: {
+      en: "A three-day training focused on peace education, intercultural exchange, leadership, and the transition from an I culture to a We culture.",
+      fr: "Une formation de trois jours autour de l'education a la paix, de l'echange interculturel, du leadership et du passage d'une culture du je a une culture du nous.",
+      ar: "تكوين امتد لثلاثة أيام حول التربية على السلام والتبادل بين الثقافات والقيادة، والانتقال من ثقافة الأنا إلى ثقافة النحن.",
+    },
+    coverAlt: {
+      en: "Participants learning together during a peace education training in Tangier.",
+      fr: "Participants reunis pendant une formation d'education a la paix a Tanger.",
+      ar: "مشاركون في تكوين حول التربية على السلام بمدينة طنجة.",
+    },
+    coverImage: "/activities/programme/tangier-peace-heart-education-2026.jpg",
+    fallbackStyle: "poster",
+    instagramUrl: "https://www.instagram.com/p/Dbvudo1COhh/?utm_source=ig_embed&utm_campaign=loading",
+    facebookUrl:
+      "https://www.facebook.com/permalink.php?story_fbid=pfbid0ZcavmtY85Wnf91pA1z8s5n3HUGyL8ZM2zivAAMDhSMRKMpvrX5BGAcc9tBrovmLbl&id=100067192446286",
+    shareText: {
+      en: "Peace at the Heart of Education brings Scouts Maison de La Paix to Tangier from July 27 to 29, 2026.",
+      fr: "La Paix au Coeur de l'Education reunit les Scouts Maison de La Paix a Tanger du 27 au 29 juillet 2026.",
+      ar: "السلام في قلب التربية والتعليم يجمع كشافة دار السلام بطنجة من 27 إلى 29 يوليوز 2026.",
+    },
+  },
+  {
+    id: "wave-of-peace-2026",
+    title: {
+      en: "Wave of Peace: Mawj al-Salam",
+      fr: "Vague de Paix : Mawj al-Salam",
+      ar: "موج السلام",
+    },
+    category: "scout-life",
+    dateLabel: {
+      en: "July 17, 2026",
+      fr: "17 juillet 2026",
+      ar: "17 يوليوز 2026",
+    },
+    startDate: "2026-07-17",
+    location: {
+      en: "Arkmane, Nador",
+      fr: "Arkmane, Nador",
+      ar: "أركمان، الناظور",
+    },
+    shortDescription: {
+      en: "A scouting day at the beach centered on games, teamwork, fraternity, recreation, and the everyday practice of peace values.",
+      fr: "Une journee scoute a la plage autour des jeux, du travail d'equipe, de la fraternite, de la detente et des valeurs de paix.",
+      ar: "يوم كشفي على الشاطئ جمع الألعاب والعمل الجماعي والأخوة والترفيه وترسيخ قيم السلام في الحياة اليومية.",
+    },
+    coverAlt: {
+      en: "Scouts sharing games and teamwork during a beach day in Arkmane.",
+      fr: "Scouts partageant jeux et travail d'equipe pendant une journee a la plage a Arkmane.",
+      ar: "كشافة يشاركون في ألعاب وأنشطة جماعية على شاطئ أركمان.",
+    },
+    coverImage: "/activities/programme/wave-of-peace-2026.jpg",
+    fallbackStyle: "pattern",
+    instagramUrl: "https://www.instagram.com/p/Da-aNH_iBlD/?utm_source=ig_embed&utm_campaign=loading",
+    facebookUrl:
+      "https://www.facebook.com/permalink.php?story_fbid=pfbid0khWFum2FYtuAdLebqQFe7eXWGpUA35kYiMfNRAEuhHLgHwER8HXhWNP8MWHhjdRNl&id=100067192446286",
+    shareText: {
+      en: "Wave of Peace is a Scouts Maison de La Paix beach day in Arkmane on July 17, 2026.",
+      fr: "Vague de Paix est une journee scoute a la plage a Arkmane le 17 juillet 2026.",
+      ar: "موج السلام يوم كشفي على شاطئ أركمان يوم 17 يوليوز 2026.",
+    },
+  },
+  {
     id: "environmental-education-awareness-2026",
     title: {
-      en: "Environmental Education Awareness Activity",
-      fr: "Activite de sensibilisation a l'education environnementale",
-      ar: "نشاط تربوي تحسيسي حول التربية البيئية",
+      en: "Awareness of the Earth: Taw'iyat al-Nash'a bi-Amana al-Ard",
+      fr: "Sensibilisation a l'Amana de la Terre",
+      ar: "وعية الناشئة بأمنا الأرض",
     },
     category: "workshops",
     dateLabel: {
@@ -204,28 +326,28 @@ export const activityItems: ActivityItem[] = [
     },
     startDate: "2026-06-13",
     location: {
-      en: "Taourirt",
-      fr: "Taourirt",
-      ar: "تاوريرت",
+      en: "Omar Ibn Al-Khattab Primary School, Taourirt",
+      fr: "Ecole primaire Omar Ibn Al-Khattab, Taourirt",
+      ar: "مدرسة عمر بن الخطاب الابتدائية، تاوريرت",
     },
     shortDescription: {
-      en: "A youth awareness activity focused on helping children understand the importance of protecting the earth and caring for the environment.",
-      fr: "Une activite de sensibilisation pour aider les enfants a comprendre l'importance de proteger la terre et de prendre soin de l'environnement.",
-      ar: "نشاط تربوي تحسيسي يهدف إلى توعية الناشئة بأهمية إنقاذ الأرض والعناية بالبيئة.",
+      en: "Environmental awareness, peace education, workshops, and the planting of the two Peace Trees with young learners.",
+      fr: "Sensibilisation environnementale, education a la paix, ateliers et plantation des deux Arbres de la Paix avec les jeunes apprenants.",
+      ar: "نشاط جمع التوعية البيئية والتربية على السلام والورشات وغرس شجرتي السلام مع الناشئة.",
     },
-    coverImage: "/activities/programme/environmental-education-2026.png",
+    coverImage: "/activities/programme/awareness-earth-2026.jpg",
     coverAlt: {
-      en: "Environmental education activity poster for Scouts Maison de La Paix.",
-      fr: "Affiche de l'activite d'education environnementale des Scouts Maison de La Paix.",
-      ar: "ملصق نشاط تربوي تحسيسي حول التربية البيئية لكشافة دار السلام.",
+      en: "Awareness of the Earth activity poster for Scouts Maison de La Paix.",
+      fr: "Affiche de l'activite Sensibilisation a l'Amana de la Terre des Scouts Maison de La Paix.",
+      ar: "ملصق نشاط توعية النشء بأمانة الأرض لكشافة دار السلام.",
     },
-    instagramUrl: "https://www.instagram.com/p/DZZ1E8lo0H8/?utm_source=ig_embed&utm_campaign=loading",
+    instagramUrl: "https://www.instagram.com/p/DZobzsHiPdF/?utm_source=ig_embed&utm_campaign=loading",
     facebookUrl:
-      "https://www.facebook.com/permalink.php?story_fbid=pfbid036wMa3SVBJ6hC43L38F2Nuih5z6T44ABWcagPuFxXQZKjFt5awj8x6hS1tVwngGsel&id=100067192446286",
+      "https://www.facebook.com/permalink.php?story_fbid=pfbid0mGABNMgs8kNudkHNg2oNgJGG6eBNwMfBkz3JJXa7XiNgCJTpcb87Jt5VPPew6an7l&id=100067192446286",
     shareText: {
-      en: "Join Scouts Maison de La Paix for an environmental education awareness activity on June 13, 2026.",
-      fr: "Rejoignez les Scouts Maison de La Paix pour une activite de sensibilisation a l'education environnementale le 13 juin 2026.",
-      ar: "انضموا إلى كشافة دار السلام في نشاط تربوي تحسيسي حول التربية البيئية يوم 13 يونيو 2026.",
+      en: "Awareness of the Earth brings environmental awareness and peace education to Omar Ibn Al-Khattab Primary School on June 13, 2026.",
+      fr: "Sensibilisation a l'Amana de la Terre apporte education environnementale et paix a l'ecole Omar Ibn Al-Khattab le 13 juin 2026.",
+      ar: "توعية النشء بأمانة الأرض تجمع التربية البيئية وثقافة السلام بمدرسة عمر بن الخطاب يوم 13 يونيو 2026.",
     },
   },
   {
@@ -513,17 +635,12 @@ export const activityItems: ActivityItem[] = [
   },
 ];
 
-export function getActivityStatus(activity: ActivityItem): ActivityStatus {
+export function getActivityStatus(activity: ActivityItem, today: string): ActivityStatus {
   if (!activity.startDate) return "completed";
 
-  const now = new Date();
-  const start = new Date(activity.startDate);
-  const end = activity.endDate ? new Date(activity.endDate) : start;
-
-  end.setHours(23, 59, 59, 999);
-
-  if (now < start) return "upcoming";
-  if (now >= start && now <= end) return "happening";
+  // ISO calendar dates compare consistently on the build server and in browsers.
+  if (today < activity.startDate) return "upcoming";
+  if (today <= (activity.endDate ?? activity.startDate)) return "happening";
   return "completed";
 }
 
@@ -532,28 +649,22 @@ export function getLocalizedText(text: LocalizedText, locale: Locale) {
 }
 
 export function getActivityUrl(activity: ActivityItem, locale: Locale) {
-  const basePath =
-    locale === "en"
-      ? `/programs?category=${activity.category}`
-      : `/${locale}/programs?category=${activity.category}`;
-
-  return `${basePath}#${activity.id}`;
+  return `${getProgramCategoryUrl(activity.category, locale)}#${activity.id}`;
 }
 
 export function getProgramCategoryUrl(category: ActivityCategory, locale: Locale) {
-  return locale === "en"
-    ? `/programs?category=${category}`
-    : `/${locale}/programs?category=${category}`;
+  return getLocalePath(locale, `/programs/${category}/`);
 }
 
-export function getUpcomingEventStructuredData(locale: Locale) {
+export function getUpcomingEventStructuredData(locale: Locale, today: string, category?: ActivityCategory) {
   return activityItems
-    .filter((activity) => getActivityStatus(activity) !== "completed")
+    .filter((activity) => (!category || activity.category === category) && getActivityStatus(activity, today) !== "completed")
     .filter((activity) => activity.startDate)
     .map((activity) => ({
       "@context": "https://schema.org",
       "@type": "Event",
       name: getLocalizedText(activity.title, locale),
+      url: getAbsoluteUrl(getActivityUrl(activity, locale)),
       startDate: activity.startDate,
       endDate: activity.endDate ?? activity.startDate,
       eventStatus: "https://schema.org/EventScheduled",
@@ -567,11 +678,6 @@ export function getUpcomingEventStructuredData(locale: Locale) {
         name: activity.location
           ? getLocalizedText(activity.location, locale)
           : "Scouts Maison de La Paix",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Taourirt",
-          addressCountry: "MA",
-        },
       },
       organizer: {
         "@type": "Organization",

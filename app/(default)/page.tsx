@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import LocalizedHomePage from "@/components/HomePage";
 import {
   getOrganizationStructuredData,
+  getWebSiteStructuredData,
   getPageMetadata,
   serializeJsonLd,
 } from "@/lib/seo";
@@ -15,7 +16,7 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(getOrganizationStructuredData("en")),
+          __html: serializeJsonLd([getOrganizationStructuredData("en"), getWebSiteStructuredData()]),
         }}
       />
       <LocalizedHomePage locale="en" />

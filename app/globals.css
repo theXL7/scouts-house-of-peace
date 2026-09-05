@@ -36,6 +36,7 @@ html {
   }
 }
 
+.hero-mobile-heading,
 h1,
 h2,
 h3,
@@ -82,6 +83,7 @@ label {
   text-rendering: optimizeLegibility;
 }
 
+.locale-root[lang="ar"] .hero-mobile-heading,
 .locale-root[lang="ar"] h1,
 .locale-root[lang="ar"] h2,
 .locale-root[lang="ar"] h3,

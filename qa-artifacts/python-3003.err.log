@@ -1,0 +1,103 @@
+::1 - - [12/May/2026 14:13:25] "GET /ar/scouting-culture/ HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/media/03bda585a99c6450-s.p.0zzh68k1~whtc.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/media/05d29f0ed5b0e698-s.p.0ipr5zwy0u.~f.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/media/291696193ea1e96b-s.p.0mmds2ktxtq7_.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/media/48e6fa8a5baca31f-s.p.0d7ol9k18uj2x.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/0-012m1q71uhj.css HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/0r_bop4f19j85.css HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/media/4b676bcffc00356a-s.p.0oynfhj0_9xg2.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/media/a343f882a40d2cc9-s.p.0kho-wj7-y-w1.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/media/d54db18e8cd5f74f-s.p.05.gztb3q6cix.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /scouting-culture-v2/clouds-base.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/0.jrg90f43u18.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/02i7dfk78~t~2.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/10~x95jhs6ns3.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/0if2ott4se3x8.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/turbopack-0o0h998y0p8.h.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/01xlw8hd842-c.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/0d3shmwh5_nmn.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/0bisds3y7xt2j.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/0szlzguy6bstm.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/chunks/0x_8utz46xh7k.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:25] "GET /_next/static/media/e7b64a7fde1a3d32-s.0sb-ki_uu~_70.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:26] "GET /scouts-house-of-peace-logo.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:26] "GET /scouting-culture-v2/levels-gear.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:26] "GET /scouting-culture-v2/scouts-on-path.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /logos/scouts-maison-paix-green-logo.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/1d2cc0c079997359-s.184z4t8qnm46e.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/648474ecaeaf4c9a-s.0~rf1n5_6ke06.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/f0e0669539caf32a-s.0rb5r2~08jpgn.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /scouting-culture/ HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /logos/partners/ligue-du-scoutisme-marocain.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /dividers/neckerchief-divider.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /scouting-culture-v2/stage-icons/cubs-brownies.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/03bda585a99c6450-s.p.0zzh68k1~whtc.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/05d29f0ed5b0e698-s.p.0ipr5zwy0u.~f.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/291696193ea1e96b-s.p.0mmds2ktxtq7_.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/0-012m1q71uhj.css HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /scouting-culture-v2/stage-icons/junior-guides.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/0r_bop4f19j85.css HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /scouting-culture-v2/stage-icons/advanced-rangers.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/48e6fa8a5baca31f-s.p.0d7ol9k18uj2x.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/4b676bcffc00356a-s.p.0oynfhj0_9xg2.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/a343f882a40d2cc9-s.p.0kho-wj7-y-w1.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /scouting-culture-v2/stage-icons/rovers-guides.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/media/d54db18e8cd5f74f-s.p.05.gztb3q6cix.woff2 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /scouting-culture-v2/clouds-base.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/0.jrg90f43u18.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/02i7dfk78~t~2.js HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/10~x95jhs6ns3.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/0if2ott4se3x8.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/turbopack-0o0h998y0p8.h.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/01xlw8hd842-c.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:27] "GET /_next/static/chunks/0d3shmwh5_nmn.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:28] "GET /_next/static/chunks/0bisds3y7xt2j.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:28] "GET /_next/static/chunks/0szlzguy6bstm.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:28] "GET /_next/static/chunks/0x_8utz46xh7k.js HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:28] "GET /scouting-culture-v2/symbols-and-songs.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:28] "GET /logos/partners/ligue-du-scoutisme-marocain.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "GET /logos/scouts-maison-paix-green-logo.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "GET /scouting-culture-v2/scouts-on-path.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "GET /scouting-culture-v2/levels-gear.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "GET /scouts-house-of-peace-logo.png HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [12/May/2026 14:13:29] "GET /dividers/neckerchief-divider.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "GET /scouting-culture-v2/stage-icons/cubs-brownies.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "GET /scouting-culture-v2/stage-icons/junior-guides.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "GET /scouting-culture-v2/stage-icons/rovers-guides.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "GET /scouting-culture-v2/stage-icons/advanced-rangers.png HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "HEAD /join-us/ HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] "HEAD / HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:29] code 404, message File not found
+::1 - - [12/May/2026 14:13:29] "GET /_vercel/insights/script.js HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:29] code 404, message File not found
+::1 - - [12/May/2026 14:13:29] "GET /_vercel/speed-insights/script.js HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:29] "GET /join-us/__next._tree.txt?_rsc=5028g HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:30] "GET /__next._tree.txt?_rsc=5028g HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:31] "HEAD /ar/join-us/ HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:31] "HEAD /ar/ HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:33] code 404, message File not found
+::1 - - [12/May/2026 14:13:33] "GET /_vercel/insights/script.js HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:33] code 404, message File not found
+::1 - - [12/May/2026 14:13:33] "GET /_vercel/speed-insights/script.js HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:33] "GET /join-us/__next._head.txt?_rsc=6tw7p HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:33] code 404, message File not found
+::1 - - [12/May/2026 14:13:33] "GET /join-us/__next.!KGRlZmF1bHQp.join-us.txt?_rsc=dp8sc HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:33] "GET /ar/__next._tree.txt?_rsc=iifey HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:33] "GET /join-us/__next.!KGRlZmF1bHQp.txt?_rsc=4qgxr HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:33] "GET /ar/join-us/__next._tree.txt?_rsc=iifey HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:33] "GET /join-us/__next._index.txt?_rsc=17oa8 HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:33] code 404, message File not found
+::1 - - [12/May/2026 14:13:33] "GET /join-us/__next.!KGRlZmF1bHQp.join-us.__PAGE__.txt?_rsc=lswki HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:33] "GET /__next._head.txt?_rsc=6tw7p HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:34] "GET /ar/__next._head.txt?_rsc=wgk3x HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:34] "GET /ar/__next._index.txt?_rsc=dhzgk HTTP/1.1" 200 -
+::1 - - [12/May/2026 14:13:34] "GET /ar/__next.$d$locale.txt?_rsc=1i445 HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [12/May/2026 14:13:34] "GET /ar/join-us/__next._head.txt?_rsc=wgk3x HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [12/May/2026 14:13:34] code 404, message File not found
+::ffff:127.0.0.1 - - [12/May/2026 14:13:34] "GET /__next.!KGRlZmF1bHQp.__PAGE__.txt?_rsc=1xwuz HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:34] code 404, message File not found
+::1 - - [12/May/2026 14:13:34] "GET /ar/join-us/__next.$d$locale.join-us.txt?_rsc=1pe2i HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:34] code 404, message File not found
+::1 - - [12/May/2026 14:13:34] "GET /ar/join-us/__next.$d$locale.join-us.__PAGE__.txt?_rsc=1xgv3 HTTP/1.1" 404 -
+::1 - - [12/May/2026 14:13:34] code 404, message File not found
+::1 - - [12/May/2026 14:13:34] "GET /ar/__next.$d$locale.__PAGE__.txt?_rsc=utbee HTTP/1.1" 404 -

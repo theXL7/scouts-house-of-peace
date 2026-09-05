@@ -125,6 +125,7 @@ export default function Footer({
   const footerLinks = [
     ...navigation.filter((link) => !link.href.includes("#contact")).slice(0, 3),
     { label: copy.joinLabel, href: joinHref },
+    { label: copy.cultureLabel, href: joinHref.replace(/join-us\/?$/, "scouting-culture/") },
   ];
   const copyright = copy.copyright.replace("{year}", String(COPYRIGHT_YEAR));
   const sectionTextAlign = isRtl ? "text-right" : "text-left";

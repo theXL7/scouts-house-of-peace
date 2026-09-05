@@ -5,8 +5,14 @@ import { withBasePath } from "@/lib/site";
 
 export type SeoPageKey = "home" | "join-us" | "scouting-culture" | "programs";
 
-const DEFAULT_SITE_URL = "https://scoutsmaisonpaix.org";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL;
+const DEFAULT_SITE_URL = "https://www.scoutsmaisonpaix.org";
+// Match the existing production redirect, including deployments with the old env value.
+const configuredSiteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL);
+if (["scoutsmaisonpaix.org", "www.scoutsmaisonpaix.org"].includes(configuredSiteUrl.hostname)) {
+  configuredSiteUrl.protocol = "https:";
+  configuredSiteUrl.hostname = "www.scoutsmaisonpaix.org";
+}
+const SITE_URL = configuredSiteUrl.toString();
 const IS_VERCEL_PREVIEW = process.env.VERCEL_ENV === "preview";
 const X_DEFAULT_LOCALE: Locale = "ar";
 const SITE_NAME = "Scouts Maison de La Paix";
@@ -43,7 +49,7 @@ const pageSeoByLocale: Record<
     },
     "scouting-culture": {
       title: "Scouting Culture | Scouts Maison de La Paix",
-      description: "Discover the culture behind the journey at Scouts Maison de La Paix.",
+      description: "Explore scout age groups, patrols, traditions, ceremonies, songs and peace education at Scouts Maison de La Paix in Morocco.",
     },
     programs: {
       title: "Programs & Activities | Scouts Maison de La Paix",
@@ -66,7 +72,7 @@ const pageSeoByLocale: Record<
     },
     "scouting-culture": {
       title: "Culture Scoute | Scouts Maison de La Paix",
-      description: "Découvrez la culture derrière l'aventure aux Scouts Maison de La Paix.",
+      description: "Découvrez les tranches d'âge, patrouilles, traditions, cérémonies, chants et l'éducation à la paix des Scouts Maison de La Paix au Maroc.",
     },
   },
   ar: {
@@ -84,7 +90,7 @@ const pageSeoByLocale: Record<
     },
     "scouting-culture": {
       title: "الثقافة الكشفية | Scouts Maison de La Paix",
-      description: "اكتشف الثقافة وراء الرحلة في Scouts Maison de La Paix.",
+      description: "تعرف على المراحل العمرية والطلائع والتقاليد والمراسم والأناشيد والتربية على السلام لدى Scouts Maison de La Paix في المغرب.",
     },
   },
 };
@@ -256,7 +262,46 @@ export function getSocialProfileUrls() {
 }
 
 export function serializeJsonLd(data: object) {
-  return JSON.stringify(data);
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
+export function getWebSiteStructuredData() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": getAbsoluteUrl("/#website"),
+    name: SITE_NAME,
+    url: getAbsoluteUrl("/"),
+    inLanguage: ["en", "fr", "ar"],
+    publisher: { "@id": getAbsoluteUrl("/#organization") },
+  };
+}
+
+export function getPageBreadcrumbs(page: SeoPageKey, locale: Locale) {
+  return {
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: SITE_NAME, item: getPageUrl("home", locale) },
+      { "@type": "ListItem", position: 2, name: pageSeoByLocale[locale][page].title.split(" | ")[0], item: getPageUrl(page, locale) },
+    ],
+  };
+}
+
+// Reuse the same canonical, language and social conventions for content collections.
+export function getCollectionMetadata(path: string, locale: Locale, title: string, description: string): Metadata {
+  const base = getPageMetadata("programs", locale);
+  const url = getAbsoluteUrl(getLocalePath(locale, path));
+  return {
+    ...base,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: Object.fromEntries(["en", "fr", "ar", "x-default"].map((language) => [language, getAbsoluteUrl(getLocalePath(language === "x-default" ? X_DEFAULT_LOCALE : language as Locale, path))])),
+    },
+    openGraph: { ...base.openGraph, title, description, url },
+    twitter: { ...base.twitter, title, description },
+  };
 }
 
 export function getSiteOrigin() {
