@@ -516,9 +516,11 @@ const fr = {
         "Ce formulaire sert aux premières questions et aux premiers contacts. Ce n'est pas le formulaire d'inscription final.",
       note:
         "Les familles et futurs scouts peuvent l'utiliser pour poser des questions sur le parcours, le dossier, les premières visites ou les détails de l'uniforme.",
-      submitLabel: "Envoyer la demande",
-      successMessage:
-        "Merci pour votre intérêt. Nous vous contacterons pour expliquer les prochaines étapes.",
+      submitLabel: "Préparer un e-mail",
+      emailHandoffNote:
+        "Ce formulaire ouvre un e-mail prérempli dans votre application de messagerie. Vous devez ensuite cliquer sur Envoyer.",
+      emailDraftMessage:
+        "Si un brouillon s'est ouvert, cliquez sur Envoyer dans votre messagerie. Sinon, contactez-nous par téléphone ou WhatsApp ci-dessous. Vos réponses restent sur cette page.",
       recipientEmail: "contact@scoutsmaisonpaix.org",
       emailSubject: "Demande de pré-inscription - Scouts Maison de La Paix",
       fields: {
