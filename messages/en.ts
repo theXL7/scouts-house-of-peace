@@ -538,9 +538,11 @@ const en = {
         "This form is for first questions and initial interest. It is not the final registration form.",
       note:
         "Families and future scouts may use it to ask about the process, the file, first visits, or uniform details.",
-      submitLabel: "Send Request",
-      successMessage:
-        "Thank you for your interest. We will contact you to explain the next steps.",
+      submitLabel: "Open email draft",
+      emailHandoffNote:
+        "This opens a prepared message in your email app. You must press Send there to contact us.",
+      emailDraftMessage:
+        "If an email draft opened, press Send in your email app. If nothing opened, contact us using the phone or WhatsApp options below. Your answers remain on this page.",
       recipientEmail: "contact@scoutsmaisonpaix.org",
       emailSubject: "Pre-registration request - Scouts Maison de La Paix",
       fields: {
