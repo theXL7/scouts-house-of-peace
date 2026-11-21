@@ -12,11 +12,9 @@ function getFieldValue(formData: FormData, fieldName: string) {
 export default function RegistrationInterestForm({
   copy,
   isRtl = false,
-  previewDisabled = false,
 }: {
   copy: Messages["joinPage"]["form"];
   isRtl?: boolean;
-  previewDisabled?: boolean;
 }) {
   const [submitted, setSubmitted] = useState(false);
 
@@ -74,9 +72,8 @@ export default function RegistrationInterestForm({
         encType="text/plain"
         dir={isRtl ? "rtl" : "ltr"}
         className="mt-6 grid gap-x-4 gap-y-5 sm:grid-cols-2"
-        onSubmit={previewDisabled ? (event) => event.preventDefault() : handleSubmit}
+        onSubmit={handleSubmit}
       >
-        <fieldset disabled={previewDisabled} className="contents">
         <label className="block">
           <span className="mb-2 block text-sm font-medium text-[#415B4C]">
             {copy.fields.fullName}
@@ -224,7 +221,6 @@ export default function RegistrationInterestForm({
             </p>
           ) : null}
         </div>
-        </fieldset>
       </form>
     </div>
   );
