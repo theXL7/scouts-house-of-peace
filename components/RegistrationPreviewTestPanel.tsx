@@ -17,7 +17,7 @@ type TurnstileAPI = {
       action: string;
       callback: (token: string) => void;
       "expired-callback": () => void;
-      "error-callback": () => void;
+      "error-callback": (errorCode: string) => void;
     },
   ) => string;
   reset: (widgetId: string) => void;
@@ -34,7 +34,8 @@ const textByLocale = {
     title: "Google Sheets integration — test only",
     description:
       "This is a preview-only test. The normal inquiry form below is disabled. Clicking the test button sends fixed fictional data, never information entered by visitors.",
-    widgetError: "Verification did not load. Check the Turnstile hostname allowlist.",
+    widgetError: "Turnstile verification failed. Error code:",
+    widgetLoadError: "Turnstile script could not load. Check browser blockers or network access.",
     expired: "Verification expired. Please verify again.",
     verifyFirst: "Complete verification before sending the test.",
     button: "Send fictional test inquiry",
@@ -51,7 +52,8 @@ const textByLocale = {
     title: "Connexion à Google Sheets — essai uniquement",
     description:
       "Ceci est un essai réservé à la prévisualisation. Le formulaire normal ci-dessous est désactivé. Le bouton envoie uniquement des données fictives fixes, jamais des renseignements saisis par les visiteurs.",
-    widgetError: "La vérification ne s'affiche pas. Vérifiez les domaines autorisés dans Turnstile.",
+    widgetError: "Échec de la vérification Turnstile. Code d\u0027erreur :",
+    widgetLoadError: "Le script Turnstile n\u0027a pas pu être chargé. Vérifiez les extensions du navigateur ou la connexion.",
     expired: "La vérification a expiré. Veuillez réessayer.",
     verifyFirst: "Effectuez la vérification avant l'envoi du test.",
     button: "Envoyer une demande fictive",
@@ -68,7 +70,8 @@ const textByLocale = {
     title: "اختبار الربط مع Google Sheets فقط",
     description:
       "هذه تجربة خاصة بنسخة المعاينة. النموذج العادي أدناه معطل، ولا يرسل زر الاختبار سوى بيانات وهمية ثابتة، دون أي معلومات شخصية للزوار.",
-    widgetError: "تعذر تحميل التحقق. يرجى التأكد من النطاقات المسموح بها في Turnstile.",
+    widgetError: "فشل التحقق بواسطة Turnstile. رمز الخطأ:",
+    widgetLoadError: "تعذر تحميل برنامج Turnstile. تحقق من إضافات المتصفح أو الاتصال بالشبكة.",
     expired: "انتهت صلاحية التحقق. يرجى المحاولة مجدداً.",
     verifyFirst: "يرجى إتمام التحقق قبل إرسال التجربة.",
     button: "إرسال طلب تجريبي وهمي",
@@ -131,13 +134,14 @@ export default function RegistrationPreviewTestPanel({
           setToken("");
           setFeedback({ message: copy.expired, error: true });
         },
-        "error-callback": () => {
+        "error-callback": (errorCode) => {
           setToken("");
-          setFeedback({ message: copy.widgetError, error: true });
+          // Expose only Cloudflare's diagnostic code, never a token or credential.
+          setFeedback({ message: `${copy.widgetError} ${errorCode}`, error: true });
         },
       });
     } catch {
-      setFeedback({ message: copy.widgetError, error: true });
+      setFeedback({ message: copy.widgetLoadError, error: true });
     }
   }
 
@@ -215,7 +219,7 @@ export default function RegistrationPreviewTestPanel({
         src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
         strategy="afterInteractive"
         onReady={renderWidget}
-        onError={() => setFeedback({ message: copy.widgetError, error: true })}
+        onError={() => setFeedback({ message: copy.widgetLoadError, error: true })}
       />
       <form onSubmit={sendTest} className="mt-4 flex flex-col items-start gap-3">
         <div ref={containerRef} dir="ltr" />
