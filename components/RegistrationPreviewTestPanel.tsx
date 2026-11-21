@@ -189,7 +189,26 @@ export default function RegistrationPreviewTestPanel({
               : result?.error === "too_many_requests"
                 ? copy.rateLimit
                 : copy.unavailable;
-        setFeedback({ message: errorMessage, error: true });
+        // Only expose a short, predefined Worker error code and HTTP status.
+        // Never print response bodies, tokens, credentials, or submitted data.
+        const safeCodes = new Set([
+          "invalid_data",
+          "verification_failed",
+          "origin_not_allowed",
+          "too_many_requests",
+          "service_unavailable",
+          "request_too_large",
+          "invalid_content_type",
+          "method_not_allowed",
+        ]);
+        const reportedCode =
+          typeof result?.error === "string" && safeCodes.has(result.error)
+            ? result.error
+            : "unexpected_response";
+        setFeedback({
+          message: `${errorMessage} (HTTP ${response.status} — ${reportedCode})`,
+          error: true,
+        });
       }
     } catch {
       setFeedback({ message: copy.network, error: true });
