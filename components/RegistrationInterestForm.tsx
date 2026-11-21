@@ -18,7 +18,7 @@ export default function RegistrationInterestForm({
   isRtl?: boolean;
   previewDisabled?: boolean;
 }) {
-  const [submitted, setSubmitted] = useState(false);
+  const [emailDraftOpened, setEmailDraftOpened] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,8 +41,9 @@ export default function RegistrationInterestForm({
     const subject = copy.emailSubject;
     const body = encodeURIComponent(lines.join("\n"));
 
-    setSubmitted(true);
-    form.reset();
+    // Opening an email draft is not proof that the request was sent.
+    // Keep the visitor's answers in case the email app does not open.
+    setEmailDraftOpened(true);
     window.location.href = `mailto:${copy.recipientEmail}?subject=${encodeURIComponent(subject)}&body=${body}`;
   }
 
@@ -207,6 +208,9 @@ export default function RegistrationInterestForm({
         </label>
 
         <div className={`sm:col-span-2 flex flex-col ${submitAlignment}`}>
+          <p className="mb-3 text-sm leading-6 text-[#415B4C]">
+            {copy.emailHandoffNote}
+          </p>
           <button
             type="submit"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#CDB98E] bg-[#2E4D3F] px-6 py-3 text-sm font-semibold text-[#F8F2E8] shadow-[0_14px_30px_rgba(46,77,63,0.18)] transition-[transform,background-color] duration-200 hover:-translate-y-px hover:bg-[#365946]"
@@ -214,13 +218,15 @@ export default function RegistrationInterestForm({
             {copy.submitLabel}
           </button>
 
-          {submitted ? (
+          {emailDraftOpened ? (
             <p
+              role="status"
+              aria-live="polite"
               className={`mt-4 text-sm text-[#415B4C] ${
                 isRtl ? "leading-[1.95]" : "leading-7"
               }`}
             >
-              {copy.successMessage}
+              {copy.emailDraftMessage}
             </p>
           ) : null}
         </div>
