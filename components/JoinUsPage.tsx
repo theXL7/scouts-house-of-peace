@@ -2,7 +2,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LocaleDocument from "@/components/LocaleDocument";
 import RegistrationInterestForm from "@/components/RegistrationInterestForm";
-import RegistrationPreviewTestPanel from "@/components/RegistrationPreviewTestPanel";
 import JoinFaqAccordion from "@/components/JoinFaqAccordion";
 import { serializeJsonLd } from "@/lib/seo";
 import { withBasePath } from "@/lib/site";
@@ -837,14 +836,7 @@ export default function JoinUsPage({ locale }: { locale: Locale }) {
                 </div>
               </div>
 
-              {process.env.NEXT_PUBLIC_REGISTRATION_TEST_PREVIEW === "true" ? (
-                <RegistrationPreviewTestPanel locale={locale} isRtl={isRtl} />
-              ) : null}
-              <RegistrationInterestForm
-                copy={copy.form}
-                isRtl={isRtl}
-                previewDisabled={process.env.NEXT_PUBLIC_REGISTRATION_TEST_PREVIEW === "true"}
-              />
+              <RegistrationInterestForm copy={copy.form} isRtl={isRtl} />
             </div>
           </div>
         </section>
