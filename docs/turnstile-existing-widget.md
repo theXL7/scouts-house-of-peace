@@ -10,7 +10,7 @@
 - Existing Turnstile **public** Site Key: `0x4AAAAAAGLKBeonmZ38khRe`.
 - Widget action: `registration_inquiry`.
 - Frontend endpoint: `POST https://scouts-registration-api.starofficiel2006.workers.dev/submit`.
-- Existing server code: `worker/registration/src/index.mjs` (source mirror of the manually deployed Worker package, **not proof of the active deployment version**).
+- Existing server code: `worker/registration/src/index.mjs` in the previously provided standalone Worker ZIP. **This source has not been committed to this GitHub branch, and it does not prove the active Cloudflare deployment version.**
 - Server-side verification: `POST https://challenges.cloudflare.com/turnstile/v0/siteverify`.
 - **Private** Cloudflare Worker secret binding: `TURNSTILE_SECRET_KEY`; value must correspond to Site Key above. Never place it in code or chat.
 - Worker environment: default/production Worker `scouts-registration-api`. No new Worker was created here.
