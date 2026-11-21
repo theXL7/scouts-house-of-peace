@@ -7,7 +7,7 @@ import type { Locale } from "@/messages";
 
 const WORKER_SUBMIT_URL =
   "https://scouts-registration-api.starofficiel2006.workers.dev/submit";
-const TURNSTILE_SITE_KEY = "0x4AAAAAAGKxJFg2fGdgRdPT";
+const TURNSTILE_SITE_KEY = "0x4AAAAAAGLKBeonmZ38khRe";
 
 type TurnstileAPI = {
   render: (
