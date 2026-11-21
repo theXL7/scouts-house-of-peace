@@ -18,6 +18,13 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_BASE_PATH: deploymentBasePath,
+    // Compile synthetic-only test UI into this one Vercel preview branch.
+    NEXT_PUBLIC_REGISTRATION_TEST_PREVIEW:
+      process.env.VERCEL_ENV === "preview" &&
+      process.env.VERCEL_GIT_COMMIT_REF ===
+        "preview/registration-sheets-test-2026-11-21"
+        ? "true"
+        : "false",
   },
   ...(deploymentBasePath ? { basePath: deploymentBasePath } : {}),
 };
